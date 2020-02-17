@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Sorschia</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>SorschiaX.SQLServer</PackageId>
+    <Version>0.0.1-pre</Version>
+    <Authors>John Josua Paderon</Authors>
+    <Company>Sorschia</Company>
+    <Description>Base classes and extensions for SQL Server</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sorschia\Sorschia.csproj" />
+  </ItemGroup>
+
+</Project>
