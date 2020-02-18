@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.Prism.Extensions",
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.Prism.Wpf.Extensions", "Sorschia.Prism.Wpf.Extensions\Sorschia.Prism.Wpf.Extensions.csproj", "{2470E48B-A4A3-423E-97E7-319EF7077847}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.SystemBase", "Sorschia.SystemBase\Sorschia.SystemBase.csproj", "{2213F0CD-00C3-42F1-BF96-3808024817A2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -57,6 +59,10 @@ Global
 		{2470E48B-A4A3-423E-97E7-319EF7077847}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2470E48B-A4A3-423E-97E7-319EF7077847}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2470E48B-A4A3-423E-97E7-319EF7077847}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2213F0CD-00C3-42F1-BF96-3808024817A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2213F0CD-00C3-42F1-BF96-3808024817A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2213F0CD-00C3-42F1-BF96-3808024817A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2213F0CD-00C3-42F1-BF96-3808024817A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -27,10 +27,10 @@ namespace Sorschia
             return _cache.Exists(cacheKey, out result);
         }
 
-        protected T TrySaveToCache<T>(string cacheKey, T value, long? expirationSeconds, bool continueOnDefaults = false)
+        protected T TrySaveToCache<T>(string cacheKey, T value, long? expirationSeconds, bool continueOnDefault = default)
         {
             ValidateCacheKey(cacheKey);
-            return _cache.Save(cacheKey, value, expirationSeconds, continueOnDefaults);
+            return _cache.Save(cacheKey, value, expirationSeconds, continueOnDefault);
         }
 
         protected string CreateCacheKey<TModel, TResult>(TModel model)
