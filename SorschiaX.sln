@@ -5,13 +5,19 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorschia", "Sorschia\Sorschia.csproj", "{2CC8148A-BC86-4E9A-867B-34EBD108D61A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.Caching.Memory", "Sorschia.Caching.Memory\Sorschia.Caching.Memory.csproj", "{CB921195-9F23-47D9-94BE-F88A9E973130}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorschia.Caching.Memory", "Sorschia.Caching.Memory\Sorschia.Caching.Memory.csproj", "{CB921195-9F23-47D9-94BE-F88A9E973130}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.Dependency", "Sorschia.Dependency\Sorschia.Dependency.csproj", "{CF9B5674-C227-490B-9449-701D2068EC6C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorschia.Dependency", "Sorschia.Dependency\Sorschia.Dependency.csproj", "{CF9B5674-C227-490B-9449-701D2068EC6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.Caching.Memory.Dependency", "Sorschia.Caching.Memory.Dependency\Sorschia.Caching.Memory.Dependency.csproj", "{A2C30BDD-7349-4200-B579-2833284F5B7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorschia.Caching.Memory.Dependency", "Sorschia.Caching.Memory.Dependency\Sorschia.Caching.Memory.Dependency.csproj", "{A2C30BDD-7349-4200-B579-2833284F5B7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.SQLServer", "Sorschia.SQLServer\Sorschia.SQLServer.csproj", "{9BD9ED73-D288-48FC-8599-B1A84FF214DC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorschia.SQLServer", "Sorschia.SQLServer\Sorschia.SQLServer.csproj", "{9BD9ED73-D288-48FC-8599-B1A84FF214DC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.WPF", "Sorschia.WPF\Sorschia.WPF.csproj", "{AB5C1ABE-6532-49D9-82C0-EB7FB9D3B173}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.Prism.Extensions", "Sorschia.Prism.Extensions\Sorschia.Prism.Extensions.csproj", "{71D616B5-6071-4455-A7BC-45EF91463104}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.Prism.Wpf.Extensions", "Sorschia.Prism.Wpf.Extensions\Sorschia.Prism.Wpf.Extensions.csproj", "{2470E48B-A4A3-423E-97E7-319EF7077847}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -39,6 +45,18 @@ Global
 		{9BD9ED73-D288-48FC-8599-B1A84FF214DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9BD9ED73-D288-48FC-8599-B1A84FF214DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9BD9ED73-D288-48FC-8599-B1A84FF214DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB5C1ABE-6532-49D9-82C0-EB7FB9D3B173}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB5C1ABE-6532-49D9-82C0-EB7FB9D3B173}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB5C1ABE-6532-49D9-82C0-EB7FB9D3B173}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB5C1ABE-6532-49D9-82C0-EB7FB9D3B173}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71D616B5-6071-4455-A7BC-45EF91463104}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71D616B5-6071-4455-A7BC-45EF91463104}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71D616B5-6071-4455-A7BC-45EF91463104}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71D616B5-6071-4455-A7BC-45EF91463104}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2470E48B-A4A3-423E-97E7-319EF7077847}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2470E48B-A4A3-423E-97E7-319EF7077847}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2470E48B-A4A3-423E-97E7-319EF7077847}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2470E48B-A4A3-423E-97E7-319EF7077847}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

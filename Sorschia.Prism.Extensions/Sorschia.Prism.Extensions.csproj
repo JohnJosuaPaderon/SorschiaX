@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Sorschia</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <Version>0.0.1-pre</Version>
+    <PackageId>SorschiaX.Prism.Extensions</PackageId>
+    <Authors>John Josua Paderon</Authors>
+    <Company>Sorschia</Company>
+    <Description>Extensions for Prism.Core</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Prism.Core" Version="7.2.0.1422" />
+  </ItemGroup>
+
+</Project>
