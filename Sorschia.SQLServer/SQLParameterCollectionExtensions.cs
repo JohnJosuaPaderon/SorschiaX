@@ -1,7 +1,7 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
 
-namespace Sorschia.Data
+namespace Sorschia
 {
     public static class SQLParameterCollectionExtensions
     {

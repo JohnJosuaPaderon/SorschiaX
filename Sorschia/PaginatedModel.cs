@@ -1,4 +1,4 @@
-﻿namespace Sorschia.Process
+﻿namespace Sorschia
 {
     public class PaginatedModel
     {

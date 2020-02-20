@@ -5,21 +5,41 @@ namespace Sorschia.Caching
 {
     internal sealed class Cache : ICache
     {
-        public Cache(IMemoryCache cache)
+        public Cache(IMemoryCache cache, CacheSettings settings)
         {
             _memoryCache = cache;
+            _settings = settings;
         }
 
         private readonly IMemoryCache _memoryCache;
+        private readonly CacheSettings _settings;
 
         private TimeSpan? GetExpirationFromSeconds(long? expirationSeconds)
         {
             if (expirationSeconds != null)
             {
-                return TimeSpan.FromSeconds(expirationSeconds ?? 0);
+                return TimeSpan.FromSeconds(expirationSeconds.Value);
             }
 
             return default;
+        }
+
+        private MemoryCacheEntryOptions GetMemoryCacheEntryOptions(TimeSpan? expiration)
+        {
+            var result = new MemoryCacheEntryOptions();
+
+            switch (_settings.ExpirationMode)
+            {
+                case CacheExpirationMode.Absolute:
+                    result.AbsoluteExpirationRelativeToNow = expiration;
+                    break;
+                case CacheExpirationMode.Sliding:
+                    result.SlidingExpiration = expiration;
+                    break;
+                default: throw new SorschiaCachingException("Selected expiration mode is currently unsupported");
+            }
+
+            return result;
         }
 
         private void ValidateKey(string key)
@@ -32,64 +52,89 @@ namespace Sorschia.Caching
 
         public bool Exists(string key)
         {
-            ValidateKey(key);
-
-            lock (_memoryCache)
+            if (_settings.UseCaching)
             {
-                return _memoryCache.TryGetValue(key, out _);
+                ValidateKey(key);
+
+                lock (_memoryCache)
+                {
+                    return _memoryCache.TryGetValue(key, out _);
+                }
             }
+
+            return false;
         }
 
         public bool Exists(string key, out object value)
         {
-            ValidateKey(key);
-
-            lock (_memoryCache)
+            if (_settings.UseCaching)
             {
-                return _memoryCache.TryGetValue(key, out value);
+                ValidateKey(key);
+
+                lock (_memoryCache)
+                {
+                    return _memoryCache.TryGetValue(key, out value);
+                }
             }
+
+            value = default;
+            return false;
         }
 
         public bool Exists<T>(string key, out T value)
         {
-            ValidateKey(key);
-
-            lock (_memoryCache)
+            if (_settings.UseCaching)
             {
-                return _memoryCache.TryGetValue(key, out value);
+                ValidateKey(key);
+
+                lock (_memoryCache)
+                {
+                    return _memoryCache.TryGetValue(key, out value);
+                }
             }
+
+            value = default;
+            return false;
         }
 
         public void Remove(string key)
         {
-            ValidateKey(key);
-
-            lock (_memoryCache)
+            if (_settings.UseCaching)
             {
-                _memoryCache.Remove(key);
+                ValidateKey(key);
+
+                lock (_memoryCache)
+                {
+                    _memoryCache.Remove(key);
+                }
             }
         }
 
         public object Save(string key, object value, TimeSpan? expiration = default, bool continueOnNull = default)
         {
-            ValidateKey(key);
-
-            lock (_memoryCache)
+            if (_settings.UseCaching)
             {
-                if (continueOnNull || value != null)
+                ValidateKey(key);
+
+                lock (_memoryCache)
                 {
-                    if (expiration != null)
+                    if (continueOnNull || value != default)
                     {
-                        _memoryCache.Set(key, value, expiration.Value);
-                    }
-                    else
-                    {
-                        _memoryCache.Set(key, value);
+                        if (expiration != default)
+                        {
+                            _memoryCache.Set(key, value, GetMemoryCacheEntryOptions(expiration));
+                        }
+                        else
+                        {
+                            _memoryCache.Set(key, value);
+                        }
                     }
                 }
+
+                return value;
             }
 
-            return value;
+            return default;
         }
 
         public object Save(string key, object value, long? expirationSeconds = default, bool continueOnNull = default)
@@ -99,24 +144,29 @@ namespace Sorschia.Caching
 
         public T Save<T>(string key, T value, TimeSpan? expiration = null, bool continueOnDefault = false)
         {
-            ValidateKey(key);
-
-            lock (_memoryCache)
+            if (_settings.UseCaching)
             {
-                if (continueOnDefault || !Equals(value, default(T)))
+                ValidateKey(key);
+
+                lock (_memoryCache)
                 {
-                    if (expiration != null)
+                    if (continueOnDefault || !Equals(value, default(T)))
                     {
-                        _memoryCache.Set(key, value, expiration.Value);
-                    }
-                    else
-                    {
-                        _memoryCache.Set(key, value);
+                        if (expiration != default)
+                        {
+                            _memoryCache.Set(key, value, GetMemoryCacheEntryOptions(expiration));
+                        }
+                        else
+                        {
+                            _memoryCache.Set(key, value);
+                        }
                     }
                 }
+
+                return value;
             }
 
-            return value;
+            return default;
         }
 
         public T Save<T>(string key, T value, long? expirationSeconds = default, bool continueOnDefault = default)

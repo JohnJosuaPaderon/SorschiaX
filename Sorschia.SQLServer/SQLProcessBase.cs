@@ -2,7 +2,7 @@
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace Sorschia.Process
+namespace Sorschia
 {
     public abstract class SQLProcessBase : ProcessBase
     {
@@ -30,6 +30,11 @@ namespace Sorschia.Process
             var connection = InitializeConnection();
             await connection.OpenAsync(cancellationToken);
             return connection;
+        }
+
+        protected void ThrowError(SqlException exception)
+        {
+            throw new SorschiaException(exception.Message, exception, exception.Number == 50_000);
         }
     }
 }

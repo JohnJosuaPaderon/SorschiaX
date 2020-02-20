@@ -9,10 +9,20 @@
     <Authors>John Josua Paderon</Authors>
     <Company>Sorschia</Company>
     <Description>Extensions for Prism.Core</Description>
+    <Copyright>Copyright (c) 2020 John Josua Paderon</Copyright>
+    <PackageIcon>logo.png</PackageIcon>
+    <PackageIconUrl />
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Prism.Core" Version="7.2.0.1422" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\Assets\logo.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>
