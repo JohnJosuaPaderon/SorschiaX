@@ -12,6 +12,7 @@
     <Copyright>Copyright (c) 2020 John Josua Paderon</Copyright>
     <PackageIcon>logo.png</PackageIcon>
     <PackageIconUrl />
+    <ApplicationIcon>logo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
