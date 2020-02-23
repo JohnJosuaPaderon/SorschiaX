@@ -1,4 +1,5 @@
-﻿using System.Data.SqlClient;
+﻿using System;
+using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -32,9 +33,13 @@ namespace Sorschia
             return connection;
         }
 
-        protected void ThrowError(SqlException exception)
+        protected void ThrowError(Exception exception)
         {
-            throw new SorschiaException(exception.Message, exception, exception.Number == 50_000);
+            throw exception switch
+            {
+                SqlException sqlException => new SorschiaException(exception.Message, sqlException, sqlException.Number == 50_000),
+                _ => new SorschiaException("An error occured", exception, true),
+            };
         }
     }
 }

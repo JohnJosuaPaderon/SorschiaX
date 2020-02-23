@@ -1,9 +1,27 @@
-﻿namespace Sorschia.SystemBase.Security.Entities
+﻿using System.Threading;
+using System.Threading.Tasks;
+
+namespace Sorschia.SystemBase.Security.Entities
 {
     public class SystemApplication
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public int? PlatformId { get; set; }
+
+        public SystemApplicationPlatform Platform { get; set; }
+
+        public async Task<SystemApplicationPlatform> GetPlatformAsync(ISystemBaseSecurityRepository repository, CancellationToken cancellationToken = default)
+        {
+            var id = PlatformId ?? default;
+
+            if (repository != default && id > default(int))
+            {
+                Platform = await repository.GetApplicationPlatformAsync(id, cancellationToken);
+            }
+
+            return Platform;
+        }
 
         public static bool operator ==(SystemApplication left, SystemApplication right)
         {

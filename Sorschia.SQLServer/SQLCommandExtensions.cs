@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -40,6 +41,29 @@ namespace Sorschia
         {
             instance.Parameters.AddInOut(name, value ?? DBNull.Value, sqlDbType, size);
             return instance;
+        }
+
+        public static SqlCommand AddIntListParameter(this SqlCommand command, string parameterName, IEnumerable<int> intList, string fieldName = "Value", string typeName = "dbo.IntList", ParameterDirection direction = ParameterDirection.Input)
+        {
+            var dataTable = new DataTable();
+            dataTable.Columns.Add(new DataColumn(fieldName, typeof(int)));
+
+            foreach (var value in intList)
+            {
+                dataTable.Rows.Add(value);
+            }
+
+            var parameter = new SqlParameter()
+            {
+                ParameterName = parameterName,
+                TypeName = typeName,
+                SqlDbType = SqlDbType.Structured,
+                Direction = direction,
+                Value = dataTable
+            };
+
+            command.Parameters.Add(parameter);
+            return command;
         }
     }
 }

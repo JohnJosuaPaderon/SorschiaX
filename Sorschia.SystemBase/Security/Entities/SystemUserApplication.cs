@@ -15,9 +15,11 @@ namespace Sorschia.SystemBase.Security.Entities
 
         public async Task<SystemUser> GetUserAsync(ISystemBaseSecurityRepository repository, CancellationToken cancellationToken = default)
         {
-            if (repository != default && UserId > default(int))
+            var id = UserId;
+
+            if (repository != default && id > default(int))
             {
-                User = await repository.GetUserAsync(UserId, cancellationToken);
+                User = await repository.GetUserAsync(id, cancellationToken);
             }
 
             return User;

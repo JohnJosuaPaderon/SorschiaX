@@ -15,9 +15,11 @@ namespace Sorschia.SystemBase.Security.Entities
 
         public async Task<SystemUser> GetUserAsync(ISystemBaseSecurityRepository repository, CancellationToken cancellationToken = default)
         {
-            if (repository != default && UserId > default(int))
+            var id = UserId;
+
+            if (repository != default && id > default(int))
             {
-                User = await repository.GetUserAsync(UserId, cancellationToken);
+                User = await repository.GetUserAsync(id, cancellationToken);
             }
 
             return User;
@@ -25,9 +27,11 @@ namespace Sorschia.SystemBase.Security.Entities
 
         public async Task<SystemModule> GetModuleAsync(ISystemBaseSecurityRepository repository, CancellationToken cancellationToken = default)
         {
-            if (repository != default && ModuleId > default(int))
+            var id = ModuleId;
+
+            if (repository != default && id > default(int))
             {
-                Module = await repository.GetModuleAsync(ModuleId, cancellationToken);
+                Module = await repository.GetModuleAsync(id, cancellationToken);
             }
 
             return Module;
@@ -62,37 +66,6 @@ namespace Sorschia.SystemBase.Security.Entities
         public override int GetHashCode()
         {
             return Id.GetHashCode();
-        }
-    }
-
-    public class SystemUserPermission
-    {
-        public long Id { get; set; }
-        public int UserId { get; set; }
-        public int PermissionId { get; set; }
-        public bool IsApproved { get; set; }
-
-        public SystemUser User { get; set; }
-        public SystemPermission Permission { get; set; }
-
-        public async Task<SystemUser> GetUserAsync(ISystemBaseSecurityRepository repository, CancellationToken cancellationToken = default)
-        {
-            if (repository != default && UserId > default(int))
-            {
-                User = await repository.GetUserAsync(UserId, cancellationToken);
-            }
-
-            return User;
-        }
-
-        public async Task<SystemPermission> GetPermissionAsync(ISystemBaseSecurityRepository repository, CancellationToken cancellationToken = default)
-        {
-            if (repository != default && PermissionId > default(int))
-            {
-                Permission = await repository.GetPermissionAsync(PermissionId, cancellationToken);
-            }
-
-            return Permission;
         }
     }
 }

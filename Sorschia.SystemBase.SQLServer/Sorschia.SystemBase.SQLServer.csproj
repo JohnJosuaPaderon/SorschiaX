@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>Sorschia.SystemBase</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sorschia.SQLServer\Sorschia.SQLServer.csproj" />
+    <ProjectReference Include="..\Sorschia.SystemBase\Sorschia.SystemBase.csproj" />
+  </ItemGroup>
+
+</Project>
