@@ -18,6 +18,6 @@ namespace Sorschia.SystemBase.Security.CommandProviders
             .AddInParameter(_parameterProvider.Skip, model.Skip)
             .AddInParameter(_parameterProvider.Take, model.Take)
             .AddInParameter(_parameterProvider.FilterText, model.FilterText)
-            .AddInParameter(_parameterProvider.SkippedIdList, model.SkippedIdList);
+            .AddIntListParameter(_parameterProvider.SkippedIdList, model.SkippedIdList);
     }
 }
