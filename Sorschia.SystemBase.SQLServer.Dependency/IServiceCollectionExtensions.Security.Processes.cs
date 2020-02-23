@@ -27,6 +27,7 @@ namespace Sorschia.SystemBase
             instance
                 .InternalAddProcess<IDeleteModule, DeleteModule>()
                 .InternalAddProcess<IGetModule, GetModule>()
+                .InternalAddProcess<IGetModuleList, GetModuleList>()
                 .InternalAddProcess<ISaveModule, SaveModule>();
             #endregion
 

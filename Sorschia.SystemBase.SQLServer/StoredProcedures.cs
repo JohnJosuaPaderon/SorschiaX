@@ -22,6 +22,7 @@
             #region Module
             public const string DeleteModule = "Security.DeleteModule";
             public const string GetModule = "Security.GetModule";
+            public const string GetModuleList = "Security.GetModuleList";
             public const string RemoveModuleFromApplication = "Security.RemoveModuleFromApplication";
             public const string SaveModule = "Security.SaveModule";
             #endregion

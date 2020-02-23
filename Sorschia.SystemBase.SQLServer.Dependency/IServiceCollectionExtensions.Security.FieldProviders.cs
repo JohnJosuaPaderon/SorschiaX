@@ -21,7 +21,8 @@ namespace Sorschia.SystemBase
 
             #region Module
             instance
-                .InternalAddProvider<GetModuleFieldProvider>();
+                .InternalAddProvider<GetModuleFieldProvider>()
+                .InternalAddProvider<GetModuleListFieldProvider>();
             #endregion
 
             #region Permission

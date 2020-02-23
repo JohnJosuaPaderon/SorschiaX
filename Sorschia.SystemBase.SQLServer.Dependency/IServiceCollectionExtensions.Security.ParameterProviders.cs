@@ -28,6 +28,7 @@ namespace Sorschia.SystemBase
             instance
                 .InternalAddProvider<DeleteModuleParameterProvider>()
                 .InternalAddProvider<GetModuleParameterProvider>()
+                .InternalAddProvider<GetModuleListParameterProvider>()
                 .InternalAddProvider<RemoveModuleFromApplicationParameterProvider>()
                 .InternalAddProvider<SaveModuleParameterProvider>();
             #endregion
