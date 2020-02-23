@@ -15,7 +15,8 @@ namespace Sorschia.SystemBase
 
             #region ApplicationPlatform
             instance
-                .InternalAddFieldProvider<GetApplicationPlatformFieldProvider>();
+                .InternalAddFieldProvider<GetApplicationPlatformFieldProvider>()
+                .InternalAddFieldProvider<GetApplicationPlatformListFieldProvider>();
             #endregion
 
             #region Module

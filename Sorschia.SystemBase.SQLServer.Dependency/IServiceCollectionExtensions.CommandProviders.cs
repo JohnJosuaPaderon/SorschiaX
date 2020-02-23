@@ -20,6 +20,7 @@ namespace Sorschia.SystemBase
             instance
                 .InternalAddCommandProvider<DeleteApplicationPlatformCommandProvider>()
                 .InternalAddCommandProvider<GetApplicationPlatformCommandProvider>()
+                .InternalAddCommandProvider<GetApplicationPlatformListCommandProvider>()
                 .InternalAddCommandProvider<SaveApplicationPlatformCommandProvider>();
             #endregion
 

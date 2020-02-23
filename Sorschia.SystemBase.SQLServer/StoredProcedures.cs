@@ -15,6 +15,7 @@
             #region ApplicationPlatform
             public const string DeleteApplicationPlatform = "Security.DeleteApplicationPlatform";
             public const string GetApplicationPlatform = "Security.GetApplicationPlatform";
+            public const string GetApplicationPlatformList = "Security.GetApplicationPlatformList";
             public const string SaveApplicationPlatform = "Security.SaveApplicationPlatform";
             #endregion
 

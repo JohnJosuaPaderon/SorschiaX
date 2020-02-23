@@ -19,6 +19,7 @@ namespace Sorschia.SystemBase
             instance
                 .InternalAddProcess<IDeleteApplicationPlatform, DeleteApplicationPlatform>()
                 .InternalAddProcess<IGetApplicationPlatform, GetApplicationPlatform>()
+                .InternalAddProcess<IGetApplicationPlatformList, GetApplicationPlatformList>()
                 .InternalAddProcess<ISaveApplicationPlatform, SaveApplicationPlatform>();
             #endregion
 

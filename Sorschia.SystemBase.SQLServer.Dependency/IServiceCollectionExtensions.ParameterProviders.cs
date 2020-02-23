@@ -20,6 +20,7 @@ namespace Sorschia.SystemBase
             instance
                 .InternalAddParameterProvider<DeleteApplicationPlatformParameterProvider>()
                 .InternalAddParameterProvider<GetApplicationPlatformParameterProvider>()
+                .InternalAddParameterProvider<GetApplicationPlatformListParameterProvider>()
                 .InternalAddParameterProvider<SaveApplicationPlatformParameterProvider>();
             #endregion
 
