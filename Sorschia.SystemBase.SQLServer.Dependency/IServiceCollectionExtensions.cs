@@ -7,10 +7,7 @@ namespace Sorschia.SystemBase
         public static IServiceCollection AddSorschiaSystemBaseSqlServer(this IServiceCollection instance)
         {
             return instance
-                .InternalAddCommandProviders()
-                .InternalAddFieldProviders()
-                .InternalAddParameterProviders()
-                .InternalAddProcesses();
+                .InternalAddSecurity();
         }
 
         private static IServiceCollection InternalAddProcess<TContract, TImplementation>(this IServiceCollection instance)
@@ -21,22 +18,19 @@ namespace Sorschia.SystemBase
                 .AddTransient<TContract, TImplementation>();
         }
 
-        private static IServiceCollection InternalAddCommandProvider<TCommandProvider>(this IServiceCollection instance)
-            where TCommandProvider : class
+        private static IServiceCollection InternalAddProvider<TProvider>(this IServiceCollection instance)
+            where TProvider : class
         {
-            return instance.AddSingleton<TCommandProvider>();
+            return instance.AddSingleton<TProvider>();
         }
 
-        private static IServiceCollection InternalAddParameterProvider<TParameterProvider>(this IServiceCollection instance)
-            where TParameterProvider : class
+        private static IServiceCollection InternalAddSecurity(this IServiceCollection instance)
         {
-            return instance.AddSingleton<TParameterProvider>();
-        }
-
-        private static IServiceCollection InternalAddFieldProvider<TFieldProvider>(this IServiceCollection instance)
-            where TFieldProvider : class
-        {
-            return instance.AddSingleton<TFieldProvider>();
+            return instance
+                .InternalAddSecurityCommandProviders()
+                .InternalAddSecurityFieldProviders()
+                .InternalAddSecurityParameterProviders()
+                .InternalAddSecurityProcesses();
         }
     }
 }

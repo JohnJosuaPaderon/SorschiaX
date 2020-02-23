@@ -5,7 +5,7 @@ namespace Sorschia.SystemBase
 {
     partial class IServiceCollectionExtensions
     {
-        private static IServiceCollection InternalAddProcesses(this IServiceCollection instance)
+        private static IServiceCollection InternalAddSecurityProcesses(this IServiceCollection instance)
         {
             #region Application
             instance
