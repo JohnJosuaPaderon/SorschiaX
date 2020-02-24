@@ -35,6 +35,7 @@ namespace Sorschia.SystemBase
             instance
                 .InternalAddProcess<IDeletePermission, DeletePermission>()
                 .InternalAddProcess<IGetPermission, GetPermission>()
+                .InternalAddProcess<IGetPermissionList, GetPermissionList>()
                 .InternalAddProcess<ISavePermission, SavePermission>();
             #endregion
 

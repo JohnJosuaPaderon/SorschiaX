@@ -30,6 +30,7 @@
             #region Permission
             public const string DeletePermission = "Security.DeleteApplication";
             public const string GetPermission = "Security.GetPermission";
+            public const string GetPermissionList = "Security.GetPermissionList";
             public const string SavePermission = "Security.SavePermission";
             #endregion
 

@@ -27,7 +27,8 @@ namespace Sorschia.SystemBase
 
             #region Permission
             instance
-                .InternalAddProvider<GetPermissionFieldProvider>();
+                .InternalAddProvider<GetPermissionFieldProvider>()
+                .InternalAddProvider<GetPermissionListFieldProvider>();
             #endregion
 
             #region User

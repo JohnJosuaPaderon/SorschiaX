@@ -37,6 +37,7 @@ namespace Sorschia.SystemBase
             instance
                 .InternalAddProvider<DeletePermissionCommandProvider>()
                 .InternalAddProvider<GetPermissionCommandProvider>()
+                .InternalAddProvider<GetPermissionListCommandProvider>()
                 .InternalAddProvider<SavePermissionCommandProvider>();
             #endregion
 
