@@ -37,6 +37,7 @@
             #region User
             public const string DeleteUser = "Security.DeleteUser";
             public const string GetUser = "Security.GetUser";
+            public const string GetUserList = "Security.GetUserList";
             public const string SaveUser = "Security.SaveUser";
             #endregion
 

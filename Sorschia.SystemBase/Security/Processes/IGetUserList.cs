@@ -11,6 +11,10 @@ namespace Sorschia.SystemBase.Security.Processes
     public sealed class GetUserListModel : PaginatedModel
     {
         public string FilterText { get; set; }
+        public bool FilterByActive { get; set; }
+        public bool IsActive { get; set; }
+        public bool FilterByPasswordChangeRequired { get; set; }
+        public bool IsPasswordChangeRequired { get; set; }
         public IList<int> SkippedIdList { get; set; } = new List<int>();
     }
 

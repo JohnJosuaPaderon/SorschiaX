@@ -33,7 +33,8 @@ namespace Sorschia.SystemBase
 
             #region User
             instance
-                .InternalAddProvider<GetUserFieldProvider>();
+                .InternalAddProvider<GetUserFieldProvider>()
+                .InternalAddProvider<GetUserListFieldProvider>();
             #endregion
 
             return instance;

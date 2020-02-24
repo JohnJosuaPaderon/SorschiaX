@@ -43,6 +43,7 @@ namespace Sorschia.SystemBase
             instance
                 .InternalAddProcess<IDeleteUser, DeleteUser>()
                 .InternalAddProcess<IGetUser, GetUser>()
+                .InternalAddProcess<IGetUserList, GetUserList>()
                 .InternalAddProcess<ISaveUser, SaveUser>();
             #endregion
 
