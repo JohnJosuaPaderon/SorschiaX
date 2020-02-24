@@ -52,6 +52,11 @@ namespace Sorschia.SystemBase
                 .InternalAddProcess<IGetUserApplicationList, GetUserApplicationList>();
             #endregion
 
+            #region UserModule
+            instance
+                .InternalAddProcess<IGetUserModuleList, GetUserModuleList>();
+            #endregion
+
             return instance;
         }
     }

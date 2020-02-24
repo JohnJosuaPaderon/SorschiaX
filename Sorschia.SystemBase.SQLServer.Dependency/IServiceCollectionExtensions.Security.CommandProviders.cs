@@ -59,6 +59,7 @@ namespace Sorschia.SystemBase
             #region UserModule
             instance
                 .InternalAddProvider<DeleteUserModuleCommandProvider>()
+                .InternalAddProvider<GetUserModuleListCommandProvider>()
                 .InternalAddProvider<SaveUserModuleCommandProvider>();
             #endregion
 

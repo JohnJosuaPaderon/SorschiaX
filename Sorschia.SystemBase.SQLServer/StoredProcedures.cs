@@ -49,6 +49,7 @@
 
             #region UserModule
             public const string DeleteUserModule = "Security.DeleteUserModule";
+            public const string GetUserModuleList = "Security.GetUserModuleList";
             public const string SaveUserModule = "Security.SaveuserModule";
             #endregion
 
