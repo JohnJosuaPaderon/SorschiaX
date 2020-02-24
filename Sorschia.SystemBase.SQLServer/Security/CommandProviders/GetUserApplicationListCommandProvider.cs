@@ -18,8 +18,8 @@ namespace Sorschia.SystemBase.Security.CommandProviders
             .AddInParameter(_parameterProvider.FilterByApproved, model.FilterByApproved)
             .AddInParameter(_parameterProvider.IsApproved, model.IsApproved)
             .AddInParameter(_parameterProvider.FilterByUser, model.FilterByUser)
-            .AddInParameter(_parameterProvider.UserIdList, model.UserIdList)
+            .AddIntListParameter(_parameterProvider.UserIdList, model.UserIdList)
             .AddInParameter(_parameterProvider.FilterByApplication, model.FilterByApplication)
-            .AddInParameter(_parameterProvider.ApplicationIdList, model.ApplicationIdList);
+            .AddIntListParameter(_parameterProvider.ApplicationIdList, model.ApplicationIdList);
     }
 }
