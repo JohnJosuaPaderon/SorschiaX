@@ -65,6 +65,8 @@ namespace Sorschia.SystemBase
 
             #region UserPermission
             instance
+                .InternalAddProvider<DeleteUserPermissionParameterProvider>()
+                .InternalAddProvider<GetUserPermissionListParameterProvider>()
                 .InternalAddProvider<SaveUserPermissionParameterProvider>();
             #endregion
 

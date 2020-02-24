@@ -55,6 +55,7 @@
 
             #region UserPermission
             public const string DeleteUserPermission = "Security.DeleteUserPermission";
+            public const string GetUserPermissionList = "Security.GetUserPermissionList";
             public const string SaveUserPermission = "Security.SaveUserPermission";
             #endregion
         }

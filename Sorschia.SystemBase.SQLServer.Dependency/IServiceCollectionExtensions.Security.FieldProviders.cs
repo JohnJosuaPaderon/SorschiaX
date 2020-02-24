@@ -47,6 +47,11 @@ namespace Sorschia.SystemBase
                 .InternalAddProvider<GetUserModuleListFieldProvider>();
             #endregion
 
+            #region UserPermission
+            instance
+                .InternalAddProvider<GetUserPermissionListFieldProvider>();
+            #endregion
+
             return instance;
         }
     }
