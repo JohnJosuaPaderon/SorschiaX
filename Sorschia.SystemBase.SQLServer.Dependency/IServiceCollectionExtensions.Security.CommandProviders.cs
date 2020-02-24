@@ -52,6 +52,7 @@ namespace Sorschia.SystemBase
             #region UserApplication
             instance
                 .InternalAddProvider<DeleteUserApplicationCommandProvider>()
+                .InternalAddProvider<GetUserApplicationListCommandProvider>()
                 .InternalAddProvider<SaveUserApplicationCommandProvider>();
             #endregion
 

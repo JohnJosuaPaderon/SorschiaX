@@ -37,6 +37,11 @@ namespace Sorschia.SystemBase
                 .InternalAddProvider<GetUserListFieldProvider>();
             #endregion
 
+            #region UserApplication
+            instance
+                .InternalAddProvider<GetUserApplicationListFieldProvider>();
+            #endregion
+
             return instance;
         }
     }

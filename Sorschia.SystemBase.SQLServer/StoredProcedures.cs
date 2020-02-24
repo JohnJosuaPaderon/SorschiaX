@@ -43,6 +43,7 @@
 
             #region UserApplication
             public const string DeleteUserApplication = "Security.DeleteUserApplication";
+            public const string GetUserApplicationList = "Security.GetUserApplicationList";
             public const string SaveUserApplication = "Security.SaveUserApplication";
             #endregion
 
