@@ -15,6 +15,8 @@ namespace Sorschia.SystemBase.Security.CommandProviders
 
         public SqlCommand Get(GetUserApplicationListModel model, SqlConnection connection) =>
             connection.CreateProcedureCommand(StoredProcedures.Security.GetUserApplicationList)
+            .AddInParameter(_parameterProvider.Skip, model.Skip)
+            .AddInParameter(_parameterProvider.Take, model.Take)
             .AddInParameter(_parameterProvider.FilterByApproved, model.FilterByApproved)
             .AddInParameter(_parameterProvider.IsApproved, model.IsApproved)
             .AddInParameter(_parameterProvider.FilterByUser, model.FilterByUser)

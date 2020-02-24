@@ -15,6 +15,8 @@ namespace Sorschia.SystemBase.Security.CommandProviders
 
         public SqlCommand Get(GetUserListModel model, SqlConnection connection) =>
             connection.CreateProcedureCommand(StoredProcedures.Security.GetUserList)
+            .AddInParameter(_parameterProvider.Skip, model.Skip)
+            .AddInParameter(_parameterProvider.Take, model.Take)
             .AddInParameter(_parameterProvider.FilterText, model.FilterText)
             .AddInParameter(_parameterProvider.FilterByActive, model.FilterByActive)
             .AddInParameter(_parameterProvider.IsActive, model.IsActive)

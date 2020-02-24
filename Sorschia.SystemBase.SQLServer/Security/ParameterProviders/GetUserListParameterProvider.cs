@@ -2,6 +2,8 @@
 {
     internal sealed class GetUserListParameterProvider
     {
+        public string Skip { get; } = "@Skip";
+        public string Take { get; } = "@Take";
         public string FilterText { get; } = "@FilterText";
         public string FilterByActive { get; } = "@FilterByActive";
         public string IsActive { get; } = "@IsActive";
