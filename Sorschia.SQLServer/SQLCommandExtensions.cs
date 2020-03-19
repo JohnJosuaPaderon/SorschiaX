@@ -5,7 +5,7 @@ using System.Data.SqlClient;
 
 namespace Sorschia
 {
-    public static class SQLCommandExtensions
+    public static class SqlCommandExtensions
     {
         public static SqlCommand AddInParameter(this SqlCommand instance, string name, object value)
         {

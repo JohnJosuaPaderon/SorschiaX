@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Sorschia.SystemBase.Security.Processes
 {
-    internal sealed class GetApplicationPlatformList : SQLProcessBase, IGetApplicationPlatformList
+    internal sealed class GetApplicationPlatformList : SqlProcessBase, IGetApplicationPlatformList
     {
         public GetApplicationPlatformList(
             IConnectionStringProvider connectionStringProvider,

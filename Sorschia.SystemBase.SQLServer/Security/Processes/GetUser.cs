@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Sorschia.SystemBase.Security.Processes
 {
-    internal sealed class GetUser : SQLProcessBase, IGetUser
+    internal sealed class GetUser : SqlProcessBase, IGetUser
     {
         public GetUser(
             IConnectionStringProvider connectionStringProvider,

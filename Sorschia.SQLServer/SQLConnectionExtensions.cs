@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 
 namespace Sorschia
 {
-    public static class SQLConnectionExtensions
+    public static class SqlConnectionExtensions
     {
         public static SqlCommand CreateCommand(this SqlConnection instance, string commandText, SqlTransaction transaction = default)
         {

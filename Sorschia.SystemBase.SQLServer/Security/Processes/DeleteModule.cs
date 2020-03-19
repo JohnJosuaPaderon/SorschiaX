@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sorschia.SystemBase.Security.Processes
 {
-    internal sealed class DeleteModule : SQLProcessBase, IDeleteModule
+    internal sealed class DeleteModule : SqlProcessBase, IDeleteModule
     {
         public DeleteModule(
             IConnectionStringProvider connectionStringProvider, 

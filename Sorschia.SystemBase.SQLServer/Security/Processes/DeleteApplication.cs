@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sorschia.SystemBase.Security.Processes
 {
-    internal sealed class DeleteApplication : SQLProcessBase, IDeleteApplication
+    internal sealed class DeleteApplication : SqlProcessBase, IDeleteApplication
     {
         public DeleteApplication(
             IConnectionStringProvider connectionStringProvider, 

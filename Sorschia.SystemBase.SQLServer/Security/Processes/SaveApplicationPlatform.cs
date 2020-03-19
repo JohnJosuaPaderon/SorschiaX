@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Sorschia.SystemBase.Security.Processes
 {
-    internal sealed class SaveApplicationPlatform : SQLProcessBase, ISaveApplicationPlatform
+    internal sealed class SaveApplicationPlatform : SqlProcessBase, ISaveApplicationPlatform
     {
         public SaveApplicationPlatform(
             IConnectionStringProvider connectionStringProvider,

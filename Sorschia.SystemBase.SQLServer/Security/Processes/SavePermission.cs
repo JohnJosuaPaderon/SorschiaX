@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Sorschia.SystemBase.Security.Processes
 {
-    internal sealed class SavePermission : SQLProcessBase, ISavePermission
+    internal sealed class SavePermission : SqlProcessBase, ISavePermission
     {
         public SavePermission(
             IConnectionStringProvider connectionStringProvider,

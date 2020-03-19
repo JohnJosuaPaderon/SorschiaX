@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sorschia.SystemBase.Security.Processes
 {
-    internal sealed class DeleteUser : SQLProcessBase, IDeleteUser
+    internal sealed class DeleteUser : SqlProcessBase, IDeleteUser
     {
         public DeleteUser(
             IConnectionStringProvider connectionStringProvider, 

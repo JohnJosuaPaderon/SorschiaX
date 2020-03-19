@@ -3,7 +3,7 @@ using System.Data.SqlClient;
 
 namespace Sorschia
 {
-    public static class SQLParameterCollectionExtensions
+    public static class SqlParameterCollectionExtensions
     {
         public static SqlParameterCollection AddIn(this SqlParameterCollection instance, string name, object value)
         {

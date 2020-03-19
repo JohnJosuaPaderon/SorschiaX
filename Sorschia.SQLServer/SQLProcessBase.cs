@@ -5,9 +5,9 @@ using System.Threading.Tasks;
 
 namespace Sorschia
 {
-    public abstract class SQLProcessBase : ProcessBase
+    public abstract class SqlProcessBase : ProcessBase
     {
-        public SQLProcessBase(string connectionString)
+        public SqlProcessBase(string connectionString)
         {
             _connectionString = connectionString;
         }
