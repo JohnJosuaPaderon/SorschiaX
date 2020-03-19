@@ -8,7 +8,6 @@ namespace Sorschia.SystemBase.Security.ParameterProviders
         public string UserId { get; } = "@UserId";
         public string ApplicationId { get; } = "@ApplicationId";
         public string IsApproved { get; } = "@IsApproved";
-        public string SavedBy { get; } = "@SavedBy";
         public SqlDbType Id_Type { get; } = SqlDbType.BigInt;
     }
 }

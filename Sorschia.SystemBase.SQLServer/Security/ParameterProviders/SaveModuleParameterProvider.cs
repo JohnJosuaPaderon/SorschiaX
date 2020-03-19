@@ -8,7 +8,6 @@ namespace Sorschia.SystemBase.Security.ParameterProviders
         public string Name { get; } = "@Name";
         public string OrdinalNumber { get; } = "@OrdinalNumber";
         public string ApplicationId { get; } = "@ApplicationId";
-        public string SavedBy { get; } = "@SavedBy";
         public SqlDbType Id_Type { get; } = SqlDbType.Int;
     }
 }

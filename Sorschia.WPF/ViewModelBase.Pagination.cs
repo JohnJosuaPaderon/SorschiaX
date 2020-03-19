@@ -106,7 +106,7 @@ namespace Sorschia
             PaginationEnableForwardButtons(paginationIndex, currentPage < lastPage);
         }
 
-        private void PaginationSetPages(int paginationIndex, int? skipped, int? taken, int totalCount)
+        protected void PaginationSetPages(int paginationIndex, int? skipped, int? taken, int totalCount)
         {
             var hasSKipped = skipped > 0;
             var hasTaken = taken > 0;

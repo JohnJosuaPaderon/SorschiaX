@@ -55,11 +55,11 @@ CREATE TABLE [Security].[ApplicationPlatform]
 	[Id] INT IDENTITY
 	,[Name] NVARCHAR(100) NOT NULL
 	,[IsDeleted] BIT NOT NULL
-	,[InsertedBy] NVARCHAR(250)
+	,[InsertSessionId] UNIQUEIDENTIFIER
 	,[InsertedOn] DATETIME
-	,[UpdatedBy] NVARCHAR(250)
+	,[UpdateSessionId] UNIQUEIDENTIFIER
 	,[UpdatedOn] DATETIME
-	,[DeletedBy] NVARCHAR(250)
+	,[DeleteSessionId] UNIQUEIDENTIFIER
 	,[DeletedOn] DATETIME
 	,CONSTRAINT [PK_ApplicationPlatform] PRIMARY KEY([Id])
 );
@@ -74,11 +74,11 @@ CREATE TABLE [Security].[Application]
 	,[Name] NVARCHAR(100) NOT NULL
 	,[PlatformId] INT
 	,[IsDeleted] BIT NOT NULL
-	,[InsertedBy] NVARCHAR(250)
+	,[InsertSessionId] UNIQUEIDENTIFIER
 	,[InsertedOn] DATETIME
-	,[UpdatedBy] NVARCHAR(250)
+	,[UpdateSessionId] UNIQUEIDENTIFIER
 	,[UpdatedOn] DATETIME
-	,[DeletedBy] NVARCHAR(250)
+	,[DeleteSessionId] UNIQUEIDENTIFIER
 	,[DeletedOn] DATETIME
 	,CONSTRAINT [PK_Application] PRIMARY KEY([Id])
 	,CONSTRAINT [FK_Application_PlatformId] FOREIGN KEY([PlatformId]) REFERENCES [Security].[ApplicationPlatform]([Id])
@@ -95,11 +95,11 @@ CREATE TABLE [Security].[Module]
 	,[OrdinalNumber] INT NOT NULL
 	,[ApplicationId] INT
 	,[IsDeleted] BIT NOT NULL
-	,[InsertedBy] NVARCHAR(250)
+	,[InsertSessionId] UNIQUEIDENTIFIER
 	,[InsertedOn] DATETIME
-	,[UpdatedBy] NVARCHAR(250)
+	,[UpdateSessionId] UNIQUEIDENTIFIER
 	,[UpdatedOn] DATETIME
-	,[DeletedBy] NVARCHAR(250)
+	,[DeleteSessionId] UNIQUEIDENTIFIER
 	,[DeletedOn] DATETIME
 	,CONSTRAINT [PK_Module] PRIMARY KEY([Id])
 	,CONSTRAINT [FK_ModuleId] FOREIGN KEY([ApplicationId]) REFERENCES [Security].[Application]([Id])
@@ -115,11 +115,11 @@ CREATE TABLE [Security].[Permission]
 	,[Name] NVARCHAR(100) NOT NULL
 	,[Code] NVARCHAR(100) NOT NULL
 	,[IsDeleted] BIT NOT NULL
-	,[InsertedBy] NVARCHAR(250)
+	,[InsertSessionId] UNIQUEIDENTIFIER
 	,[InsertedOn] DATETIME
-	,[UpdatedBy] NVARCHAR(250)
+	,[UpdateSessionId] UNIQUEIDENTIFIER
 	,[UpdatedOn] DATETIME
-	,[DeletedBy] NVARCHAR(250)
+	,[DeleteSessionId] UNIQUEIDENTIFIER
 	,[DeletedOn] DATETIME
 	,CONSTRAINT [PK_Permission] PRIMARY KEY([Id])
 );
@@ -142,11 +142,11 @@ CREATE TABLE [Security].[User]
 	,[IsActive] BIT NOT NULL
 	,[IsPasswordChangeRequired] BIT NOT NULL
 	,[IsDeleted] BIT NOT NULL
-	,[InsertedBy] NVARCHAR(250)
+	,[InsertSessionId] UNIQUEIDENTIFIER
 	,[InsertedOn] DATETIME
-	,[UpdatedBy] NVARCHAR(250)
+	,[UpdateSessionId] UNIQUEIDENTIFIER
 	,[UpdatedOn] DATETIME
-	,[DeletedBy] NVARCHAR(250)
+	,[DeleteSessionId] UNIQUEIDENTIFIER
 	,[DeletedOn] DATETIME
 	,CONSTRAINT [PK_User] PRIMARY KEY([Id])
 );
@@ -164,11 +164,11 @@ CREATE TABLE [Security].[UserApplication]
 	,[ApplicationId] INT NOT NULL
 	,[IsApproved] BIT NOT NULL
 	,[IsDeleted] BIT NOT NULL
-	,[InsertedBy] NVARCHAR(250)
+	,[InsertSessionId] UNIQUEIDENTIFIER
 	,[InsertedOn] DATETIME
-	,[UpdatedBy] NVARCHAR(250)
+	,[UpdateSessionId] UNIQUEIDENTIFIER
 	,[UpdatedOn] DATETIME
-	,[DeletedBy] NVARCHAR(250)
+	,[DeleteSessionId] UNIQUEIDENTIFIER
 	,[DeletedOn] DATETIME
 	,CONSTRAINT [PK_UserApplication] PRIMARY KEY([Id])
 	,CONSTRAINT [FK_UserApplication_UserId] FOREIGN KEY([UserId]) REFERENCES [Security].[User]([Id])
@@ -187,11 +187,11 @@ CREATE TABLE [Security].[UserModule]
 	,[ModuleId] INT NOT NULL
 	,[IsApproved] BIT NOT NULL
 	,[IsDeleted] BIT NOT NULL
-	,[InsertedBy] NVARCHAR(250)
+	,[InsertSessionId] UNIQUEIDENTIFIER
 	,[InsertedOn] DATETIME
-	,[UpdatedBy] NVARCHAR(250)
+	,[UpdateSessionId] UNIQUEIDENTIFIER
 	,[UpdatedOn] DATETIME
-	,[DeletedBy] NVARCHAR(250)
+	,[DeleteSessionId] UNIQUEIDENTIFIER
 	,[DeletedOn] DATETIME
 	,CONSTRAINT [PK_UserModule] PRIMARY KEY([Id])
 	,CONSTRAINT [FK_UserModule_userId] FOREIGN KEY([UserId]) REFERENCES [Security].[User]([Id])
@@ -210,11 +210,11 @@ CREATE TABLE [Security].[UserPermission]
 	,[PermissionId] INT NOT NULL
 	,[IsApproved] BIT NOT NULL
 	,[IsDeleted] BIT NOT NULL
-	,[InsertedBy] NVARCHAR(250)
+	,[InsertSessionId] UNIQUEIDENTIFIER
 	,[InsertedOn] DATETIME
-	,[UpdatedBy] NVARCHAR(250)
+	,[UpdateSessionId] UNIQUEIDENTIFIER
 	,[UpdatedOn] DATETIME
-	,[DeletedBy] NVARCHAR(250)
+	,[DeleteSessionId] UNIQUEIDENTIFIER
 	,[DeletedOn] DATETIME
 	,CONSTRAINT [PK_UserPermission] PRIMARY KEY([Id])
 	,CONSTRAINT [FK_UserPermission_UserId] FOREIGN KEY([UserId]) REFERENCES [Security].[User]([Id])

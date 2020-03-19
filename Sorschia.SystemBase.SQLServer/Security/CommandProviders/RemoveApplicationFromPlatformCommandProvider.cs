@@ -1,22 +1,23 @@
-﻿using Sorschia.SystemBase.Security.ParameterProviders;
+﻿using Sorschia.SystemBase.Data;
+using Sorschia.SystemBase.Security.ParameterProviders;
 using System.Data.SqlClient;
 
 namespace Sorschia.SystemBase.Security.CommandProviders
 {
     internal sealed class RemoveApplicationFromPlatformCommandProvider
     {
-        public RemoveApplicationFromPlatformCommandProvider(ICurrentUserProvider currentUserProvider, RemoveApplicationFromPlatformParameterProvider parameterProvider)
+        public RemoveApplicationFromPlatformCommandProvider(ICurrentSessionProvider currentSessionProvider, RemoveApplicationFromPlatformParameterProvider parameterProvider)
         {
-            _currentUserProvider = currentUserProvider;
+            _currentSessionProvider = currentSessionProvider;
             _parameterProvider = parameterProvider;
         }
 
-        private readonly ICurrentUserProvider _currentUserProvider;
+        private readonly ICurrentSessionProvider _currentSessionProvider;
         private readonly RemoveApplicationFromPlatformParameterProvider _parameterProvider;
 
         public SqlCommand Get(int applicationId, SqlConnection connection, SqlTransaction transaction) =>
             connection.CreateProcedureCommand(StoredProcedures.Security.RemoveApplicationFromPlatform, transaction)
             .AddInParameter(_parameterProvider.ApplicationId, applicationId)
-            .AddInParameter(_parameterProvider.UpdatedBy, _currentUserProvider.GetUsername());
+            .AddSessionIdParameter(_currentSessionProvider);
     }
 }

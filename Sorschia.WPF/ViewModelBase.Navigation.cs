@@ -34,7 +34,7 @@ namespace Sorschia
                 var parameters = new NavigationParameters
                 {
                     { NavigationConstants.NotFound_Region, result.Context.NavigationService.Region.Name },
-                    { NavigationConstants.NotFound_Target, result.Context.Uri.ToString() }
+                    { NavigationConstants.NotFound_TargetView, result.Context.Uri.ToString() }
                 };
 
                 RegionManager.RequestNavigate(result.Context.NavigationService.Region.Name, NavigationConstants.NotFound, parameters);

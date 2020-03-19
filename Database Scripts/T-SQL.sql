@@ -179,12 +179,12 @@ CREATE PROCEDURE [Security].[DeleteApplication]
 (
 	@Id INT
 	,@IsCascaded BIT
-	,@DeletedBy NVARCHAR(250)
+	,@SessionId UNIQUEIDENTIFIER
 ) AS
 BEGIN
 	UPDATE [Security].[Application] SET
 		[IsDeleted] = 1
-		,[DeletedBy] = @DeletedBy
+		,[DeleteSessionId] = @SessionId
 		,[DeletedOn] = GETDATE()
 	WHERE [Id] = @Id AND [IsDeleted] = 0;
 
@@ -193,7 +193,7 @@ BEGIN
 		SET NOCOUNT ON;
 		UPDATE [Security].[Module] SET
 			[IsDeleted] = 1
-			,[DeletedBy] = @DeletedBy
+			,[DeleteSessionId] = @SessionId
 			,[DeletedOn] = GETDATE()
 		WHERE [ApplicationId] = @Id AND [IsDeleted] = 0;
 		SET NOCOUNT OFF;
@@ -209,12 +209,12 @@ CREATE PROCEDURE [Security].[DeleteApplicationPlatform]
 (
 	@Id INT
 	,@IsCascaded BIT
-	,@DeletedBy NVARCHAR(250)
+	,@SessionId UNIQUEIDENTIFIER
 ) AS
 BEGIN
 	UPDATE [Security].[ApplicationPlatform] SET
 		[IsDeleted] = 1
-		,[DeletedBy] = @DeletedBy
+		,[DeleteSessionId] = @SessionId
 		,[DeletedOn] = GETDATE()
 	WHERE [Id] = @Id AND [IsDeleted] = 0;
 
@@ -223,7 +223,7 @@ BEGIN
 		SET NOCOUNT ON;
 		UPDATE [Security].[Application] SET
 			[IsDeleted] = 1
-			,[DeletedBy] = @DeletedBy
+			,[DeleteSessionId] = @SessionId
 			,[DeletedOn] = GETDATE()
 		WHERE [PlatformId] = @Id AND [IsDeleted] = 0;
 		SET NOCOUNT OFF;

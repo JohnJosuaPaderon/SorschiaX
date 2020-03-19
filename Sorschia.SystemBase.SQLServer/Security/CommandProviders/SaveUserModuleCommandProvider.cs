@@ -1,4 +1,5 @@
-﻿using Sorschia.SystemBase.Security.Entities;
+﻿using Sorschia.SystemBase.Data;
+using Sorschia.SystemBase.Security.Entities;
 using Sorschia.SystemBase.Security.ParameterProviders;
 using System.Data.SqlClient;
 
@@ -6,13 +7,13 @@ namespace Sorschia.SystemBase.Security.CommandProviders
 {
     internal sealed class SaveUserModuleCommandProvider
     {
-        public SaveUserModuleCommandProvider(ICurrentUserProvider currentUserProvider, SaveUserModuleParameterProvider parameterProvider)
+        public SaveUserModuleCommandProvider(ICurrentSessionProvider currentSessionProvider, SaveUserModuleParameterProvider parameterProvider)
         {
-            _currentUserProvider = currentUserProvider;
+            _currentSessionProvider = currentSessionProvider;
             _parameterProvider = parameterProvider;
         }
 
-        private readonly ICurrentUserProvider _currentUserProvider;
+        private readonly ICurrentSessionProvider _currentSessionProvider;
         private readonly SaveUserModuleParameterProvider _parameterProvider;
 
         public SqlCommand Get(SystemUserModule userModule, SqlConnection connection, SqlTransaction transaction) =>
@@ -21,6 +22,6 @@ namespace Sorschia.SystemBase.Security.CommandProviders
             .AddInParameter(_parameterProvider.UserId, userModule.UserId)
             .AddInParameter(_parameterProvider.ModuleId, userModule.ModuleId)
             .AddInParameter(_parameterProvider.IsApproved, userModule.IsApproved)
-            .AddInParameter(_parameterProvider.SavedBy, _currentUserProvider.GetUsername());
+            .AddSessionIdParameter(_currentSessionProvider);
     }
 }

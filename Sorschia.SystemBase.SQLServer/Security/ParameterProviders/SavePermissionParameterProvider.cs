@@ -7,7 +7,6 @@ namespace Sorschia.SystemBase.Security.ParameterProviders
         public string Id { get; } = "@Id";
         public string Name { get; } = "@Name";
         public string Code { get; } = "@Code";
-        public string SavedBy { get; } = "@SavedBy";
         public SqlDbType Id_Type { get; } = SqlDbType.Int;
     }
 }

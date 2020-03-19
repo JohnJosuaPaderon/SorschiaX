@@ -1,16 +1,25 @@
-﻿using Prism.Commands;
-using Prism.Mvvm;
-using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Prism.Events;
+using Prism.Regions;
+using Prism.Services.Dialogs;
 
 namespace Sorschia.ViewModels
 {
-    public class NotFoundViewModel : BindableBase
+    public sealed class NotFoundViewModel : NavigableViewModelBase
     {
-        public NotFoundViewModel()
+        public NotFoundViewModel(IRegionManager regionManager, IDialogService dialogService, IEventAggregator eventAggregator) : base(regionManager, dialogService, eventAggregator)
         {
+        }
 
+        private string _targetView;
+        public string TargetView
+        {
+            get { return _targetView; }
+            set { SetProperty(ref _targetView, value); }
+        }
+
+        public override void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            TargetView = navigationContext.Parameters.TryGetValue(NavigationConstants.NotFound_TargetView, out string targetView) ? targetView : "[source-not-found]";
         }
     }
 }

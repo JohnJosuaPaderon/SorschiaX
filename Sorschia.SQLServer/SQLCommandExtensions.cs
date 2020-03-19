@@ -43,7 +43,7 @@ namespace Sorschia
             return instance;
         }
 
-        public static SqlCommand AddIntListParameter(this SqlCommand command, string parameterName, IEnumerable<int> intList, string fieldName = "Value", string typeName = "dbo.IntList", ParameterDirection direction = ParameterDirection.Input)
+        public static SqlCommand AddIntListParameter(this SqlCommand instance, string parameterName, IEnumerable<int> intList, string fieldName = "Value", string typeName = "dbo.IntList", ParameterDirection direction = ParameterDirection.Input)
         {
             var dataTable = new DataTable();
             dataTable.Columns.Add(new DataColumn(fieldName, typeof(int)));
@@ -62,8 +62,8 @@ namespace Sorschia
                 Value = dataTable
             };
 
-            command.Parameters.Add(parameter);
-            return command;
+            instance.Parameters.Add(parameter);
+            return instance;
         }
     }
 }

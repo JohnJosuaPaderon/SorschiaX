@@ -12,7 +12,6 @@ namespace Sorschia.SystemBase.Security.ParameterProviders
         public string HashedPassword { get; } = "@HashedPassword";
         public string IsActive { get; } = "@IsActive";
         public string IsPasswordChangeRequired { get; } = "@IsPasswordChangeRequired";
-        public string SavedBy { get; } = "@SavedBy";
         public SqlDbType Id_Type { get; } = SqlDbType.Int;
     }
 }
