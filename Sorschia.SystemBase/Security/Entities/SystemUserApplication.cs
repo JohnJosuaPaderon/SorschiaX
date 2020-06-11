@@ -27,9 +27,11 @@ namespace Sorschia.SystemBase.Security.Entities
 
         public async Task<SystemApplication> GetApplicationAsync(ISystemBaseSecurityRepository repository, CancellationToken cancellationToken = default)
         {
-            if (repository != default && ApplicationId > default(int))
+            var id = ApplicationId;
+
+            if (repository != default && id > default(int))
             {
-                Application = await repository.GetApplicationAsync(ApplicationId, cancellationToken);
+                Application = await repository.GetApplicationAsync(id, cancellationToken);
             }
 
             return Application;

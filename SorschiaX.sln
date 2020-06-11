@@ -23,11 +23,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorschia.SystemBase", "Sors
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorschia.SystemBase.SQLServer", "Sorschia.SystemBase.SQLServer\Sorschia.SystemBase.SQLServer.csproj", "{A6DB8533-C739-4251-951F-B8FA5507B864}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.SystemBase.SQLServer.Dependency", "Sorschia.SystemBase.SQLServer.Dependency\Sorschia.SystemBase.SQLServer.Dependency.csproj", "{F5629D4F-C87A-4998-930D-57688720CD8C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorschia.SystemBase.SQLServer.Dependency", "Sorschia.SystemBase.SQLServer.Dependency\Sorschia.SystemBase.SQLServer.Dependency.csproj", "{F5629D4F-C87A-4998-930D-57688720CD8C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{7DCCEE38-71C6-4DA2-A5D5-89EB228B68F6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SystemBase", "SystemBase", "{F531A66A-D4F1-4B8E-A16B-7EBB1F336E97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.Security.AES", "Sorschia.Security.AES\Sorschia.Security.AES.csproj", "{00021569-42B6-449E-988B-AA356B08E6C5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -79,6 +81,10 @@ Global
 		{F5629D4F-C87A-4998-930D-57688720CD8C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F5629D4F-C87A-4998-930D-57688720CD8C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F5629D4F-C87A-4998-930D-57688720CD8C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00021569-42B6-449E-988B-AA356B08E6C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00021569-42B6-449E-988B-AA356B08E6C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00021569-42B6-449E-988B-AA356B08E6C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00021569-42B6-449E-988B-AA356B08E6C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -95,6 +101,7 @@ Global
 		{2213F0CD-00C3-42F1-BF96-3808024817A2} = {F531A66A-D4F1-4B8E-A16B-7EBB1F336E97}
 		{A6DB8533-C739-4251-951F-B8FA5507B864} = {F531A66A-D4F1-4B8E-A16B-7EBB1F336E97}
 		{F5629D4F-C87A-4998-930D-57688720CD8C} = {F531A66A-D4F1-4B8E-A16B-7EBB1F336E97}
+		{00021569-42B6-449E-988B-AA356B08E6C5} = {7DCCEE38-71C6-4DA2-A5D5-89EB228B68F6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {38FD30CD-A97E-4AF3-A21A-7AED792E2BB4}

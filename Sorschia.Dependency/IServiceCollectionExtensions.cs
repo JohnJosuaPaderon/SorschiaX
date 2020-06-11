@@ -8,7 +8,7 @@ namespace Sorschia
         public static IServiceCollection AddSorschia(this IServiceCollection instance)
         {
             return instance
-                .AddSingleton<ICryptor, Cryptor>()
+                .AddSingleton<ICryptor, AesCryptor>()
                 .AddSingleton<IDependencyProvider, DependencyProvider>();
         }
     }

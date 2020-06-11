@@ -6,7 +6,7 @@ using System.Text;
 
 namespace Sorschia.Security
 {
-    internal sealed class Cryptor : ICryptor
+    internal sealed class AesCryptor : ICryptor
     {
         private readonly int _keySize = 16;
         private readonly int _derivationIterations = 10_000;

@@ -9,12 +9,16 @@
 USE [Sorschia_SystemBase];
 GO
 
+-----------------------------
 ---------- SCHEMAS ----------
+-----------------------------
 
 --CREATE SCHEMA [Security];
 --GO
 
+---------------------------------
 ---------- DROP TABLES ----------
+---------------------------------
 
 IF OBJECT_ID('Security.UserApplication', 'U') IS NOT NULL
 	DROP TABLE [Security].[UserApplication];
@@ -30,6 +34,10 @@ GO
 
 IF OBJECT_ID('Security.Module', 'U') IS NOT NULL
 	DROP TABLE [Security].[Module];
+GO
+
+IF OBJECT_ID('Security.Session', 'U') IS NOT NULL
+	DROP TABLE [Security].[Session];
 GO
 
 IF OBJECT_ID('Security.Application', 'U') IS NOT NULL
@@ -48,7 +56,9 @@ IF OBJECT_ID('Security.User') IS NOT NULL
 	DROP TABLE [Security].[User];
 GO
 
+-----------------------------------
 ---------- CREATE TABLES ----------
+-----------------------------------
 
 CREATE TABLE [Security].[ApplicationPlatform]
 (
@@ -155,6 +165,22 @@ ALTER TABLE [Security].[User] ADD
 	CONSTRAINT [DF_User_IsActive] DEFAULT 0 FOR [IsActive]
 	,CONSTRAINT [DF_User_IsPasswordChangeRequired] DEFAULT 1 FOR [IsPasswordChangeRequired]
 	,CONSTRAINT [DF_User_IsDeleted] DEFAULT 0 FOR [IsDeleted];
+GO
+
+CREATE TABLE [Security].[Session]
+(
+	[Id] UNIQUEIDENTIFIER
+	,[UserId] INT
+	,[ApplicationId] INT
+	,[MacAddress] NVARCHAR(50)
+	,[IpAddress] NVARCHAR(50)
+	,[OperatingSystem] NVARCHAR(50)
+	,[SessionStart] DATETIME NOT NULL
+	,[SessionEnd] DATETIME
+	,CONSTRAINT [PK_Session] PRIMARY KEY([Id])
+	,CONSTRAINT [FK_Session_UserId] FOREIGN KEY([UserId]) REFERENCES [Security].[User]([Id])
+	,CONSTRAINT [FK_Session_ApplicationId] FOREIGN KEY([ApplicationId]) REFERENCES [Security].[Application]([Id])
+);
 GO
 
 CREATE TABLE [Security].[UserApplication]
