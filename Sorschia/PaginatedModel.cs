@@ -1,8 +1,0 @@
-﻿namespace Sorschia
-{
-    public class PaginatedModel
-    {
-        public int? Skip { get; set; }
-        public int? Take { get; set; }
-    }
-}
