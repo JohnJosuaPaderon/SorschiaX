@@ -6,6 +6,7 @@
         public string MiddleName { get; set; }
         public string LastName { get; set; }
         public string NameExtension { get; set; }
+        public string FullName { get; private set; }
 
         public virtual string GetFullName(IFullNameBuilder builder)
         {
@@ -13,8 +14,8 @@
             var middleName = MiddleName;
             var lastName = LastName;
             var nameExtension = NameExtension;
-
-            return builder?.Build(firstName, middleName, lastName, nameExtension);
+            FullName = builder?.Build(firstName, middleName, lastName, nameExtension);
+            return FullName;
         }
     }
 }
