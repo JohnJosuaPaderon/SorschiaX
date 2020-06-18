@@ -3,9 +3,61 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "netcore3", "netcore3", "{14C52491-FC38-4BE0-8889-61B1E093B533}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorschia", "netcore3\Sorschia\Sorschia.csproj", "{99AF7FA4-BBA1-4267-A8CE-114B692858C3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorschia.SqlServer", "netcore3\Sorschia.SqlServer\Sorschia.SqlServer.csproj", "{32EB94B3-3EB6-460D-8037-A12120E517D9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorschia.TestApp", "netcore3\Sorschia.TestApp\Sorschia.TestApp.csproj", "{E3A2D688-30FD-4F9F-A346-3448A0B3E284}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorschia.Dependency", "netcore3\Sorschia.Dependency\Sorschia.Dependency.csproj", "{60210D2E-DC51-49F2-B2D0-C2E028A9DA28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.Caching.Memory", "netcore3\Sorschia.Caching.Memory\Sorschia.Caching.Memory.csproj", "{836C0AD5-67A4-4D15-99D2-DB7519198A65}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.Caching.Memory.Dependency", "netcore3\Sorschia.Caching.Memory.Dependency\Sorschia.Caching.Memory.Dependency.csproj", "{2F35AF54-9454-4E43-983C-96D5E7BDC031}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99AF7FA4-BBA1-4267-A8CE-114B692858C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99AF7FA4-BBA1-4267-A8CE-114B692858C3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99AF7FA4-BBA1-4267-A8CE-114B692858C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99AF7FA4-BBA1-4267-A8CE-114B692858C3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{32EB94B3-3EB6-460D-8037-A12120E517D9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{32EB94B3-3EB6-460D-8037-A12120E517D9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{32EB94B3-3EB6-460D-8037-A12120E517D9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{32EB94B3-3EB6-460D-8037-A12120E517D9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3A2D688-30FD-4F9F-A346-3448A0B3E284}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3A2D688-30FD-4F9F-A346-3448A0B3E284}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3A2D688-30FD-4F9F-A346-3448A0B3E284}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3A2D688-30FD-4F9F-A346-3448A0B3E284}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60210D2E-DC51-49F2-B2D0-C2E028A9DA28}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60210D2E-DC51-49F2-B2D0-C2E028A9DA28}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60210D2E-DC51-49F2-B2D0-C2E028A9DA28}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60210D2E-DC51-49F2-B2D0-C2E028A9DA28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{836C0AD5-67A4-4D15-99D2-DB7519198A65}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{836C0AD5-67A4-4D15-99D2-DB7519198A65}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{836C0AD5-67A4-4D15-99D2-DB7519198A65}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{836C0AD5-67A4-4D15-99D2-DB7519198A65}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F35AF54-9454-4E43-983C-96D5E7BDC031}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F35AF54-9454-4E43-983C-96D5E7BDC031}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F35AF54-9454-4E43-983C-96D5E7BDC031}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F35AF54-9454-4E43-983C-96D5E7BDC031}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{99AF7FA4-BBA1-4267-A8CE-114B692858C3} = {14C52491-FC38-4BE0-8889-61B1E093B533}
+		{32EB94B3-3EB6-460D-8037-A12120E517D9} = {14C52491-FC38-4BE0-8889-61B1E093B533}
+		{E3A2D688-30FD-4F9F-A346-3448A0B3E284} = {14C52491-FC38-4BE0-8889-61B1E093B533}
+		{60210D2E-DC51-49F2-B2D0-C2E028A9DA28} = {14C52491-FC38-4BE0-8889-61B1E093B533}
+		{836C0AD5-67A4-4D15-99D2-DB7519198A65} = {14C52491-FC38-4BE0-8889-61B1E093B533}
+		{2F35AF54-9454-4E43-983C-96D5E7BDC031} = {14C52491-FC38-4BE0-8889-61B1E093B533}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {38FD30CD-A97E-4AF3-A21A-7AED792E2BB4}

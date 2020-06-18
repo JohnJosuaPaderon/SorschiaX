@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <PackageId>SorschiaX</PackageId>
+    <Version>0.1.0-pre</Version>
+    <Authors>John Josua Paderon</Authors>
+    <Copyright>Copyright (c) 2020 John Josua Paderon</Copyright>
+    <Company>Sorschia</Company>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Security\ICryptoKeyProvider.cs~RF4493d20.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+  </ItemGroup>
+
+</Project>
