@@ -7,7 +7,7 @@ namespace Sorschia.Security
         public static IServiceCollection AddSecurity(this IServiceCollection instance, SecurityDependencySettings dependencySettings)
         {
             if (dependencySettings == null)
-                throw new SorschiaException("Dependency Settings is null");
+                throw SorschiaException.DependencySettingsIsNull<SecurityDependencySettings>();
 
             if (dependencySettings.UseAesCrypto)
                 instance.AddSingleton<AesCrypto>();

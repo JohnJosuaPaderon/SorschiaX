@@ -5,7 +5,7 @@
     <RootNamespace>Sorschia</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>SorschiaX.Dependency</PackageId>
-    <Version>0.1.0-pre</Version>
+    <Version>0.2.0-pre</Version>
     <Authors>John Josua Paderon</Authors>
     <Company>Sorschia</Company>
     <Copyright>Copyright (c) 2020 John Josua Paderon</Copyright>

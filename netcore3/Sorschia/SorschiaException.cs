@@ -26,5 +26,8 @@ namespace Sorschia
         {
             IsMessageViewable = isMessageViewable;
         }
+
+        public static SorschiaException RepositoryIsNull<TRepository>() => new SorschiaException($"Repository of type {typeof(TRepository).FullName} is null");
+        public static SorschiaException DependencySettingsIsNull<TDependencySettings>() => new SorschiaException($"Dependency settings of type {typeof(TDependencySettings).FullName} is null");
     }
 }

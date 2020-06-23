@@ -7,7 +7,7 @@ namespace Sorschia
 {
     public static class IServiceCollectionExtensions
     {
-        public static IServiceCollection AddSorschia(this IServiceCollection instance, Action<DependencySettings> configureSettings)
+        public static IServiceCollection AddSorschia(this IServiceCollection instance, Action<DependencySettings> configureSettings = null)
         {
             var dependencySettings = new DependencySettings();
 
