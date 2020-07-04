@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>Sorschia</RootNamespace>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
     <PackageId>SorschiaX.Dependency</PackageId>
@@ -13,6 +13,8 @@
 
   <ItemGroup>
     <None Remove="IServiceCollectionExtensions.cs~RF18393825.TMP" />
+    <None Remove="SystemCore\IServiceCollectionExtensions.cs~RF11fb6e64.TMP" />
+    <None Remove="SystemCore\IServiceCollectionExtensions.cs~RF12084fd1.TMP" />
   </ItemGroup>
 
   <ItemGroup>

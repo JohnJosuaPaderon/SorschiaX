@@ -13,9 +13,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorschia.TestApp", "netcore
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorschia.Dependency", "netcore3\Sorschia.Dependency\Sorschia.Dependency.csproj", "{60210D2E-DC51-49F2-B2D0-C2E028A9DA28}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.Caching.Memory", "netcore3\Sorschia.Caching.Memory\Sorschia.Caching.Memory.csproj", "{836C0AD5-67A4-4D15-99D2-DB7519198A65}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorschia.Caching.Memory", "netcore3\Sorschia.Caching.Memory\Sorschia.Caching.Memory.csproj", "{836C0AD5-67A4-4D15-99D2-DB7519198A65}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.Caching.Memory.Dependency", "netcore3\Sorschia.Caching.Memory.Dependency\Sorschia.Caching.Memory.Dependency.csproj", "{2F35AF54-9454-4E43-983C-96D5E7BDC031}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorschia.Caching.Memory.Dependency", "netcore3\Sorschia.Caching.Memory.Dependency\Sorschia.Caching.Memory.Dependency.csproj", "{2F35AF54-9454-4E43-983C-96D5E7BDC031}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorschia.SqlServer.Dependency", "netcore3\Sorschia.SqlServer.Dependency\Sorschia.SqlServer.Dependency.csproj", "{67D23509-8991-47EF-A6B2-7605BF0B60D1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.Api", "netcore3\Sorschia.Api\Sorschia.Api.csproj", "{3679F4A9-13BD-46B0-AA65-67DB62805332}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,6 +51,14 @@ Global
 		{2F35AF54-9454-4E43-983C-96D5E7BDC031}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F35AF54-9454-4E43-983C-96D5E7BDC031}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F35AF54-9454-4E43-983C-96D5E7BDC031}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67D23509-8991-47EF-A6B2-7605BF0B60D1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67D23509-8991-47EF-A6B2-7605BF0B60D1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67D23509-8991-47EF-A6B2-7605BF0B60D1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67D23509-8991-47EF-A6B2-7605BF0B60D1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3679F4A9-13BD-46B0-AA65-67DB62805332}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3679F4A9-13BD-46B0-AA65-67DB62805332}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3679F4A9-13BD-46B0-AA65-67DB62805332}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3679F4A9-13BD-46B0-AA65-67DB62805332}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,6 +70,8 @@ Global
 		{60210D2E-DC51-49F2-B2D0-C2E028A9DA28} = {14C52491-FC38-4BE0-8889-61B1E093B533}
 		{836C0AD5-67A4-4D15-99D2-DB7519198A65} = {14C52491-FC38-4BE0-8889-61B1E093B533}
 		{2F35AF54-9454-4E43-983C-96D5E7BDC031} = {14C52491-FC38-4BE0-8889-61B1E093B533}
+		{67D23509-8991-47EF-A6B2-7605BF0B60D1} = {14C52491-FC38-4BE0-8889-61B1E093B533}
+		{3679F4A9-13BD-46B0-AA65-67DB62805332} = {14C52491-FC38-4BE0-8889-61B1E093B533}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {38FD30CD-A97E-4AF3-A21A-7AED792E2BB4}

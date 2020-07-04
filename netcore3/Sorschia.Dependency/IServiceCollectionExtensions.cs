@@ -1,5 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using Sorschia.Security;
+using Sorschia.SystemCore;
 using Sorschia.Utilities;
 using System;
 
@@ -15,6 +16,7 @@ namespace Sorschia
 
             return instance
                 .AddSecurity(dependencySettings.Security)
+                .AddSystemCore(dependencySettings.SystemCore)
                 .AddUtilities(dependencySettings.Utilities);
         }
     }

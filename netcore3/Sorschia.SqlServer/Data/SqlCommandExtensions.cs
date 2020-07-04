@@ -1,4 +1,7 @@
-﻿using System.Data;
+﻿using Sorschia.Processes;
+using Sorschia.SystemCore;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 
 namespace Sorschia.Data
@@ -40,5 +43,67 @@ namespace Sorschia.Data
             instance.Parameters.AddInOut(name, value, sqlDbType, size);
             return instance;
         }
+
+        public static SqlCommand AddSessionIdParameter(this SqlCommand instance, ISessionProvider sessionProvider, string parameterName = default) =>
+            instance.AddInParameter(string.IsNullOrWhiteSpace(parameterName) ? "@SessionId" : parameterName, sessionProvider.Current?.Id);
+
+        public static SqlCommand AddSkipParameter(this SqlCommand instance, int? skip, string parameterName = default) =>
+            instance.AddInParameter(string.IsNullOrWhiteSpace(parameterName) ? "@Skip" : parameterName, skip);
+
+        public static SqlCommand AddTakeParameter(this SqlCommand instance, int? take, string parameterName = default) =>
+            instance.AddInParameter(string.IsNullOrWhiteSpace(parameterName) ? "@Take" : parameterName, take);
+
+        public static SqlCommand AddPaginationParameters(this SqlCommand instance, PaginationModel model) => instance
+            .AddSkipParameter(model?.Skip)
+            .AddTakeParameter(model?.Take);
+
+        public static SqlCommand AddTypeParameter<T>(this SqlCommand instance, string parameterName, IEnumerable<T> values, string dbTypeName, ParameterDirection direction = ParameterDirection.Input)
+        {
+            var dataTable = new DataTable();
+
+            var type = typeof(T);
+            var properties = type.GetProperties();
+
+            if (properties != null && properties.Length > 0)
+                foreach (var property in properties)
+                    dataTable.Columns.Add(new DataColumn(property.Name, property.PropertyType));
+
+            foreach (var value in values)
+                dataTable.Rows.Add(value);
+
+            instance.Parameters.Add(new SqlParameter
+            {
+                ParameterName = parameterName,
+                TypeName = dbTypeName,
+                SqlDbType = SqlDbType.Structured,
+                Direction = direction,
+                Value = dataTable
+            });
+
+            return instance;
+        }
+
+        public static SqlCommand AddSingleTypeParameter<T>(this SqlCommand instance, string parameterName, IEnumerable<T> values, string fieldName, string dbTypeName, ParameterDirection direction = ParameterDirection.Input)
+        {
+            var dataTable = new DataTable();
+            dataTable.Columns.Add(new DataColumn(fieldName, typeof(T)));
+
+            foreach (var value in values)
+                dataTable.Rows.Add(value);
+
+            instance.Parameters.Add(new SqlParameter
+            {
+                ParameterName = parameterName,
+                TypeName = dbTypeName,
+                SqlDbType = SqlDbType.Structured,
+                Direction = direction,
+                Value = dataTable
+            });
+
+            return instance;
+        }
+
+        public static SqlCommand AddIntListParameter(this SqlCommand instance, string parameterName, IEnumerable<int> values, string fieldName = "Value", string dbTypeName = "dbo.IntList", ParameterDirection direction = ParameterDirection.Input) =>
+            instance.AddSingleTypeParameter(parameterName, values, fieldName, dbTypeName, direction);
     }
 }

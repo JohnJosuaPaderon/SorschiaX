@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.0</TargetFramework>
+    <TargetFramework>netstandard2.1</TargetFramework>
     <PackageId>SorschiaX</PackageId>
     <Version>0.2.0-pre</Version>
     <Authors>John Josua Paderon</Authors>
@@ -11,7 +11,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Security\ICryptoKeyProvider.cs~RF4493d20.TMP" />
+    <None Remove="SorschiaException.cs~RF11d314dd.TMP" />
+    <None Remove="SystemCore\Processes\IDeletePermissionType.cs~RF4d9abad.TMP" />
+    <None Remove="SystemCore\Processes\IDeletePlatform.cs~RF4dab9c1.TMP" />
+    <None Remove="SystemCore\Processes\ISaveApplication.cs~RF555a597.TMP" />
+    <None Remove="SystemCore\Processes\ISaveModule.cs~RF11eaf02a.TMP" />
   </ItemGroup>
 
   <ItemGroup>

@@ -7,7 +7,7 @@ namespace Sorschia.Utilities
     {
         public static IServiceCollection AddUtilities(this IServiceCollection instance, UtilitiesDependencySettings dependencySettings)
         {
-            if (dependencySettings == null)
+            if (dependencySettings is null)
                 throw SorschiaException.DependencySettingsIsNull<UtilitiesDependencySettings>();
 
             if (dependencySettings.UseDependencyResolver)
