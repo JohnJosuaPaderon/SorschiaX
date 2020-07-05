@@ -10,6 +10,7 @@ namespace Sorschia.SystemCore.Queries
             .AddModule()
             .AddPermission()
             .AddPermissionGroup()
+            .AddPermissionType()
             .AddUserApplication()
             .AddUserModule()
             .AddUserPermission();

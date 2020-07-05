@@ -13,6 +13,7 @@
             public ModuleSection Module { get; set; } = new ModuleSection();
             public PermissionSection Permission { get; set; } = new PermissionSection();
             public PermissionGroupSection PermissionGroup { get; set; } = new PermissionGroupSection();
+            public PermissionTypeSection PermissionType { get; set; } = new PermissionTypeSection();
         }
     }
 }

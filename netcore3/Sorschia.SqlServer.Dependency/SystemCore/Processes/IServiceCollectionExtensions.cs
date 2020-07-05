@@ -8,6 +8,8 @@ namespace Sorschia.SystemCore.Processes
             .AddApiPermission()
             .AddApplication()
             .AddModule()
-            .AddPermission();
+            .AddPermission()
+            .AddPermissionGroup()
+            .AddPermmissionType();
     }
 }

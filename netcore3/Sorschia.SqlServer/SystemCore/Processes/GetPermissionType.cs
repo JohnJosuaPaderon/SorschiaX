@@ -7,18 +7,18 @@ using System.Threading.Tasks;
 
 namespace Sorschia.SystemCore.Processes
 {
-    internal sealed class GetModule : ProcessBase, IGetModule
+    internal sealed class GetPermissionType : ProcessBase, IGetPermissionType
     {
-        private readonly GetModuleQuery _query;
+        private readonly GetPermissionTypeQuery _query;
 
         public int Id { get; set; }
 
-        public GetModule(IConnectionStringProvider connectionStringProvider, GetModuleQuery query) : base(connectionStringProvider)
+        public GetPermissionType(IConnectionStringProvider connectionStringProvider, GetPermissionTypeQuery query) : base(connectionStringProvider)
         {
             _query = query;
         }
 
-        public async Task<Module> ExecuteAsync(CancellationToken cancellationToken = default)
+        public async Task<PermissionType> ExecuteAsync(CancellationToken cancellationToken = default)
         {
             try
             {
