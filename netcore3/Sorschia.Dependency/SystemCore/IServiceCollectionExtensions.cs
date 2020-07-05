@@ -15,12 +15,14 @@ namespace Sorschia.SystemCore
                 case RepositoryOption.Regular:
                     instance
                         .AddSingleton<IApplicationRepository, ApplicationRepository>()
-                        .AddSingleton<IModuleRepository, ModuleRepository>();
+                        .AddSingleton<IModuleRepository, ModuleRepository>()
+                        .AddSingleton<IPermissionRepository, PermissionRepository>();
                     break;
                 case RepositoryOption.Cached:
                     instance
                         .AddSingleton<IApplicationRepository, ApplicationCachedRepository>()
-                        .AddSingleton<IModuleRepository, ModuleCachedRepository>();
+                        .AddSingleton<IModuleRepository, ModuleCachedRepository>()
+                        .AddSingleton<IPermissionRepository, PermissionCachedRepository>();
                     break;
             }
 
