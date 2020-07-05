@@ -1,7 +1,6 @@
 ﻿using System;
 using System.IO;
 using System.Linq;
-using System.Net.Http.Headers;
 using System.Security.Cryptography;
 using System.Text;
 
@@ -18,29 +17,19 @@ namespace Sorschia.Security
             var iv = RandomByteArrayGenerator.Generate(_keySize);
             var salt = RandomByteArrayGenerator.Generate(_keySize);
 
-            using (var algorithm = InitializeAlgorithm())
-            {
-                using (var encryptor = algorithm.CreateEncryptor(GetCryptoKeyWithSalt(cryptoKey, salt), iv))
-                {
-                    using (var memoryStream = new MemoryStream())
-                    {
-                        memoryStream.Write(iv, 0, iv.Length);
-                        memoryStream.Write(salt, 0, salt.Length);
+            using var algorithm = InitializeAlgorithm();
+            using var encryptor = algorithm.CreateEncryptor(GetCryptoKeyWithSalt(cryptoKey, salt), iv);
+            using var memoryStream = new MemoryStream();
+            memoryStream.Write(iv, 0, iv.Length);
+            memoryStream.Write(salt, 0, salt.Length);
+            using var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write);
+            cryptoStream.Write(data, 0, data.Length);
+            cryptoStream.FlushFinalBlock();
+            result.Iv = iv;
+            result.Salt = salt;
+            result.CipherData = memoryStream.ToArray();
 
-                        using (var cryptoStream = new CryptoStream(memoryStream, encryptor, CryptoStreamMode.Write))
-                        {
-                            cryptoStream.Write(data, 0, data.Length);
-                            cryptoStream.FlushFinalBlock();
-                        }
-
-                        result.Iv = iv;
-                        result.Salt = salt;
-                        result.CipherData = memoryStream.ToArray();
-
-                        return result;
-                    }
-                }
-            }
+            return result;
         }
 
         public EncryptionResult Encrypt(string text, string cryptoKeyString)
@@ -54,21 +43,13 @@ namespace Sorschia.Security
             var salt = cipherData.Skip(iv.Length).Take(_keySize).ToArray();
             cipherData = cipherData.Skip(iv.Length + salt.Length).ToArray();
 
-            using (var algorithm = InitializeAlgorithm())
-            {
-                using (var decryptor = algorithm.CreateDecryptor(GetCryptoKeyWithSalt(cryptoKey, salt), iv))
-                {
-                    using (var memoryStream = new MemoryStream(cipherData))
-                    {
-                        using (var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read))
-                        {
-                            var result = new byte[cipherData.Length];
-                            cryptoStream.Read(result, 0, cipherData.Length);
-                            return result;
-                        }
-                    }
-                }
-            }
+            using var algorithm = InitializeAlgorithm();
+            using var decryptor = algorithm.CreateDecryptor(GetCryptoKeyWithSalt(cryptoKey, salt), iv);
+            using var memoryStream = new MemoryStream(cipherData);
+            using var cryptoStream = new CryptoStream(memoryStream, decryptor, CryptoStreamMode.Read);
+            var result = new byte[cipherData.Length];
+            cryptoStream.Read(result, 0, cipherData.Length);
+            return result;
         }
 
         public string Decrypt(string cipherText, string cryptoKeyString)
@@ -79,7 +60,7 @@ namespace Sorschia.Security
 
         private Aes InitializeAlgorithm()
         {
-            var algorithm = AesCryptoServiceProvider.Create();
+            var algorithm = Aes.Create();
             algorithm.Mode = CipherMode.CBC;
             algorithm.Padding = PaddingMode.PKCS7;
             return algorithm;
@@ -87,10 +68,8 @@ namespace Sorschia.Security
 
         private byte[] GetCryptoKeyWithSalt(byte[] cryptoKey, byte[] salt)
         {
-            using (var rfc2898DeriveBytes = new Rfc2898DeriveBytes(cryptoKey, salt, 10_000))
-            {
-                return rfc2898DeriveBytes.GetBytes(_keySize);
-            }
+            using var rfc2898DeriveBytes = new Rfc2898DeriveBytes(cryptoKey, salt, 10_000);
+            return rfc2898DeriveBytes.GetBytes(_keySize);
         }
     }
 }

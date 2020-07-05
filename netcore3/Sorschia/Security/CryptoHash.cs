@@ -21,7 +21,7 @@ namespace Sorschia.Security
         }
 
         private string ComputeHash<THashAlgorithm>(Func<THashAlgorithm> createAlgorithm, string input)
-            where THashAlgorithm : HashAlgorithm => ToString(ComputeHash<THashAlgorithm>(createAlgorithm, _utf8.GetBytes(input)));
+            where THashAlgorithm : HashAlgorithm => ToString(ComputeHash(createAlgorithm, _utf8.GetBytes(input)));
 
         public byte[] ComputeSha256(byte[] input) => ComputeHash(SHA256.Create, input);
 
