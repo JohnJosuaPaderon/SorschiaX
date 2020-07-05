@@ -17,6 +17,7 @@
     <None Remove="SystemCore\Processes\ISaveApiPermission.cs~RF16e030b1.TMP" />
     <None Remove="SystemCore\Processes\ISaveApplication.cs~RF555a597.TMP" />
     <None Remove="SystemCore\Processes\ISaveModule.cs~RF11eaf02a.TMP" />
+    <None Remove="SystemCore\Processes\ISavePermissionGroup.cs~RF17633cc9.TMP" />
   </ItemGroup>
 
   <ItemGroup>
