@@ -37,6 +37,5 @@ namespace Sorschia.SystemCore.Controllers
 
         [HttpGet("search")]
         public async Task<ActionResult<SearchPermissionResult>> Search([FromQuery] SearchPermissionModel model) => await _repository.SearchAsync(model);
-
     }
 }
