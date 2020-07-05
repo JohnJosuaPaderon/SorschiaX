@@ -12,6 +12,7 @@
             public ApplicationSection Application { get; set; } = new ApplicationSection();
             public ModuleSection Module { get; set; } = new ModuleSection();
             public PermissionSection Permission { get; set; } = new PermissionSection();
+            public PermissionGroupSection PermissionGroup { get; set; } = new PermissionGroupSection();
         }
     }
 }
