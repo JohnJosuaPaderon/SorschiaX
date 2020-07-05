@@ -18,7 +18,8 @@ namespace Sorschia.SystemCore
                         .AddSingleton<IModuleRepository, ModuleRepository>()
                         .AddSingleton<IPermissionRepository, PermissionRepository>()
                         .AddSingleton<IPermissionGroupRepository, PermissionGroupRepository>()
-                        .AddSingleton<IPermissionTypeRepository, PermissionTypeRepository>();
+                        .AddSingleton<IPermissionTypeRepository, PermissionTypeRepository>()
+                        .AddSingleton<IPlatformRepository, PlatformRepository>();
                     break;
                 case RepositoryOption.Cached:
                     instance
@@ -26,7 +27,8 @@ namespace Sorschia.SystemCore
                         .AddSingleton<IModuleRepository, ModuleCachedRepository>()
                         .AddSingleton<IPermissionRepository, PermissionCachedRepository>()
                         .AddSingleton<IPermissionGroupRepository, PermissionGroupCachedRepository>()
-                        .AddSingleton<IPermissionTypeRepository, PermissionTypeCachedRepository>();
+                        .AddSingleton<IPermissionTypeRepository, PermissionTypeCachedRepository>()
+                        .AddSingleton<IPlatformRepository, PlatformCachedRepository>();
                     break;
             }
 

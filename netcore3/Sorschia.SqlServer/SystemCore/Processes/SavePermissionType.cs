@@ -41,12 +41,12 @@ namespace Sorschia.SystemCore.Processes
 
         private async Task SaveAsync(PermissionType module, SavePermissionTypeResult result, SqlConnection connection, SqlTransaction transaction, CancellationToken cancellationToken)
         {
-            var _module = await _query.ExecuteAsync(module, connection, transaction, cancellationToken);
+            var _type = await _query.ExecuteAsync(module, connection, transaction, cancellationToken);
 
-            if (_module is null)
-                throw SorschiaException.VariableIsNull<PermissionType>(nameof(_module));
+            if (_type is null)
+                throw SorschiaException.VariableIsNull<PermissionType>(nameof(_type));
 
-            result.Type = _module;
+            result.Type = _type;
         }
     }
 }
