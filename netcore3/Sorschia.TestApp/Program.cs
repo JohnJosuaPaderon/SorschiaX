@@ -28,16 +28,17 @@ namespace Sorschia.TestApp
             var rsaKeys1 = privateKeyStore.Initialize("user-username");
             var rsaKeys2 = privateKeyStore.Initialize("user-password");
 
-            Console.WriteLine(rsaKeys1.PublicKey);
-            Console.WriteLine(rsaKeys2.PublicKey);
-
-            Console.WriteLine(rsaKeys1.PrivateKey);
-            Console.WriteLine(rsaKeys2.PrivateKey);
-
-            var cipherData = rsaCrypto.Encrypt(Encoding.UTF8.GetBytes("johnjosua.paderon"), privateKeyStore.Request("user-username"));
+            var publicKeyPemString = RsaKeyConverter.ToPublicKeyPemString(rsaKeys1.PublicKey);
+            var privateKeyPemString = RsaKeyConverter.ToPrivateKeyPemString(rsaKeys1.PrivateKey);
+            Console.WriteLine(RsaKeyConverter.ToPublicKeyPemString(rsaKeys1.PublicKey));
+            Console.WriteLine(); Console.WriteLine();
+            Console.WriteLine(RsaKeyConverter.ToPrivateKeyPemString(rsaKeys1.PrivateKey));
+            var cipherData = rsaCrypto.Encrypt(Encoding.UTF8.GetBytes("johnjosua.paderon"), publicKeyStore.Request("user-username"));
             var cipherText = Convert.ToBase64String(cipherData);
-            Console.WriteLine(cipherText);
 
+            Console.WriteLine(); Console.WriteLine();
+            Console.WriteLine(cipherText);
+            Console.WriteLine(); Console.WriteLine();
             var data = rsaCrypto.Decrypt(Convert.FromBase64String(cipherText), privateKeyStore.Request("user-username"));
             var text = Encoding.UTF8.GetString(data);
             Console.WriteLine(text);

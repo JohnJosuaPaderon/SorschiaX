@@ -16,8 +16,8 @@ namespace Sorschia.Security
             if (input == default || input.Length <= 0)
                 return default;
 
-            using (var algorithm = createAlgorithm())
-                return algorithm.ComputeHash(input);
+            using var algorithm = createAlgorithm();
+            return algorithm.ComputeHash(input);
         }
 
         private string ComputeHash<THashAlgorithm>(Func<THashAlgorithm> createAlgorithm, string input)
