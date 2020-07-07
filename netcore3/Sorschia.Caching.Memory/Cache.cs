@@ -49,7 +49,7 @@ namespace Sorschia.Caching
         {
             ValidateKey(key);
             lock (_memoryCache)
-                return _memoryCache.TryGetValue<T>(key, out value);
+                return _memoryCache.TryGetValue(key, out value);
         }
 
         public void Remove(string key)
