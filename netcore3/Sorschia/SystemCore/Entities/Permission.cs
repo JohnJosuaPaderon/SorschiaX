@@ -1,14 +1,55 @@
-﻿namespace Sorschia.SystemCore.Entities
+﻿using Sorschia.SystemCore.Repositories;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace Sorschia.SystemCore.Entities
 {
     public class Permission
     {
         public int Id { get; set; }
         public string Description { get; set; }
-        public int? TypeId { get; set; }
-        public int? GroupId { get; set; }
 
-        public PermissionType Type { get; internal set; }
-        public PermissionGroup Group { get; internal set; }
+        private int? _typeId;
+        public int? TypeId
+        {
+            get => _typeId;
+            set
+            {
+                _typeId = value;
+                Type = null;
+            }
+        }
+
+        public PermissionType Type { get; private set; }
+
+        private int? _groupId;
+        public int? GroupId
+        {
+            get => _groupId;
+            set
+            {
+                _groupId = value;
+                Group = null;
+            }
+        }
+
+        public PermissionGroup Group { get; private set; }
+
+        public async Task<PermissionType> GetTypeAsync(IPermissionTypeRepository repository, CancellationToken cancellationToken = default)
+        {
+            if (_typeId > 0)
+                Type = await repository.GetAsync(_typeId ?? 0, cancellationToken);
+
+            return Type;
+        }
+
+        public async Task<PermissionGroup> GetGroupAsync(IPermissionGroupRepository repository, CancellationToken cancellationToken = default)
+        {
+            if (_groupId > 0)
+                Group = await repository.GetAsync(_groupId ?? 0, cancellationToken);
+
+            return Group;
+        }
 
         public static bool operator ==(Permission left, Permission right) => Equals(left, right);
 

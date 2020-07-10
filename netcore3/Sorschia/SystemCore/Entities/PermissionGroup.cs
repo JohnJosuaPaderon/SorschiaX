@@ -1,12 +1,34 @@
-﻿namespace Sorschia.SystemCore.Entities
+﻿using Sorschia.SystemCore.Repositories;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace Sorschia.SystemCore.Entities
 {
     public class PermissionGroup
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int? ParentId { get; set; }
+
+        private int? _parentId;
+        public int? ParentId
+        {
+            get => _parentId;
+            set
+            {
+                _parentId = value;
+                Parent = null;
+            }
+        }
 
         public PermissionGroup Parent { get; private set; }
+
+        public async Task<PermissionGroup> GetParentAsync(IPermissionGroupRepository repository, CancellationToken cancellationToken = default)
+        {
+            if (_parentId > 0)
+                Parent = await repository.GetAsync(_parentId ?? 0, cancellationToken);
+
+            return Parent;
+        }
 
         public static bool operator ==(PermissionGroup left, PermissionGroup right) => Equals(left, right);
 

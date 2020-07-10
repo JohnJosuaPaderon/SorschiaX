@@ -1,12 +1,34 @@
-﻿namespace Sorschia.SystemCore.Entities
+﻿using Sorschia.SystemCore.Repositories;
+using System.Threading;
+using System.Threading.Tasks;
+
+namespace Sorschia.SystemCore.Entities
 {
     public class Application
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int? PlatformId { get; set; }
 
-        public Platform Platform { get; internal set; }
+        private int? _platformId;
+        public int? PlatformId
+        {
+            get => _platformId;
+            set
+            {
+                _platformId = value;
+                Platform = null;
+            }
+        }
+
+        public Platform Platform { get; private set; }
+
+        public async Task<Platform> GetPlatformAsync(IPlatformRepository repository, CancellationToken cancellationToken = default)
+        {
+            if (_platformId > 0)
+                Platform = await repository.GetAsync(_platformId ?? 0, cancellationToken);
+
+            return Platform;
+        }
 
         public static bool operator ==(Application left, Application right) => Equals(left, right);
 

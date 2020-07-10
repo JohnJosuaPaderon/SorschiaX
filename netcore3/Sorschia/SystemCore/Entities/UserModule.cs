@@ -1,18 +1,58 @@
-﻿using System;
+﻿using Sorschia.SystemCore.Repositories;
+using System;
+using System.Threading;
+using System.Threading.Tasks;
 
 namespace Sorschia.SystemCore.Entities
 {
     public class UserModule
     {
         public long Id { get; set; }
-        public int UserId { get; set; }
-        public int ModuleId { get; set; }
         public bool IsApproved { get; set; }
         public DateTime? Expiration { get; set; }
         public bool IsExpired { get; set; }
 
-        public User User { get; internal set; }
-        public Module Module { get; internal set; }
+        private int _userId;
+        public int UserId
+        {
+            get => _userId;
+            set
+            {
+                _userId = value;
+                User = null;
+            }
+        }
+
+        public User User { get; private set; }
+
+        private int _moduleId;
+        public int ModuleId
+        {
+            get => _moduleId;
+            set
+            {
+                _moduleId = value;
+                Module = null;
+            }
+        }
+
+        public Module Module { get; private set; }
+
+        public async Task<User> GetUserAsync(IUserRepository repository, CancellationToken cancellationToken = default)
+        {
+            if (_userId > 0)
+                User = await repository.GetAsync(_userId, cancellationToken);
+
+            return User;
+        }
+
+        public async Task<Module> GetModuleAsync(IModuleRepository repository, CancellationToken cancellationToken = default)
+        {
+            if (_moduleId > 0)
+                Module = await repository.GetAsync(_moduleId, cancellationToken);
+
+            return Module;
+        }
 
         public static bool operator ==(UserModule left, UserModule right) => Equals(left, right);
 
