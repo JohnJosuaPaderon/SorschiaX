@@ -15,6 +15,7 @@
             public PermissionGroupSection PermissionGroup { get; set; } = new PermissionGroupSection();
             public PermissionTypeSection PermissionType { get; set; } = new PermissionTypeSection();
             public PlatformSection Platform { get; set; } = new PlatformSection();
+            public UserSection User { get; set; } = new UserSection();
         }
     }
 }

@@ -2,7 +2,7 @@
 
 namespace Sorschia.SystemCore.Processes
 {
-    interface IDeleteUser : IAsyncProcess<bool>
+    public interface IDeleteUser : IAsyncProcess<bool>
     {
         DeleteUserModel Model { get; set; }
     }

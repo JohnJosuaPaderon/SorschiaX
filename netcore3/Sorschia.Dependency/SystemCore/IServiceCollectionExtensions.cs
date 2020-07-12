@@ -10,6 +10,11 @@ namespace Sorschia.SystemCore
             if (dependencySettings is null)
                 throw SorschiaException.DependencySettingsIsNull<SystemCoreDependencySettings>();
 
+            instance
+                .AddSingleton<IRefreshTokenGenerator, RefreshTokenGenerator>()
+                .AddSingleton<IUserPasswordCryptoHash, UserPasswordCryptoHash>()
+                .AddSingleton<IUserPasswordCryptoTransformer, UserPasswordCryptoTransformer>();
+
             switch (dependencySettings.RepositoryOption)
             {
                 case RepositoryOption.Regular:
@@ -19,7 +24,8 @@ namespace Sorschia.SystemCore
                         .AddSingleton<IPermissionRepository, PermissionRepository>()
                         .AddSingleton<IPermissionGroupRepository, PermissionGroupRepository>()
                         .AddSingleton<IPermissionTypeRepository, PermissionTypeRepository>()
-                        .AddSingleton<IPlatformRepository, PlatformRepository>();
+                        .AddSingleton<IPlatformRepository, PlatformRepository>()
+                        .AddSingleton<IUserRepository, UserRepository>();
                     break;
                 case RepositoryOption.Cached:
                     instance
@@ -28,9 +34,15 @@ namespace Sorschia.SystemCore
                         .AddSingleton<IPermissionRepository, PermissionCachedRepository>()
                         .AddSingleton<IPermissionGroupRepository, PermissionGroupCachedRepository>()
                         .AddSingleton<IPermissionTypeRepository, PermissionTypeCachedRepository>()
-                        .AddSingleton<IPlatformRepository, PlatformCachedRepository>();
+                        .AddSingleton<IPlatformRepository, PlatformCachedRepository>()
+                        .AddSingleton<IUserRepository, UserCachedRepository>();
                     break;
             }
+
+            if (dependencySettings.UseDefaultUserPasswordCryptors)
+                instance
+                    .AddSingleton<IUserPasswordDecryptor, UserPasswordDecryptor>()
+                    .AddSingleton<IUserPasswordEncryptor, UserPasswordEncryptor>();
 
             return instance;
         }

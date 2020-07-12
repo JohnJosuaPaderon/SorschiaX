@@ -11,6 +11,7 @@ namespace Sorschia.SystemCore.Processes
             .AddPermission()
             .AddPermissionGroup()
             .AddPermmissionType()
-            .AddPlatform();
+            .AddPlatform()
+            .AddUser();
     }
 }
