@@ -7,12 +7,10 @@ using System.Threading.Tasks;
 namespace Sorschia.SystemCore.Controllers
 {
     [ApiController]
-    [Route(ControllerRouteTemplate.SystemCore)]
+    [Route(ControllerRoutes.SystemCore.Permission)]
     [ApiPermissionAuthorize]
     public sealed class PermissionController : ControllerBase
     {
-        private const string APIPERMISSION = "apiPermission";
-
         private readonly IPermissionRepository _repository;
 
         public PermissionController(IPermissionRepository repository)
@@ -26,16 +24,16 @@ namespace Sorschia.SystemCore.Controllers
         [HttpGet]
         public async Task<ActionResult<Permission>> Get(int id) => await _repository.GetAsync(id);
 
-        [HttpGet(APIPERMISSION)]
+        [HttpGet(ActionTemplates.SystemCore.Permision.ApiPermission)]
         public async Task<ActionResult<ApiPermission>> GetApiPermission(int id) => await _repository.GetApiPermissionAsync(id);
 
         [HttpPost]
         public async Task<ActionResult<SavePermissionResult>> Save([FromBody] SavePermissionModel model) => await _repository.SaveAsync(model);
 
-        [HttpPost(APIPERMISSION)]
+        [HttpPost(ActionTemplates.SystemCore.Permision.ApiPermission)]
         public async Task<ActionResult<SaveApiPermissionResult>> SaveApiPermission([FromBody] SaveApiPermissionModel model) => await _repository.SaveApiPermissionAsync(model);
 
-        [HttpGet("search")]
+        [HttpGet(ActionTemplates.Search)]
         public async Task<ActionResult<SearchPermissionResult>> Search([FromQuery] SearchPermissionModel model) => await _repository.SearchAsync(model);
     }
 }

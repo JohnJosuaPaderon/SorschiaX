@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Sorschia.SystemCore.Controllers
 {
     [ApiController]
-    [Route(ControllerRouteTemplate.SystemCore)]
+    [Route(ControllerRoutes.SystemCore.PermissionGroup)]
     [ApiPermissionAuthorize]
     public sealed class PermissionGroupController : ControllerBase
     {
@@ -27,7 +27,7 @@ namespace Sorschia.SystemCore.Controllers
         [HttpPost]
         public async Task<ActionResult<SavePermissionGroupResult>> Save([FromBody] SavePermissionGroupModel model) => await _repository.SaveAsync(model);
 
-        [HttpGet("search")]
+        [HttpGet(ActionTemplates.Search)]
         public async Task<ActionResult<SearchPermissionGroupResult>> Search([FromQuery] SearchPermissionGroupModel model) => await _repository.SearchAsync(model);
     }
 }

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Sorschia.SystemCore.Controllers
 {
     [ApiController]
-    [Route(ControllerRouteTemplate.SystemCore)]
+    [Route(ControllerRoutes.SystemCore.User)]
     [ApiPermissionAuthorize]
     public sealed class UserController : ControllerBase
     {
@@ -25,23 +25,23 @@ namespace Sorschia.SystemCore.Controllers
         [HttpGet]
         public async Task<ActionResult<User>> Get(int id) => await _repository.GetAsync(id);
 
-        [HttpPost("login")]
+        [HttpPost(ActionTemplates.SystemCore.User.Login)]
         [AllowAnonymous]
         public async Task<ActionResult<LoginUserResult>> Login([FromBody] LoginUserModel model) => await _repository.LoginAsync(model);
 
         [HttpPost]
         public async Task<ActionResult<SaveUserResult>> Save([FromBody] SaveUserModel model) => await _repository.SaveAsync(model);
 
-        [HttpGet("search")]
+        [HttpGet(ActionTemplates.Search)]
         public async Task<ActionResult<SearchUserResult>> Search([FromBody] SearchUserModel model) => await _repository.SearchAsync(model);
 
-        [HttpPost("validateUserApplication")]
+        [HttpPost(ActionTemplates.SystemCore.User.ValidateUserApplication)]
         public async Task<ActionResult<bool>> ValidateUserApplication([FromBody] ValidateUserApplicationModel model) => await _repository.ValidateUserApplicationAsync(model);
 
-        [HttpPost("validateUserModule")]
+        [HttpPost(ActionTemplates.SystemCore.User.ValidateUserModule)]
         public async Task<ActionResult<bool>> ValidateUserModule([FromBody] ValidateUserModuleModel model) => await _repository.ValidateUserModuleAsync(model);
 
-        [HttpPost("validateUserPermission")]
+        [HttpPost(ActionTemplates.SystemCore.User.ValidateUserPermission)]
         public async Task<ActionResult<bool>> ValidateUserPermission([FromBody] ValidateUserPermissionModel model) => await _repository.ValidateUserPermissionAsync(model);
     }
 }

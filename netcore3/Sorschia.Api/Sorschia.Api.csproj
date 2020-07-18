@@ -15,6 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Sorschia.Api.Shared\Sorschia.Api.Shared.csproj" />
     <ProjectReference Include="..\Sorschia\Sorschia.csproj" />
   </ItemGroup>
 

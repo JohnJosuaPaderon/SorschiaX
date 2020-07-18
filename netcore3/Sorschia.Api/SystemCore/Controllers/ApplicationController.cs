@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Sorschia.SystemCore.Controllers
 {
     [ApiController]
-    [Route(ControllerRouteTemplate.SystemCore)]
+    [Route(ControllerRoutes.SystemCore.Application)]
     [ApiPermissionAuthorize]
     public sealed class ApplicationController : ControllerBase
     {
@@ -27,7 +27,7 @@ namespace Sorschia.SystemCore.Controllers
         [HttpPost]
         public async Task<ActionResult<SaveApplicationResult>> Save([FromBody] SaveApplicationModel model) => await _repository.SaveAsync(model);
 
-        [HttpGet("search")]
+        [HttpGet(ActionTemplates.Search)]
         public async Task<ActionResult<SearchApplicationResult>> Search([FromQuery] SearchApplicationModel model) => await _repository.SearchAsync(model);
     }
 }
