@@ -19,7 +19,7 @@ namespace Sorschia.SystemCore.Queries
         private const string PARAM_SESSIONSTART = "@SessionStart";
         private const int AFFECTEDROWS = 1;
 
-        public async Task<Session> ExecuteAsync(Session session, SqlConnection connection, SqlTransaction transaction = default, CancellationToken cancellationToken)
+        public async Task<Session> ExecuteAsync(Session session, SqlConnection connection, SqlTransaction transaction = default, CancellationToken cancellationToken = default)
         {
             using var command = CreateCommand(session, connection, transaction);
 
