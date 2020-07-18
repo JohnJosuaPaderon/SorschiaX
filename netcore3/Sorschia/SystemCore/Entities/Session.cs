@@ -7,7 +7,7 @@ namespace Sorschia.SystemCore.Entities
 {
     public class Session
     {
-        public Guid Id { get; set; }
+        public long Id { get; set; }
         public string MacAddress { get; set; }
         public string IpAddress { get; set; }
         public string Operatingsystem { get; set; }
@@ -66,7 +66,7 @@ namespace Sorschia.SystemCore.Entities
             if (ReferenceEquals(this, obj)) return true;
             if (GetType() != obj.GetType()) return false;
 
-            return (obj is Session value) && (!Equals(Id, default(Guid)) || !Equals(value.Id, default(Guid))) && Equals(Id, value.Id);
+            return (obj is Session value) && (!Equals(Id, default(long)) || !Equals(value.Id, default(long))) && Equals(Id, value.Id);
         }
 
         public override int GetHashCode() => Id.GetHashCode();

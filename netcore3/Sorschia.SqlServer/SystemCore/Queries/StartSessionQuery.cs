@@ -25,7 +25,7 @@ namespace Sorschia.SystemCore.Queries
 
             if (await command.ExecuteNonQueryAsync(cancellationToken) == AFFECTEDROWS)
             {
-                session.Id = command.Parameters.GetGuid(PARAM_ID);
+                session.Id = command.Parameters.GetInt64(PARAM_ID);
                 session.SessionStart = command.Parameters.GetDateTime(PARAM_SESSIONSTART);
                 return session;
             }
