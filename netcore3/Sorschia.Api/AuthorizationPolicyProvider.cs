@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Options;
 using System;
 using System.Threading.Tasks;
@@ -12,11 +12,11 @@ namespace Sorschia
         private const string ROUTEDATA_CONTROLLER = "controller";
         private const string ROUTEDATA_ACTION = "action";
 
-        private readonly IActionContextAccessor _actionContextAccessor;
+        private readonly IHttpContextAccessor _httpContextAccessor;
 
-        public AuthorizationPolicyProvider(IOptions<AuthorizationOptions> options, IActionContextAccessor actionContextAccessor) : base(options)
+        public AuthorizationPolicyProvider(IOptions<AuthorizationOptions> options, IHttpContextAccessor httpContextAccessor) : base(options)
         {
-            _actionContextAccessor = actionContextAccessor;
+            _httpContextAccessor = httpContextAccessor;
         }
 
         public override async Task<AuthorizationPolicy> GetPolicyAsync(string policyName)
@@ -27,12 +27,12 @@ namespace Sorschia
             {
                 if (policyName == ApiPermissionAuthorizeAttribute.POLICY_NAME)
                 {
-                    var actionContext = _actionContextAccessor.ActionContext;
-                    var controller = Convert.ToString(actionContext.RouteData.Values[ROUTEDATA_CONTROLLER]);
-                    var action = Convert.ToString(actionContext.RouteData.Values[ROUTEDATA_ACTION]);
+                    var httpContext = _httpContextAccessor.HttpContext;
+                    var controller = Convert.ToString(httpContext.Request.RouteValues[ROUTEDATA_CONTROLLER]);
+                    var action = Convert.ToString(httpContext.Request.RouteValues[ROUTEDATA_ACTION]);
 
                     policy = new AuthorizationPolicyBuilder(JwtBearerDefaults.AuthenticationScheme)
-                        .RequireAuthenticatedUser()
+                        //.RequireAuthenticatedUser()
                         .AddRequirements(new ApiPermissionRequirement(controller, action))
                         .Build();
                 }
