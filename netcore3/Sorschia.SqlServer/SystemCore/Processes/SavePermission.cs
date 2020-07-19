@@ -3,24 +3,29 @@ using Sorschia.SystemCore.Entities;
 using Sorschia.SystemCore.Queries;
 using Sorschia.Utilities;
 using System;
+using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
 
 namespace Sorschia.SystemCore.Processes
 {
-    internal sealed class SavePermission : SavePermissionBase, ISavePermission
+    internal sealed class SavePermission : ProcessBase, ISavePermission
     {
         private readonly SavePermissionQuery _query;
+        private readonly SaveUserPermissionQuery _saveUserPermissionQuery;
+        private readonly DeleteUserPermissionQuery _deleteUserPermissionQuery;
 
         public SavePermissionModel Model { get; set; }
 
-        public SavePermission(IConnectionStringProvider connectionStringProvider, 
+        public SavePermission(IConnectionStringProvider connectionStringProvider,
+            SavePermissionQuery query,
             SaveUserPermissionQuery saveUserPermissionQuery, 
-            DeleteUserPermissionQuery deleteUserPermissionQuery,
-            SavePermissionQuery query) : base(connectionStringProvider, saveUserPermissionQuery, deleteUserPermissionQuery)
+            DeleteUserPermissionQuery deleteUserPermissionQuery) : base(connectionStringProvider)
         {
             _query = query;
+            _saveUserPermissionQuery = saveUserPermissionQuery;
+            _deleteUserPermissionQuery = deleteUserPermissionQuery;
         }
 
         public async Task<SavePermissionResult> ExecuteAsync(CancellationToken cancellationToken = default)
@@ -52,6 +57,39 @@ namespace Sorschia.SystemCore.Processes
                 throw SorschiaException.VariableIsNull<Permission>(nameof(_permission));
 
             result.Permission = _permission;
+        }
+
+        private async Task SaveUserPermissionsAsync(IList<UserPermission> userPermissions, int permissionId, SavePermissionResultBase result, SqlConnection connection, SqlTransaction transaction, CancellationToken cancellationToken)
+        {
+            if (userPermissions != null && userPermissions.Count > 0)
+                foreach (var userPermission in userPermissions)
+                {
+                    userPermission.PermissionId = permissionId;
+                    await SaveUserPermissionAsync(userPermission, result, connection, transaction, cancellationToken);
+                }
+        }
+
+        private async Task SaveUserPermissionAsync(UserPermission userPermission, SavePermissionResultBase result, SqlConnection connection, SqlTransaction transaction, CancellationToken cancellationToken)
+        {
+            var _userPermission = await _saveUserPermissionQuery.ExecuteAsync(userPermission, connection, transaction, cancellationToken);
+
+            if (_userPermission is null)
+                throw SorschiaException.VariableIsNull<UserPermission>(nameof(_userPermission));
+
+            result.UserPermissions.Add(_userPermission);
+        }
+
+        private async Task DeleteUserPermissionsAsync(IList<DeleteUserPermissionModel> models, SavePermissionResultBase result, SqlConnection connection, SqlTransaction transaction, CancellationToken cancellationToken)
+        {
+            if (models != null && models.Count > 0)
+                foreach (var model in models)
+                    await DeleteUserPermissionAsync(model, result, connection, transaction, cancellationToken);
+        }
+
+        private async Task DeleteUserPermissionAsync(DeleteUserPermissionModel model, SavePermissionResultBase result, SqlConnection connection, SqlTransaction transaction, CancellationToken cancellationToken)
+        {
+            if (await _deleteUserPermissionQuery.ExecuteAsync(model, connection, transaction, cancellationToken))
+                result.DeletedUserPermissionIds.Add(model.Id);
         }
     }
 }

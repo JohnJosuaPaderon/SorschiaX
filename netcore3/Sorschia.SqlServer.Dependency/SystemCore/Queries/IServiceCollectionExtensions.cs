@@ -7,7 +7,6 @@ namespace Sorschia.SystemCore.Queries
         public static IServiceCollection AddSystemCoreQueries(this IServiceCollection instance) => instance
             .AddSingleton<SaveAccessTokenQuery>()
             .AddSingleton<SaveRefreshTokenQuery>()
-            .AddApiPermission()
             .AddApplication()
             .AddModule()
             .AddPermission()

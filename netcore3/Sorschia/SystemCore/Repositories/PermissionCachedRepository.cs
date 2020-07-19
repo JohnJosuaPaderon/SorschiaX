@@ -40,17 +40,6 @@ namespace Sorschia.SystemCore.Repositories
             return TrySaveToCache(cacheKey, await process.ExecuteAsync(cancellationToken), _cacheExpiration.Get);
         }
 
-        public async Task<ApiPermission> GetApiPermissionAsync(int id, CancellationToken cancellationToken = default)
-        {
-            var cacheKey = _cacheHelper.CreateKey<int, ApiPermission>(id);
-
-            if (TryGetFromCache(cacheKey, out ApiPermission permission)) return permission;
-
-            using var process = GetProcess<IGetApiPermission>();
-            process.Id = id;
-            return TrySaveToCache(cacheKey, await process.ExecuteAsync(cancellationToken), _cacheExpiration.GetApiPermission);
-        }
-
         public async Task<SavePermissionResult> SaveAsync(SavePermissionModel model, CancellationToken cancellationToken = default)
         {
             var cacheKey = _cacheHelper.CreateKey<SavePermissionModel, SavePermissionResult>(model);
@@ -60,17 +49,6 @@ namespace Sorschia.SystemCore.Repositories
             using var process = GetProcess<ISavePermission>();
             process.Model = model;
             return TrySaveToCache(cacheKey, await process.ExecuteAsync(cancellationToken), _cacheExpiration.Save);
-        }
-
-        public async Task<SaveApiPermissionResult> SaveApiPermissionAsync(SaveApiPermissionModel model, CancellationToken cancellationToken = default)
-        {
-            var cacheKey = _cacheHelper.CreateKey<SaveApiPermissionModel, SaveApiPermissionResult>(model);
-
-            if (TryGetFromCache(cacheKey, out SaveApiPermissionResult result)) return result;
-
-            using var process = GetProcess<ISaveApiPermission>();
-            process.Model = model;
-            return TrySaveToCache(cacheKey, await process.ExecuteAsync(cancellationToken), _cacheExpiration.SaveApiPermission);
         }
 
         public async Task<SearchPermissionResult> SearchAsync(SearchPermissionModel model, CancellationToken cancellationToken = default)

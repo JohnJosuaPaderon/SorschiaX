@@ -12,8 +12,6 @@ namespace Sorschia.SystemCore.ApiServices
 
         public static IPermissionGroupApiService PermissionGroup(this ApiServiceProvider instance) => instance.GetApiService<IPermissionGroupApiService>(ControllerRoutes.SystemCore.PermissionGroup);
 
-        public static IPermissionTypeApiService PermissionType(this ApiServiceProvider instance) => instance.GetApiService<IPermissionTypeApiService>(ControllerRoutes.SystemCore.PermissionType);
-
         public static IPlatformApiService Platform(this ApiServiceProvider instance) => instance.GetApiService<IPlatformApiService>(ControllerRoutes.SystemCore.Platform);
 
         public static IUserApiService User(this ApiServiceProvider instance) => instance.GetApiService<IUserApiService>(ControllerRoutes.SystemCore.User);

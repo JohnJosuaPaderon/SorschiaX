@@ -2,7 +2,6 @@
 {
     internal static partial class ActionTemplates
     {
-
         public static partial class SystemCore
         {
             public static class User

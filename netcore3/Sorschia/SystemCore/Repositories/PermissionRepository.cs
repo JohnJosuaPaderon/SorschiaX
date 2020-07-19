@@ -27,23 +27,9 @@ namespace Sorschia.SystemCore.Repositories
             return process.ExecuteAsync(cancellationToken);
         }
 
-        public Task<ApiPermission> GetApiPermissionAsync(int id, CancellationToken cancellationToken = default)
-        {
-            using var process = GetProcess<IGetApiPermission>();
-            process.Id = id;
-            return process.ExecuteAsync(cancellationToken);
-        }
-
         public Task<SavePermissionResult> SaveAsync(SavePermissionModel model, CancellationToken cancellationToken = default)
         {
             using var process = GetProcess<ISavePermission>();
-            process.Model = model;
-            return process.ExecuteAsync(cancellationToken);
-        }
-
-        public Task<SaveApiPermissionResult> SaveApiPermissionAsync(SaveApiPermissionModel model, CancellationToken cancellationToken = default)
-        {
-            using var process = GetProcess<ISaveApiPermission>();
             process.Model = model;
             return process.ExecuteAsync(cancellationToken);
         }

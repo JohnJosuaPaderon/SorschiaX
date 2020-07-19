@@ -13,7 +13,6 @@ namespace Sorschia.SystemCore.Processes
     {
         public PermissionGroup Group { get; set; }
         public IList<Permission> Permissions { get; set; } = new List<Permission>();
-        public IList<ApiPermission> ApiPermissions { get; set; } = new List<ApiPermission>();
         public IList<DeletePermissionModel> DeletedPermissions { get; set; } = new List<DeletePermissionModel>();
         public IList<SavePermissionGroupModel> SubGroups { get; set; } = new List<SavePermissionGroupModel>();
         public IList<DeletePermissionGroupModel> DeletedSubGroups { get; set; } = new List<DeletePermissionGroupModel>();
@@ -23,7 +22,6 @@ namespace Sorschia.SystemCore.Processes
     {
         public PermissionGroup Group { get; set; }
         public IList<Permission> Permissions { get; set; } = new List<Permission>();
-        public IList<ApiPermission> ApiPermissions { get; set; } = new List<ApiPermission>();
         public IList<int> DeletedPermissionIds { get; set; } = new List<int>();
         public IList<SavePermissionGroupResult> SubGroups { get; set; } = new List<SavePermissionGroupResult>();
         public IList<int> DeletedSubGroupIds { get; set; } = new List<int>();

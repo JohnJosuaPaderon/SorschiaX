@@ -14,7 +14,6 @@ namespace Sorschia.SystemCore.Processes
     {
         private readonly SavePermissionGroupQuery _query;
         private readonly SavePermissionQuery _savePermissionQuery;
-        private readonly SaveApiPermissionQuery _saveApiPermissionQuery;
         private readonly DeletePermissionGroupQuery _deletePermissionGroupQuery;
         private readonly DeletePermissionQuery _deletePermissionQuery;
 
@@ -23,13 +22,11 @@ namespace Sorschia.SystemCore.Processes
         public SavePermissionGroup(IConnectionStringProvider connectionStringProvider,
             SavePermissionGroupQuery query,
             SavePermissionQuery savePermissionQuery,
-            SaveApiPermissionQuery saveApiPermissionQuery,
             DeletePermissionGroupQuery deletePermissionGroupQuery,
             DeletePermissionQuery deletePermissionQuery) : base(connectionStringProvider)
         {
             _query = query;
             _savePermissionQuery = savePermissionQuery;
-            _saveApiPermissionQuery = saveApiPermissionQuery;
             _deletePermissionGroupQuery = deletePermissionGroupQuery;
             _deletePermissionQuery = deletePermissionQuery;
         }
@@ -57,7 +54,6 @@ namespace Sorschia.SystemCore.Processes
         {
             await SaveAsync(model.Group, result, connection, transaction, cancellationToken);
             await SavePermissionsAsync(model.Permissions, result, connection, transaction, cancellationToken);
-            await SaveApiPermissionsAsync(model.ApiPermissions, result, connection, transaction, cancellationToken);
             await DeletePermissionsAsync(model.DeletedPermissions, result, connection, transaction, cancellationToken);
             await DeleteSubGroupsAsync(model.DeletedSubGroups, result, connection, transaction, cancellationToken);
             await SaveSubGroupsAsync(model.SubGroups, result, connection, transaction, cancellationToken);
@@ -92,27 +88,7 @@ namespace Sorschia.SystemCore.Processes
 
             result.Permissions.Add(_permission);
         }
-
-        private async Task SaveApiPermissionsAsync(IList<ApiPermission> permissions, SavePermissionGroupResult result, SqlConnection connection, SqlTransaction transaction, CancellationToken cancellationToken)
-        {
-            if (permissions != null && permissions.Count > 0)
-                foreach (var permission in permissions)
-                {
-                    permission.GroupId = result.Group.Id;
-                    await SaveApiPermissionAsync(permission, result, connection, transaction, cancellationToken);
-                }
-        }
-
-        private async Task SaveApiPermissionAsync(ApiPermission permission, SavePermissionGroupResult result, SqlConnection connection, SqlTransaction transaction, CancellationToken cancellationToken)
-        {
-            var _permission = await _saveApiPermissionQuery.ExecuteAsync(permission, connection, transaction, cancellationToken);
-
-            if (_permission is null)
-                throw SorschiaException.VariableIsNull<Permission>(nameof(_permission));
-
-            result.ApiPermissions.Add(_permission);
-        }
-
+        
         private async Task DeletePermissionsAsync(IList<DeletePermissionModel> models, SavePermissionGroupResult result, SqlConnection connection, SqlTransaction transaction, CancellationToken cancellationToken)
         {
             if (models != null && models.Count > 0)
