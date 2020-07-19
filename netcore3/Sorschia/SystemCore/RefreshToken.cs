@@ -4,8 +4,8 @@ namespace Sorschia.SystemCore
 {
     public class RefreshToken
     {
-        public Guid Id { get; set; }
-        public Guid AccessTokenId { get; set; }
+        public long Id { get; set; }
+        public long AccessTokenId { get; set; }
         public string TokenString { get; set; }
     }
 }
