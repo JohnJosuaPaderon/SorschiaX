@@ -9,19 +9,6 @@ namespace Sorschia.SystemCore.Entities
         public int Id { get; set; }
         public string Description { get; set; }
 
-        private int? _typeId;
-        public int? TypeId
-        {
-            get => _typeId;
-            set
-            {
-                _typeId = value;
-                Type = null;
-            }
-        }
-
-        public PermissionType Type { get; private set; }
-
         private int? _groupId;
         public int? GroupId
         {
@@ -34,14 +21,6 @@ namespace Sorschia.SystemCore.Entities
         }
 
         public PermissionGroup Group { get; private set; }
-
-        public async Task<PermissionType> GetTypeAsync(IPermissionTypeRepository repository, CancellationToken cancellationToken = default)
-        {
-            if (_typeId > 0)
-                Type = await repository.GetAsync(_typeId ?? 0, cancellationToken);
-
-            return Type;
-        }
 
         public async Task<PermissionGroup> GetGroupAsync(IPermissionGroupRepository repository, CancellationToken cancellationToken = default)
         {

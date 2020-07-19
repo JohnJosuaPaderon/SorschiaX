@@ -21,7 +21,7 @@ namespace Sorschia.SystemCore.Queries
 
             if (await command.ExecuteNonQueryAsync(cancellationToken) == AFFECTEDROWS)
             {
-                accessToken.Id = command.Parameters.GetGuid(PARAM_ID);
+                accessToken.Id = command.Parameters.GetInt64(PARAM_ID);
                 return accessToken;
             }
 
@@ -30,7 +30,7 @@ namespace Sorschia.SystemCore.Queries
 
         private SqlCommand CreateCommand(AccessToken accessToken, SqlConnection connection, SqlTransaction transaction = default) => connection
             .CreateProcedureCommand(PROCEDURE, transaction)
-            .AddInOutParameter(PARAM_ID, accessToken.Id, SqlDbType.UniqueIdentifier)
+            .AddInOutParameter(PARAM_ID, accessToken.Id, SqlDbType.BigInt)
             .AddInParameter(PARAM_SESSIONID, accessToken.SessionId)
             .AddInParameter(PARAM_TOKENSTRING, accessToken.TokenString)
             .AddInParameter(PARAM_EXPIRATION, accessToken.Expiration);

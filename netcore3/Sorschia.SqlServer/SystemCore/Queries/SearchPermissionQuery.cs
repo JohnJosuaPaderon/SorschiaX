@@ -12,9 +12,7 @@ namespace Sorschia.SystemCore.Queries
     {
         private const string PROCEDURE = "[SystemCore].[SearchPermission]";
         private const string PARAM_FILTERTEXT = "@FilterText";
-        private const string PARAM_FILTERBYTYPE = "@FilterByType";
         private const string PARAM_FILTERBYGROUP = "@FilterByGroup";
-        private const string PARAM_TYPEIDS = "@TypeIds";
         private const string PARAM_GROUPIDS = "@GroupIds";
         private const string PARAM_SKIPPEDIDS = "@SkippedIds";
 
@@ -41,9 +39,7 @@ namespace Sorschia.SystemCore.Queries
             .CreateProcedureCommand(PROCEDURE)
             .AddPaginationParameters(model)
             .AddInParameter(PARAM_FILTERTEXT, model.FilterText)
-            .AddInParameter(PARAM_FILTERBYTYPE, model.FilterByType)
             .AddInParameter(PARAM_FILTERBYGROUP, model.FilterByGroup)
-            .AddIntListParameter(PARAM_TYPEIDS, model.TypeIds)
             .AddIntListParameter(PARAM_GROUPIDS, model.GroupIds)
             .AddIntListParameter(PARAM_SKIPPEDIDS, model.SkippedIds);
     }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Sorschia.SystemCore.Configuration;
 using Sorschia.SystemCore.Repositories;
 
 namespace Sorschia.SystemCore
@@ -23,7 +24,6 @@ namespace Sorschia.SystemCore
                         .AddSingleton<IModuleRepository, ModuleRepository>()
                         .AddSingleton<IPermissionRepository, PermissionRepository>()
                         .AddSingleton<IPermissionGroupRepository, PermissionGroupRepository>()
-                        .AddSingleton<IPermissionTypeRepository, PermissionTypeRepository>()
                         .AddSingleton<IPlatformRepository, PlatformRepository>()
                         .AddSingleton<IUserRepository, UserRepository>();
                     break;
@@ -33,7 +33,6 @@ namespace Sorschia.SystemCore
                         .AddSingleton<IModuleRepository, ModuleCachedRepository>()
                         .AddSingleton<IPermissionRepository, PermissionCachedRepository>()
                         .AddSingleton<IPermissionGroupRepository, PermissionGroupCachedRepository>()
-                        .AddSingleton<IPermissionTypeRepository, PermissionTypeCachedRepository>()
                         .AddSingleton<IPlatformRepository, PlatformCachedRepository>()
                         .AddSingleton<IUserRepository, UserCachedRepository>();
                     break;
@@ -43,6 +42,9 @@ namespace Sorschia.SystemCore
                 instance
                     .AddSingleton<IUserPasswordDecryptor, UserPasswordDecryptor>()
                     .AddSingleton<IUserPasswordEncryptor, UserPasswordEncryptor>();
+
+            if (dependencySettings.UseDefaultConfiguration)
+                instance.AddSingleton<SystemCoreConfiguration>();
 
             return instance;
         }

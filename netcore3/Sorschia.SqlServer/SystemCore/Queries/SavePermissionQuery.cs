@@ -12,7 +12,6 @@ namespace Sorschia.SystemCore.Queries
         private const string PROCEDURE = "[SystemCore].[SavePermission]";
         private const string PARAM_ID = "@Id";
         private const string PARAM_DESCRIPTION = "@Description";
-        private const string PARAM_TYPEID = "@TypeId";
         private const string PARAM_GROUPID = "@GroupId";
         private const int AFFECTEDROWS = 1;
 
@@ -40,7 +39,6 @@ namespace Sorschia.SystemCore.Queries
             .CreateProcedureCommand(PROCEDURE, transaction)
             .AddInOutParameter(PARAM_ID, permission.Id, SqlDbType.Int)
             .AddInParameter(PARAM_DESCRIPTION, permission.Description)
-            .AddInParameter(PARAM_TYPEID, permission.TypeId)
             .AddInParameter(PARAM_GROUPID, permission.GroupId)
             .AddSessionIdParameter(_sessionProvider);
     }

@@ -12,9 +12,7 @@ namespace Sorschia.SystemCore.Processes
     public sealed class SearchPermissionModel : PaginationModel
     {
         public string FilterText { get; set; }
-        public bool FilterByType { get; set; }
         public bool FilterByGroup { get; set; }
-        public IList<int> TypeIds { get; set; } = new List<int>();
         public IList<int> GroupIds { get; set; } = new List<int>();
         public IList<int> SkippedIds { get; set; } = new List<int>();
     }
