@@ -15,6 +15,8 @@ namespace Sorschia.SystemCore.Queries
         private const string PARAM_FILTERBYGROUP = "@FilterByGroup";
         private const string PARAM_GROUPIDS = "@GroupIds";
         private const string PARAM_SKIPPEDIDS = "@SkippedIds";
+        private const string PARAM_ISAPIPERMISSION = "@IsApiPermission";
+        private const string PARAM_ISDATABASEPERMISSION = "@IsDatabasePermission";
 
         private readonly PermissionConverter _converter;
 
@@ -41,6 +43,8 @@ namespace Sorschia.SystemCore.Queries
             .AddInParameter(PARAM_FILTERTEXT, model.FilterText)
             .AddInParameter(PARAM_FILTERBYGROUP, model.FilterByGroup)
             .AddIntListParameter(PARAM_GROUPIDS, model.GroupIds)
-            .AddIntListParameter(PARAM_SKIPPEDIDS, model.SkippedIds);
+            .AddIntListParameter(PARAM_SKIPPEDIDS, model.SkippedIds)
+            .AddInParameter(PARAM_ISAPIPERMISSION, model.IsApiPermission)
+            .AddInParameter(PARAM_ISDATABASEPERMISSION, model.IsDatabasePermission);
     }
 }
