@@ -21,7 +21,7 @@ namespace Sorschia.SystemCore.Controllers
         [HttpDelete]
         public async Task<ActionResult<bool>> Delete([FromBody] DeleteModuleModel model) => await _repository.DeleteAsync(model);
 
-        [HttpGet]
+        [HttpGet(ActionTemplates.Get)]
         public async Task<ActionResult<Module>> Get(int id) => await _repository.GetAsync(id);
 
         [HttpPost]

@@ -22,7 +22,7 @@ namespace Sorschia.SystemCore.Controllers
         [HttpDelete]
         public async Task<ActionResult<bool>> Delete([FromBody] DeleteUserModel model) => await _repository.DeleteAsync(model);
 
-        [HttpGet]
+        [HttpGet(ActionTemplates.Get)]
         public async Task<ActionResult<User>> Get(int id) => await _repository.GetAsync(id);
 
         [HttpPost(ActionTemplates.SystemCore.User.Login)]
