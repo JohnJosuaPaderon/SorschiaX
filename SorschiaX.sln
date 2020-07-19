@@ -25,7 +25,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorschia.BouncyCastle.Depen
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorschia.Api.Client", "netcore3\Sorschia.Api.Client\Sorschia.Api.Client.csproj", "{3AD21B16-2353-42FB-B498-824A5320DA21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.Api.Shared", "netcore3\Sorschia.Api.Shared\Sorschia.Api.Shared.csproj", "{6AC23BBD-0E8B-4FC2-9FBC-351A4EF4EE71}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorschia.Api.Shared", "netcore3\Sorschia.Api.Shared\Sorschia.Api.Shared.csproj", "{6AC23BBD-0E8B-4FC2-9FBC-351A4EF4EE71}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.Api.Dependency", "netcore3\Sorschia.Api.Dependency\Sorschia.Api.Dependency.csproj", "{F31EC556-8A8A-4145-9AC8-93C5D9626811}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.Api.Host", "netcore3\Sorschia.Api.Host\Sorschia.Api.Host.csproj", "{BAC52179-8BC5-42E5-8164-4579D7CB4DE1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -77,6 +81,14 @@ Global
 		{6AC23BBD-0E8B-4FC2-9FBC-351A4EF4EE71}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AC23BBD-0E8B-4FC2-9FBC-351A4EF4EE71}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6AC23BBD-0E8B-4FC2-9FBC-351A4EF4EE71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F31EC556-8A8A-4145-9AC8-93C5D9626811}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F31EC556-8A8A-4145-9AC8-93C5D9626811}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F31EC556-8A8A-4145-9AC8-93C5D9626811}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F31EC556-8A8A-4145-9AC8-93C5D9626811}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BAC52179-8BC5-42E5-8164-4579D7CB4DE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BAC52179-8BC5-42E5-8164-4579D7CB4DE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BAC52179-8BC5-42E5-8164-4579D7CB4DE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BAC52179-8BC5-42E5-8164-4579D7CB4DE1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -93,6 +105,8 @@ Global
 		{7B81D3A8-8791-4153-BECB-5F01B911B4FA} = {14C52491-FC38-4BE0-8889-61B1E093B533}
 		{3AD21B16-2353-42FB-B498-824A5320DA21} = {14C52491-FC38-4BE0-8889-61B1E093B533}
 		{6AC23BBD-0E8B-4FC2-9FBC-351A4EF4EE71} = {14C52491-FC38-4BE0-8889-61B1E093B533}
+		{F31EC556-8A8A-4145-9AC8-93C5D9626811} = {14C52491-FC38-4BE0-8889-61B1E093B533}
+		{BAC52179-8BC5-42E5-8164-4579D7CB4DE1} = {14C52491-FC38-4BE0-8889-61B1E093B533}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {38FD30CD-A97E-4AF3-A21A-7AED792E2BB4}
