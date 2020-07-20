@@ -3,12 +3,13 @@ using Microsoft.AspNetCore.Mvc;
 using Sorschia.SystemCore.Entities;
 using Sorschia.SystemCore.Processes;
 using Sorschia.SystemCore.Repositories;
+using Sorschia.SystemCore.Routing;
 using System.Threading.Tasks;
 
 namespace Sorschia.SystemCore.Controllers
 {
     [ApiController]
-    [Route(ControllerRoutes.SystemCore.User)]
+    [SystemCoreRoute(ControllerRoutes.SystemCore.User)]
     [ApiPermissionAuthorize]
     public sealed class UserController : ControllerBase
     {

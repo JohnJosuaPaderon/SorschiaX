@@ -11,6 +11,7 @@ namespace Sorschia.SystemCore.Converters
         private const string FIELD_DESCRIPTION = "[Description]";
         private const string FIELD_GROUPID = "[GroupId]";
         private const string FIELD_ISAPIPERMISSION = "[IsApiPermission]";
+        private const string FIELD_APIDOMAIN = "[ApiDomain]";
         private const string FIELD_APICONTROLLER = "[ApiController]";
         private const string FIELD_APIACTION = "[ApiAction]";
         private const string FIELD_ISDATABASEPERMISSION = "[IsDatabasePermission]";
@@ -23,6 +24,7 @@ namespace Sorschia.SystemCore.Converters
             Description = reader.GetString(FIELD_DESCRIPTION),
             GroupId = reader.GetNullableInt32(FIELD_GROUPID),
             IsApiPermission = reader.GetBoolean(FIELD_ISAPIPERMISSION),
+            ApiDomain = reader.GetString(FIELD_APIDOMAIN),
             ApiController = reader.GetString(FIELD_APICONTROLLER),
             ApiAction = reader.GetString(FIELD_APIACTION),
             IsDatabasePermission = reader.GetBoolean(FIELD_ISDATABASEPERMISSION),

@@ -15,6 +15,7 @@ namespace Sorschia.SystemCore.Queries
         private const string PARAM_GROUPID = "@GroupId";
         private const int AFFECTEDROWS = 1;
         private const string PARAM_ISAPIPERMISSION = "@IsApiPermission";
+        private const string PARAM_APIDOMAIN = "@ApiDomain";
         private const string PARAM_APICONTROLLER = "@ApiController";
         private const string PARAM_APIACTION = "@ApiAction";
         private const string PARAM_ISDATABASEPERMISSION = "@IsDatabasePermission";
@@ -48,6 +49,7 @@ namespace Sorschia.SystemCore.Queries
             .AddInParameter(PARAM_GROUPID, permission.GroupId)
             .AddSessionIdParameter(_sessionProvider)
             .AddInParameter(PARAM_ISAPIPERMISSION, permission.IsApiPermission)
+            .AddInParameter(PARAM_APIDOMAIN, permission.ApiDomain)
             .AddInParameter(PARAM_APICONTROLLER, permission.ApiController)
             .AddInParameter(PARAM_APIACTION, permission.ApiAction)
             .AddInParameter(PARAM_ISDATABASEPERMISSION, permission.IsDatabasePermission)

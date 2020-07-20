@@ -2,12 +2,13 @@
 using Sorschia.SystemCore.Entities;
 using Sorschia.SystemCore.Processes;
 using Sorschia.SystemCore.Repositories;
+using Sorschia.SystemCore.Routing;
 using System.Threading.Tasks;
 
 namespace Sorschia.SystemCore.Controllers
 {
     [ApiController]
-    [Route(ControllerRoutes.SystemCore.Application)]
+    [SystemCoreRoute(ControllerRoutes.SystemCore.Application)]
     [ApiPermissionAuthorize]
     public sealed class ApplicationController : ControllerBase
     {

@@ -6,7 +6,7 @@ namespace Sorschia
 {
     internal sealed class ApiPermissionHandler : AuthorizationHandler<ApiPermissionRequirement>
     {
-        private bool _authorizationEnabled;
+        private readonly bool _authorizationEnabled;
 
         public ApiPermissionHandler(IConfiguration configuration)
         {

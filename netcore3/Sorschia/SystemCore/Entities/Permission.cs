@@ -9,6 +9,7 @@ namespace Sorschia.SystemCore.Entities
         public int Id { get; set; }
         public string Description { get; set; }
         public bool IsApiPermission { get; set; }
+        public string ApiDomain { get; set; }
         public string ApiController { get; set; }
         public string ApiAction { get; set; }
         public bool IsDatabasePermission { get; set; }
