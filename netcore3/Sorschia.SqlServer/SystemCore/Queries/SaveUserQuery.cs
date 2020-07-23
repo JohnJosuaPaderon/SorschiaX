@@ -3,7 +3,6 @@ using Sorschia.SystemCore.Entities;
 using Sorschia.SystemCore.Processes;
 using System.Data;
 using System.Data.SqlClient;
-using System.Runtime.InteropServices.ComTypes;
 using System.Threading;
 using System.Threading.Tasks;
 
