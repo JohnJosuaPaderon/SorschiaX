@@ -11,7 +11,6 @@ namespace Sorschia.SystemCore.Queries
         private const string PROCEDURE = "[SystemCore].[DeleteUserModule]";
         private const string PARAM_ID = "@Id";
         private const string PARAM_ISCASCADED = "@IsCascaded";
-        private const int AFFECTEDROWS = 1;
 
         private readonly ISessionProvider _sessionProvider;
 
@@ -23,7 +22,8 @@ namespace Sorschia.SystemCore.Queries
         public async Task<bool> ExecuteAsync(DeleteUserModuleModel model, SqlConnection connection, SqlTransaction transaction, CancellationToken cancellationToken = default)
         {
             using var command = CreateCommand(model, connection, transaction);
-            return await command.ExecuteNonQueryAsync(cancellationToken) == AFFECTEDROWS;
+            await command.ExecuteNonQueryAsync(cancellationToken);
+            return true;
         }
 
         private SqlCommand CreateCommand(DeleteUserModuleModel model, SqlConnection connection, SqlTransaction transaction) => connection

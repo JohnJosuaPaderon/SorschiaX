@@ -13,7 +13,6 @@ namespace Sorschia.SystemCore.Queries
         private const string PARAM_ID = "@Id";
         private const string PARAM_DESCRIPTION = "@Description";
         private const string PARAM_GROUPID = "@GroupId";
-        private const int AFFECTEDROWS = 1;
         private const string PARAM_ISAPIPERMISSION = "@IsApiPermission";
         private const string PARAM_APIDOMAIN = "@ApiDomain";
         private const string PARAM_APICONTROLLER = "@ApiController";
@@ -32,14 +31,9 @@ namespace Sorschia.SystemCore.Queries
         public async Task<Permission> ExecuteAsync(Permission permission, SqlConnection connection, SqlTransaction transaction, CancellationToken cancellationToken = default)
         {
             using var command = CreateCommand(permission, connection, transaction);
-
-            if (await command.ExecuteNonQueryAsync(cancellationToken) == AFFECTEDROWS)
-            {
-                permission.Id = command.Parameters.GetInt32(PARAM_ID);
-                return permission;
-            }
-
-            return default;
+            await command.ExecuteNonQueryAsync(cancellationToken);
+            permission.Id = command.Parameters.GetInt32(PARAM_ID);
+            return permission.Id != 0 ? permission : null;
         }
 
         private SqlCommand CreateCommand(Permission permission, SqlConnection connection, SqlTransaction transaction) => connection

@@ -12,19 +12,13 @@ namespace Sorschia.SystemCore.Queries
         private const string PARAM_ID = "@Id";
         private const string PARAM_ACCESSTOKENID = "@AccessTokenId";
         private const string PARAM_TOKENSTRING = "@TokenString";
-        private const int AFFECTEDROWS = 1;
 
         public async Task<RefreshToken> ExecuteAsync(RefreshToken refreshToken, SqlConnection connection, SqlTransaction transaction = default, CancellationToken cancellationToken = default)
         {
             using var command = CreateCommand(refreshToken, connection, transaction);
-
-            if (await command.ExecuteNonQueryAsync(cancellationToken) == AFFECTEDROWS)
-            {
-                refreshToken.Id = command.Parameters.GetInt64(PARAM_ID);
-                return refreshToken;
-            }
-
-            return null;
+            await command.ExecuteNonQueryAsync(cancellationToken);
+            refreshToken.Id = command.Parameters.GetInt64(PARAM_ID);
+            return refreshToken.Id != 0 ? refreshToken : null;
         }
 
         private SqlCommand CreateCommand(RefreshToken refreshToken, SqlConnection connection, SqlTransaction transaction = default) => connection

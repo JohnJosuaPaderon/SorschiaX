@@ -16,7 +16,6 @@ namespace Sorschia.SystemCore.Queries
         private const string PARAM_ISAPPROVED = "@IsApproved";
         private const string PARAM_EXPIRATION = "@Expiration";
         private const string PARAM_ISEXPIRED = "@IsExpired";
-        private const int AFFECTEDROWS = 1;
 
         private readonly ISessionProvider _sessionProvider;
 
@@ -28,14 +27,9 @@ namespace Sorschia.SystemCore.Queries
         public async Task<UserApplication> ExecuteAsync(UserApplication userApplication, SqlConnection connection, SqlTransaction transaction, CancellationToken cancellationToken = default)
         {
             using var command = CreateCommand(userApplication, connection, transaction);
-
-            if (await command.ExecuteNonQueryAsync(cancellationToken) == AFFECTEDROWS)
-            {
-                userApplication.Id = command.Parameters.GetInt64(PARAM_ID);
-                return userApplication;
-            }
-
-            return null;
+            await command.ExecuteNonQueryAsync(cancellationToken);
+            userApplication.Id = command.Parameters.GetInt64(PARAM_ID);
+            return userApplication.Id != 0 ? userApplication : null;
         }
 
         private SqlCommand CreateCommand(UserApplication userApplication, SqlConnection connection, SqlTransaction transaction) => connection

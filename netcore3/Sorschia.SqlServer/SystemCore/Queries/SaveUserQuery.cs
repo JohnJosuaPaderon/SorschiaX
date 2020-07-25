@@ -35,14 +35,9 @@ namespace Sorschia.SystemCore.Queries
         public async Task<User> ExecuteAsync(SaveUserModel.UserObj user, SqlConnection connection, SqlTransaction transaction, CancellationToken cancellationToken = default)
         {
             using var command = CreateCommand(user, connection, transaction);
-
-            if (await command.ExecuteNonQueryAsync(cancellationToken) == AFFECTEDROWS)
-            {
-                user.Id = command.Parameters.GetInt32(PARAM_ID);
-                return user;
-            }
-
-            return null;
+            await command.ExecuteNonQueryAsync(cancellationToken);
+            user.Id = command.Parameters.GetInt32(PARAM_ID);
+            return user.Id != 0 ? user : null;
         }
 
         private SqlCommand CreateCommand(SaveUserModel.UserObj user, SqlConnection connection, SqlTransaction transaction) => connection

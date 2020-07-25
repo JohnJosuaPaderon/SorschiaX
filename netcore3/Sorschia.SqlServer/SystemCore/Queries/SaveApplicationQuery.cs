@@ -13,7 +13,6 @@ namespace Sorschia.SystemCore.Queries
         private const string PARAM_ID = "@Id";
         private const string PARAM_NAME = "@Name";
         private const string PARAM_PLATFORMID = "@PlatformId";
-        private const int AFFECTEDROWS = 1;
 
         private readonly ISessionProvider _sessionProvider;
 
@@ -25,14 +24,9 @@ namespace Sorschia.SystemCore.Queries
         public async Task<Application> ExecuteAsync(Application application, SqlConnection connection, SqlTransaction transaction, CancellationToken cancellationToken = default)
         {
             using var command = CreateCommand(application, connection, transaction);
-
-            if (await command.ExecuteNonQueryAsync(cancellationToken) == AFFECTEDROWS)
-            {
-                application.Id = command.Parameters.GetInt32(PARAM_ID);
-                return application;
-            }
-
-            return null;
+            await command.ExecuteNonQueryAsync(cancellationToken);
+            application.Id = command.Parameters.GetInt32(PARAM_ID);
+            return application.Id != 0 ? application : null;
         }
 
         private SqlCommand CreateCommand(Application application, SqlConnection connection, SqlTransaction transaction) => connection

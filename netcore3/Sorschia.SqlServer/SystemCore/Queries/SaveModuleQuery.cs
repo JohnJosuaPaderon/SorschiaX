@@ -14,8 +14,7 @@ namespace Sorschia.SystemCore.Queries
         private const string PARAM_NAME = "@Name";
         private const string PARAM_ORDINALNUMBER = "@OrdinalNumber";
         private const string PARAM_APPLICATIONID = "@ApplicationId";
-        private const int AFFECTEDROWS = 1;
-
+        
         private readonly ISessionProvider _sessionProvider;
 
         public SaveModuleQuery(ISessionProvider sessionProvider)
@@ -26,14 +25,9 @@ namespace Sorschia.SystemCore.Queries
         public async Task<Module> ExecuteAsync(Module module, SqlConnection connection, SqlTransaction transaction, CancellationToken cancellationToken = default)
         {
             using var command = CreateCommand(module, connection, transaction);
-
-            if (await command.ExecuteNonQueryAsync(cancellationToken) == AFFECTEDROWS)
-            {
-                module.Id = command.Parameters.GetInt32(PARAM_ID);
-                return module;
-            }
-
-            return null;
+            await command.ExecuteNonQueryAsync(cancellationToken);
+            module.Id = command.Parameters.GetInt32(PARAM_ID);
+            return module.Id != 0 ? module : null;
         }
 
         private SqlCommand CreateCommand(Module module, SqlConnection connection, SqlTransaction transaction) => connection

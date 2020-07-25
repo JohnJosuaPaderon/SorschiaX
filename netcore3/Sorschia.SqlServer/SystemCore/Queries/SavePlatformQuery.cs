@@ -24,14 +24,9 @@ namespace Sorschia.SystemCore.Queries
         public async Task<Platform> ExecuteAsync(Platform module, SqlConnection connection, SqlTransaction transaction, CancellationToken cancellationToken = default)
         {
             using var command = CreateCommand(module, connection, transaction);
-
-            if (await command.ExecuteNonQueryAsync(cancellationToken) == AFFECTEDROWS)
-            {
-                module.Id = command.Parameters.GetInt32(PARAM_ID);
-                return module;
-            }
-
-            return null;
+            await command.ExecuteNonQueryAsync(cancellationToken);
+            module.Id = command.Parameters.GetInt32(PARAM_ID);
+            return module.Id != 0 ? module : null;
         }
 
         private SqlCommand CreateCommand(Platform module, SqlConnection connection, SqlTransaction transaction) => connection

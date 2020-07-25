@@ -13,7 +13,6 @@ namespace Sorschia.SystemCore.Queries
         private const string PARAM_ID = "@Id";
         private const string PARAM_NAME = "@Name";
         private const string PARAM_PARENTID = "@ParentId";
-        private const int AFFECTEDROWS = 1;
 
         private readonly ISessionProvider _sessionProvider;
 
@@ -25,14 +24,9 @@ namespace Sorschia.SystemCore.Queries
         public async Task<PermissionGroup> ExecuteAsync(PermissionGroup group, SqlConnection connection, SqlTransaction transaction, CancellationToken cancellationToken = default)
         {
             using var command = CreateCommand(group, connection, transaction);
-
-            if (await command.ExecuteNonQueryAsync(cancellationToken) == AFFECTEDROWS)
-            {
-                group.Id = command.Parameters.GetInt32(PARAM_ID);
-                return group;
-            }
-
-            return null;
+            await command.ExecuteNonQueryAsync(cancellationToken);
+            group.Id = command.Parameters.GetInt32(PARAM_ID);
+            return group.Id != 0 ? group : null;
         }
 
         private SqlCommand CreateCommand(PermissionGroup group, SqlConnection connection, SqlTransaction transaction) => connection
