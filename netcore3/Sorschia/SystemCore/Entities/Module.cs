@@ -25,7 +25,7 @@ namespace Sorschia.SystemCore.Entities
 
         public async Task<Application> GetApplicationAsync(IApplicationRepository repository, CancellationToken cancellationToken = default)
         {
-            if (_applicationId > 0)
+            if (_applicationId != 0)
                 Application = await repository.GetAsync(_applicationId ?? 0, cancellationToken);
 
             return Application;

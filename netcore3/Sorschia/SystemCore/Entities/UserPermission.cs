@@ -40,7 +40,7 @@ namespace Sorschia.SystemCore.Entities
 
         public async Task<User> GetUserAsync(IUserRepository repository, CancellationToken cancellationToken = default)
         {
-            if (_userId > 0)
+            if (_userId != 0)
                 User = await repository.GetAsync(_userId, cancellationToken);
 
             return User;
@@ -48,7 +48,7 @@ namespace Sorschia.SystemCore.Entities
 
         public async Task<Permission> GetPermissionAsync(IPermissionRepository repository, CancellationToken cancellationToken = default)
         {
-            if (_permissionId > 0)
+            if (_permissionId != 0)
                 Permission = await repository.GetAsync(_permissionId, cancellationToken);
 
             return Permission;

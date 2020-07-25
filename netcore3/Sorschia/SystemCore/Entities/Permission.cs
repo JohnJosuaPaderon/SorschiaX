@@ -31,7 +31,7 @@ namespace Sorschia.SystemCore.Entities
 
         public async Task<PermissionGroup> GetGroupAsync(IPermissionGroupRepository repository, CancellationToken cancellationToken = default)
         {
-            if (_groupId > 0)
+            if (_groupId != 0)
                 Group = await repository.GetAsync(_groupId ?? 0, cancellationToken);
 
             return Group;

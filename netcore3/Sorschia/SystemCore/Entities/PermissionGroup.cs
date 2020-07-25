@@ -24,7 +24,7 @@ namespace Sorschia.SystemCore.Entities
 
         public async Task<PermissionGroup> GetParentAsync(IPermissionGroupRepository repository, CancellationToken cancellationToken = default)
         {
-            if (_parentId > 0)
+            if (_parentId != 0)
                 Parent = await repository.GetAsync(_parentId ?? 0, cancellationToken);
 
             return Parent;

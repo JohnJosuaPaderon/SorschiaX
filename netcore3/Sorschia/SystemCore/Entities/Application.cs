@@ -24,7 +24,7 @@ namespace Sorschia.SystemCore.Entities
 
         public async Task<Platform> GetPlatformAsync(IPlatformRepository repository, CancellationToken cancellationToken = default)
         {
-            if (_platformId > 0)
+            if (_platformId != 0)
                 Platform = await repository.GetAsync(_platformId ?? 0, cancellationToken);
 
             return Platform;
