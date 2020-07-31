@@ -20,5 +20,10 @@ namespace Sorschia.Data
         protected SorschiaDataException(SerializationInfo info, StreamingContext context, bool isMessageViewable = default) : base(info, context, isMessageViewable)
         {
         }
+
+        public static new SorschiaDataException RepositoryIsNull<TRepository>() => new SorschiaDataException($"Repository of type {typeof(TRepository).FullName} is null");
+        public static new SorschiaDataException DependencySettingsIsNull<TDependencySettings>() => new SorschiaDataException($"Dependency settings of type {typeof(TDependencySettings).FullName} is null");
+        public static new SorschiaDataException VariableIsNull<TVariable>(string variableName) => new SorschiaDataException($"Variable of type {typeof(TVariable).FullName} with name '{variableName}' is null");
+        public static new SorschiaDataException InvalidParameter<TParameter>(string parameterName) => new SorschiaDataException($"Parameter of type {typeof(TParameter).FullName} with name '{parameterName}' is invalid");
     }
 }
