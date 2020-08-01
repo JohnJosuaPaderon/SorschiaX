@@ -44,7 +44,7 @@ namespace Sorschia.Data
             if (fieldNameCache.TryGet(instance, fieldName, out object result))
                 return convert(result, valueIfDefault);
 
-            return default;
+            return valueIfDefault;
         }
 
         private static T Get<T>(this DbDataReader instance, string fieldName, IFormatProvider formatProvider, ConvertWithFormatProvider<T> convert, T valueIfDefault = default)
@@ -64,7 +64,7 @@ namespace Sorschia.Data
             if (fieldNameCache.TryGet(instance, fieldName, out object result))
                 return convert(result, formatProvider, valueIfDefault);
 
-            return default;
+            return valueIfDefault;
         }
 
         public static bool GetBoolean(this DbDataReader instance, string fieldName, bool valueIfDefault = default) => instance.Get(fieldName, DbValueConverter.ToBoolean, valueIfDefault);
