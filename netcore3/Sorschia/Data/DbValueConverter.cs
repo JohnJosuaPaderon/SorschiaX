@@ -1,16 +1,14 @@
 ﻿using Sorschia.Utilities;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Text;
 
 namespace Sorschia.Data
 {
     public static class DbValueConverter
     {
-        private static T Convert<T>(object value, Func<object, T, T> convert, T valueIfDefault = default) => value == DBNull.Value ? valueIfDefault : convert(value, valueIfDefault);
+        private static T Convert<T>(object value, Convert<T> convert, T valueIfDefault = default) => value == DBNull.Value ? valueIfDefault : convert(value, valueIfDefault);
 
-        private static T Convert<T>(object value, Func<object, IFormatProvider, T, T> convert, IFormatProvider formatProvider, T valueIfDefault = default) => value == DBNull.Value ? valueIfDefault : convert(value, formatProvider, valueIfDefault);
+        private static T Convert<T>(object value, ConvertWithFormatProvider<T> convert, IFormatProvider formatProvider, T valueIfDefault = default) => value == DBNull.Value ? valueIfDefault : convert(value, formatProvider, valueIfDefault);
 
         public static bool ToBoolean(object value, bool valueIfDefault = default) => Convert(value, ValueConverter.ToBoolean, valueIfDefault);
 

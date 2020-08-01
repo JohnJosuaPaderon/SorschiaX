@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using Sorschia.Data;
 using Sorschia.Security;
 using Sorschia.SystemCore;
 using Sorschia.Utilities;
@@ -15,6 +16,7 @@ namespace Sorschia
             configureSettings?.Invoke(dependencySettings);
 
             return instance
+                .AddData(dependencySettings.Data)
                 .AddSecurity(dependencySettings.Security)
                 .AddSystemCore(dependencySettings.SystemCore)
                 .AddUtilities(dependencySettings.Utilities);

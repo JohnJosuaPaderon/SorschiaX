@@ -7,7 +7,7 @@ namespace Sorschia.Utilities
     {
         private static bool IsDefault<T>(T value) => Equals(default(T), value);
 
-        private static TResult ConvertBase<TInput, TResult>(TInput value, Func<TInput, TResult> convert, TResult valueIfDefault = default)
+        private static TResult ConvertBase<TInput, TResult>(TInput value, Convert<TInput, TResult> convert, TResult valueIfDefault = default)
         {
             if (convert == null)
                 throw new SorschiaException($"Parameter '{nameof(convert)}' cannot be null.");
@@ -15,7 +15,7 @@ namespace Sorschia.Utilities
             return IsDefault(value) ? valueIfDefault : convert(value);
         }
 
-        private static TResult ConvertBase<TInput, TResult>(TInput value, IFormatProvider formatProvider, Func<TInput, IFormatProvider, TResult> convert, TResult valueIfDefault = default)
+        private static TResult ConvertBase<TInput, TResult>(TInput value, IFormatProvider formatProvider, ConvertWithFormatProvider<TInput, TResult> convert, TResult valueIfDefault = default)
         {
             if (convert == null)
                 throw new SorschiaException($"Parameter '{nameof(convert)}' cannot be null.");
@@ -23,7 +23,7 @@ namespace Sorschia.Utilities
             return IsDefault(value) ? valueIfDefault : convert(value, formatProvider);
         }
 
-        private static TResult? ConvertNullableBase<TInput, TResult>(TInput value, Func<TInput, TResult> convert, TResult? valueIfDefault = default)
+        private static TResult? ConvertNullableBase<TInput, TResult>(TInput value, Convert<TInput, TResult> convert, TResult? valueIfDefault = default)
             where TInput : class
             where TResult : struct
         {
@@ -33,7 +33,7 @@ namespace Sorschia.Utilities
             return IsDefault(value) ? valueIfDefault : new TResult?(convert(value));
         }
 
-        private static TResult? ConvertNullableBase<TInput, TResult>(TInput value, IFormatProvider formatProvider, Func<TInput, IFormatProvider, TResult> convert, TResult? valueIfDefault = default)
+        private static TResult? ConvertNullableBase<TInput, TResult>(TInput value, IFormatProvider formatProvider, ConvertWithFormatProvider<TInput, TResult> convert, TResult? valueIfDefault = default)
             where TInput : class
             where TResult : struct
         {

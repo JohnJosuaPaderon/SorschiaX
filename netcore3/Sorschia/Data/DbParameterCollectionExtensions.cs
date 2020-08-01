@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Sorschia.Utilities;
+using System;
 using System.Data.Common;
 using System.IO;
 
@@ -15,13 +16,13 @@ namespace Sorschia.Data
                 throw new SorschiaDataException("parameters is empty.");
         }
 
-        private static T Get<T>(this DbParameterCollection instance, string name, Func<object, T, T> convert, T valueIfDefault = default)
+        private static T Get<T>(this DbParameterCollection instance, string name, Convert<T> convert, T valueIfDefault = default)
         {
             Validate(instance, name);
             return convert(instance[name]?.Value, valueIfDefault);
         }
 
-        private static T Get<T>(this DbParameterCollection instance, string name, IFormatProvider formatProvider, Func<object, IFormatProvider, T, T> convert, T valueIfDefault = default)
+        private static T Get<T>(this DbParameterCollection instance, string name, IFormatProvider formatProvider, ConvertWithFormatProvider<T> convert, T valueIfDefault = default)
         {
             Validate(instance, name);
             return convert(instance[name]?.Value, formatProvider, valueIfDefault);
