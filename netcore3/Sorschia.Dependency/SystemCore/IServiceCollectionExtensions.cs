@@ -44,7 +44,11 @@ namespace Sorschia.SystemCore
                     .AddSingleton<IUserPasswordEncryptor, UserPasswordEncryptor>();
 
             if (dependencySettings.UseDefaultConfiguration)
-                instance.AddSingleton<SystemCoreConfiguration>();
+            {
+                var configuration = new SystemCoreConfiguration();
+                dependencySettings?.Configure(configuration);
+                instance.AddSingleton(configuration);
+            }    
 
             return instance;
         }
