@@ -12,12 +12,19 @@ namespace Sorschia.SystemCore.Converters
         private const string FIELD_ORDINALNUMBER = "[OrdinalNumber]";
         private const string FIELD_APPLICATIONID = "[ApplicationId]";
 
+        private readonly IFieldNameCache _fieldNameCache;
+
+        public ModuleConverter(IFieldNameCache fieldNameCache)
+        {
+            _fieldNameCache = fieldNameCache;
+        }
+
         public Module Convert(SqlDataReader reader) => new Module
         {
-            Id = reader.GetInt32(FIELD_ID),
-            Name = reader.GetString(FIELD_NAME),
-            OrdinalNumber = reader.GetInt32(FIELD_ORDINALNUMBER),
-            ApplicationId = reader.GetNullableInt32(FIELD_APPLICATIONID)
+            Id = reader.GetInt32(FIELD_ID, _fieldNameCache),
+            Name = reader.GetString(FIELD_NAME, _fieldNameCache),
+            OrdinalNumber = reader.GetInt32(FIELD_ORDINALNUMBER, _fieldNameCache),
+            ApplicationId = reader.GetNullableInt32(FIELD_APPLICATIONID, _fieldNameCache)
         };
     }
 }

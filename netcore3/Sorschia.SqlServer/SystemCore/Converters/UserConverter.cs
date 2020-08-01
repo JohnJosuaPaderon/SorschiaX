@@ -16,16 +16,23 @@ namespace Sorschia.SystemCore.Converters
         private const string FIELD_ISACTIVE = "[IsActive]";
         private const string FIELD_ISPASSWORDCHANGEREQUIRED = "[IsPasswordChangeRequired]";
 
+        private readonly IFieldNameCache _fieldNameCache;
+
+        public UserConverter(IFieldNameCache fieldNameCache)
+        {
+            _fieldNameCache = fieldNameCache;
+        }
+
         public User Convert(SqlDataReader reader) => new User
         {
-            Id = reader.GetInt32(FIELD_ID),
-            FirstName = reader.GetString(FIELD_FIRSTNAME),
-            MiddleName = reader.GetString(FIELD_MIDDLENAME),
-            LastName = reader.GetString(FIELD_LASTNAME),
-            NameExtension = reader.GetString(FIELD_NAMEEXTENSION),
-            Username = reader.GetString(FIELD_USERNAME),
-            IsActive = reader.GetBoolean(FIELD_ISACTIVE),
-            IsPasswordChangeRequired = reader.GetBoolean(FIELD_ISPASSWORDCHANGEREQUIRED)
+            Id = reader.GetInt32(FIELD_ID, _fieldNameCache),
+            FirstName = reader.GetString(FIELD_FIRSTNAME, _fieldNameCache),
+            MiddleName = reader.GetString(FIELD_MIDDLENAME, _fieldNameCache),
+            LastName = reader.GetString(FIELD_LASTNAME, _fieldNameCache),
+            NameExtension = reader.GetString(FIELD_NAMEEXTENSION, _fieldNameCache),
+            Username = reader.GetString(FIELD_USERNAME, _fieldNameCache),
+            IsActive = reader.GetBoolean(FIELD_ISACTIVE, _fieldNameCache),
+            IsPasswordChangeRequired = reader.GetBoolean(FIELD_ISPASSWORDCHANGEREQUIRED, _fieldNameCache)
         };
     }
 }

@@ -18,18 +18,25 @@ namespace Sorschia.SystemCore.Converters
         private const string FIELD_DATABASESCHEMA = "[DatabaseSchema]";
         private const string FIELD_DATABASEPROCEDURE = "[DatabaseProcedure]";
 
+        private readonly IFieldNameCache _fieldNameCache;
+
+        public PermissionConverter(IFieldNameCache fieldNameCache)
+        {
+            _fieldNameCache = fieldNameCache;
+        }
+
         public Permission Convert(SqlDataReader reader) => new Permission
         {
-            Id = reader.GetInt32(FIELD_ID),
-            Description = reader.GetString(FIELD_DESCRIPTION),
-            GroupId = reader.GetNullableInt32(FIELD_GROUPID),
-            IsApiPermission = reader.GetBoolean(FIELD_ISAPIPERMISSION),
-            ApiDomain = reader.GetString(FIELD_APIDOMAIN),
-            ApiController = reader.GetString(FIELD_APICONTROLLER),
-            ApiAction = reader.GetString(FIELD_APIACTION),
-            IsDatabasePermission = reader.GetBoolean(FIELD_ISDATABASEPERMISSION),
-            DatabaseSchema = reader.GetString(FIELD_DATABASESCHEMA),
-            DatabaseProcedure = reader.GetString(FIELD_DATABASEPROCEDURE)
+            Id = reader.GetInt32(FIELD_ID, _fieldNameCache),
+            Description = reader.GetString(FIELD_DESCRIPTION, _fieldNameCache),
+            GroupId = reader.GetNullableInt32(FIELD_GROUPID, _fieldNameCache),
+            IsApiPermission = reader.GetBoolean(FIELD_ISAPIPERMISSION, _fieldNameCache),
+            ApiDomain = reader.GetString(FIELD_APIDOMAIN, _fieldNameCache),
+            ApiController = reader.GetString(FIELD_APICONTROLLER, _fieldNameCache),
+            ApiAction = reader.GetString(FIELD_APIACTION, _fieldNameCache),
+            IsDatabasePermission = reader.GetBoolean(FIELD_ISDATABASEPERMISSION, _fieldNameCache),
+            DatabaseSchema = reader.GetString(FIELD_DATABASESCHEMA, _fieldNameCache),
+            DatabaseProcedure = reader.GetString(FIELD_DATABASEPROCEDURE, _fieldNameCache)
         };
     }
 }

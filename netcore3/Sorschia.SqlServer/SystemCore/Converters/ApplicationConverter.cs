@@ -11,11 +11,18 @@ namespace Sorschia.SystemCore.Converters
         private const string FIELD_NAME = "[Name]";
         private const string FIELD_PLATFORMID = "[PlatformId]";
 
+        private readonly IFieldNameCache _fieldNameCache;
+
+        public ApplicationConverter(IFieldNameCache fieldNameCache)
+        {
+            _fieldNameCache = fieldNameCache;
+        }
+
         public Application Convert(SqlDataReader reader) => new Application
         {
-            Id = reader.GetInt32(FIELD_ID),
-            Name = reader.GetString(FIELD_NAME),
-            PlatformId = reader.GetNullableInt32(FIELD_PLATFORMID)
+            Id = reader.GetInt32(FIELD_ID, _fieldNameCache),
+            Name = reader.GetString(FIELD_NAME, _fieldNameCache),
+            PlatformId = reader.GetNullableInt32(FIELD_PLATFORMID, _fieldNameCache)
         };
     }
 }
