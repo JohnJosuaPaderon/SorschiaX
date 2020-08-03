@@ -40,7 +40,7 @@ namespace Sorschia.SystemCore.Queries
             .AddPaginationParameters(model)
             .AddInParameter(PARAM_FILTERTEXT, model.FilterText)
             .AddInParameter(PARAM_FILTERBYPARENT, model.FilterByParent)
-            .AddIntListParameter(PARAM_PARENTIDS, model.ParentIds)
-            .AddIntListParameter(PARAM_SKIPPEDIDS, model.SkippedIds);
+            .AddIntsParameter(PARAM_PARENTIDS, model.ParentIds)
+            .AddIntsParameter(PARAM_SKIPPEDIDS, model.SkippedIds);
     }
 }

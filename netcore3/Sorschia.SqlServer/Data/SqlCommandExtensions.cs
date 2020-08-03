@@ -103,7 +103,7 @@ namespace Sorschia.Data
             return instance;
         }
 
-        public static SqlCommand AddIntListParameter(this SqlCommand instance, string parameterName, IEnumerable<int> values, string fieldName = "Value", string dbTypeName = "dbo.IntList", ParameterDirection direction = ParameterDirection.Input) =>
+        public static SqlCommand AddIntsParameter(this SqlCommand instance, string parameterName, IEnumerable<int> values, string fieldName = "Value", string dbTypeName = "dbo.Ints", ParameterDirection direction = ParameterDirection.Input) =>
             instance.AddSingleTypeParameter(parameterName, values, fieldName, dbTypeName, direction);
     }
 }

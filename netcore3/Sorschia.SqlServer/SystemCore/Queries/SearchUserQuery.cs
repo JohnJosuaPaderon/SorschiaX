@@ -41,7 +41,7 @@ namespace Sorschia.SystemCore.Queries
             .AddInParameter(PARAM_FILTERTEXT, model.FilterText)
             .AddInParameter(PARAM_ISACTIVE, model.IsActive)
             .AddInParameter(PARAM_ISPASSWORDCHANGEREQUIRED, model.IsPasswordChangeRequired)
-            .AddIntListParameter(PARAM_SKIPPEDIDS, model.SkippedIds);
+            .AddIntsParameter(PARAM_SKIPPEDIDS, model.SkippedIds);
     }
 
 }

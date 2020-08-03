@@ -42,8 +42,8 @@ namespace Sorschia.SystemCore.Queries
             .AddPaginationParameters(model)
             .AddInParameter(PARAM_FILTERTEXT, model.FilterText)
             .AddInParameter(PARAM_FILTERBYGROUP, model.FilterByGroup)
-            .AddIntListParameter(PARAM_GROUPIDS, model.GroupIds)
-            .AddIntListParameter(PARAM_SKIPPEDIDS, model.SkippedIds)
+            .AddIntsParameter(PARAM_GROUPIDS, model.GroupIds)
+            .AddIntsParameter(PARAM_SKIPPEDIDS, model.SkippedIds)
             .AddInParameter(PARAM_ISAPIPERMISSION, model.IsApiPermission)
             .AddInParameter(PARAM_ISDATABASEPERMISSION, model.IsDatabasePermission);
     }

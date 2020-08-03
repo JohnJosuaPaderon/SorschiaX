@@ -202,6 +202,7 @@ CREATE TABLE [SystemCore].[User]
     [MiddleName] NVARCHAR(75),
     [LastName] NVARCHAR(75) NOT NULL,
     [NameExtension] NVARCHAR(10),
+    [FullName] NVARCHAR(250),
     [Username] NVARCHAR(250) NOT NULL,
     [PasswordHash] NVARCHAR(250) NOT NULL,
     [IsActive] BIT NOT NULL,
@@ -526,41 +527,23 @@ GO
 
 INSERT INTO [SystemCore].[Permission]([Id], [Description], [GroupId], [IsApiPermission], [ApiDomain], [ApiController], [ApiAction], [IsDatabasePermission], [DatabaseSchema], [DatabaseProcedure], [IsSystemDefined], [InsertedById], [InsertedOn]) VALUES
     (1, 'Delete Application', 2, 1, 'SystemCore', 'Application', 'Delete', 1, 'SystemCore', 'DeleteApplication', 1, -1, GETDATE()),
-    (2, 'Get Application', 2, 1, 'SystemCore', 'Application', 'Get', 1, 'SystemCore', 'GetApplication', 1, -1, GETDATE()),
-    (3, 'Save Application', 2, 1, 'SystemCore', 'Application', 'Save', 1, 'SystemCore', 'SaveApplication', 1, -1, GETDATE()),
-    (4, 'Search Application', 2, 1, 'SystemCore', 'Application', 'Search', 1, 'SystemCore', 'SearchApplication', 1, -1, GETDATE()),
-    (5, 'Delete Module', 3, 1, 'SystemCore', 'Module', 'Delete', 1, 'SystemCore', 'DeleteModule', 1, -1, GETDATE()),
-    (6, 'Get Module', 3, 1, 'SystemCore', 'Module', 'Get', 1, 'SystemCore', 'GetModule', 1, -1, GETDATE()),
-    (7, 'Save Module', 3, 1, 'SystemCore', 'Module', 'Save', 1, 'SystemCore', 'SaveModule', 1, -1, GETDATE()),
-    (8, 'Search Module', 3, 1, 'SystemCore', 'Module', 'Search', 1, 'SystemCore', 'SearchModule', 1, -1, GETDATE()),
-    (9, 'Delete Permission', 4, 1, 'SystemCore', 'Permission', 'Delete', 1, 'SystemCore', 'DeletePermission', 1, -1, GETDATE()),
-    (10, 'Get Permission', 4, 1, 'SystemCore', 'Permission', 'Get', 1, 'SystemCore', 'GetPermission', 1, -1, GETDATE()),
-    (11, 'Save Permission', 4, 1, 'SystemCore', 'Permission', 'Save', 1, 'SystemCore', 'SavePermission', 1, -1, GETDATE()),
-    (12, 'Search Permission', 4, 1, 'SystemCore', 'Permission', 'Search', 1, 'SystemCore', 'SearchPermission', 1, -1, GETDATE()),
-    (13, 'Delete Permission Group', 5, 1, 'SystemCore', 'PermissionGroup', 'Delete', 1, 'SystemCore', 'DeletePermissionGroup', 1, -1, GETDATE()),
-    (14, 'Get Permission Group', 5, 1, 'SystemCore', 'PermissionGroup', 'Get', 1, 'SystemCore', 'GetPermissionGroup', 1, -1, GETDATE()),
-    (15, 'Save Permission Group', 5, 1, 'SystemCore', 'PermissionGroup', 'Save', 1, 'SystemCore', 'SavePermissionGroup', 1, -1, GETDATE()),
-    (16, 'Search Permission Group', 5, 1, 'SystemCore', 'PermissionGroup', 'Search', 1, 'SystemCore', 'SearchPermissionGroup', 1, -1, GETDATE()),
-    (17, 'Delete Platform', 6, 1, 'SystemCore', 'Platform', 'Delete', 1, 'SystemCore', 'DeletePlatform', 1, -1, GETDATE()),
-    (18, 'Get Platform', 6, 1, 'SystemCore', 'Platform', 'Get', 1, 'SystemCore', 'GetPlatform', 1, -1, GETDATE()),
-    (19, 'Save Platform', 6, 1, 'SystemCore', 'Platform', 'Save', 1, 'SystemCore', 'SavePlatform', 1, -1, GETDATE()),
-    (20, 'Search Platform', 6, 1, 'SystemCore', 'Platform', 'Search', 1, 'SystemCore', 'SearchPlatform', 1, -1, GETDATE()),
-    (21, 'Delete User', 7, 1, 'SystemCore', 'User', 'Delete', 1, 'SystemCore', 'DeleteUser', 1, -1, GETDATE()),
-    (22, 'Get User', 7, 1, 'SystemCore', 'User', 'Get', 1, 'SystemCore', 'GetUser', 1, -1, GETDATE()),
-    (23, 'Save User', 7, 1, 'SystemCore', 'User', 'Save', 1, 'SystemCore', 'SaveUser', 1, -1, GETDATE()),
-    (24, 'Search User', 7, 1, 'SystemCore', 'User', 'Search', 1, 'SystemCore', 'SearchUser', 1, -1, GETDATE()),
-    (25, 'Delete User-Application', 8, 1, 'SystemCore', 'UserApplication', 'Delete', 1, 'SystemCore', 'DeleteUserApplication', 1, -1, GETDATE()),
-    (26, 'Get User-Application', 8, 1, 'SystemCore', 'UserApplication', 'Get', 1, 'SystemCore', 'GetUserApplication', 1, -1, GETDATE()),
-    (27, 'Save User-Application', 8, 1, 'SystemCore', 'UserApplication', 'Save', 1, 'SystemCore', 'SaveUserApplication', 1, -1, GETDATE()),
-    (28, 'Search User-Application', 8, 1, 'SystemCore', 'UserApplication', 'Search', 1, 'SystemCore', 'SearchUserApplication', 1, -1, GETDATE()),
-    (29, 'Delete User-Module', 9, 1, 'SystemCore', 'UserModule', 'Delete', 1, 'SystemCore', 'DeleteUserModule', 1, -1, GETDATE()),
-    (30, 'Get User-Module', 9, 1, 'SystemCore', 'UserModule', 'Get', 1, 'SystemCore', 'GetUserModule', 1, -1, GETDATE()),
-    (31, 'Save User-Module', 9, 1, 'SystemCore', 'UserModule', 'Save', 1, 'SystemCore', 'SaveUserModule', 1, -1, GETDATE()),
-    (32, 'Search User-Module', 9, 1, 'SystemCore', 'UserModule', 'Search', 1, 'SystemCore', 'SearchUserModule', 1, -1, GETDATE()),
-    (33, 'Delete User-Permission', 10, 1, 'SystemCore', 'UserPermission', 'Delete', 1, 'SystemCore', 'DeleteUserPermission', 1, -1, GETDATE()),
-    (34, 'Get User-Permission', 10, 1, 'SystemCore', 'UserPermission', 'Get', 1, 'SystemCore', 'GetUserPermission', 1, -1, GETDATE()),
-    (35, 'Save User-Permission', 10, 1, 'SystemCore', 'UserPermission', 'Save', 1, 'SystemCore', 'SaveUserPermission', 1, -1, GETDATE()),
-    (36, 'Search User-Permission', 10, 1, 'SystemCore', 'UserPermission', 'Search', 1, 'SystemCore', 'SearchUserPermission', 1, -1, GETDATE());
+    (2, 'Save Application', 2, 1, 'SystemCore', 'Application', 'Save', 1, 'SystemCore', 'SaveApplication', 1, -1, GETDATE()),
+    (3, 'Delete Module', 3, 1, 'SystemCore', 'Module', 'Delete', 1, 'SystemCore', 'DeleteModule', 1, -1, GETDATE()),
+    (4, 'Save Module', 3, 1, 'SystemCore', 'Module', 'Save', 1, 'SystemCore', 'SaveModule', 1, -1, GETDATE()),
+    (5, 'Delete Permission', 4, 1, 'SystemCore', 'Permission', 'Delete', 1, 'SystemCore', 'DeletePermission', 1, -1, GETDATE()),
+    (6, 'Save Permission', 4, 1, 'SystemCore', 'Permission', 'Save', 1, 'SystemCore', 'SavePermission', 1, -1, GETDATE()),
+    (7, 'Delete Permission Group', 5, 1, 'SystemCore', 'PermissionGroup', 'Delete', 1, 'SystemCore', 'DeletePermissionGroup', 1, -1, GETDATE()),
+    (8, 'Save Permission Group', 5, 1, 'SystemCore', 'PermissionGroup', 'Save', 1, 'SystemCore', 'SavePermissionGroup', 1, -1, GETDATE()),
+    (9, 'Delete Platform', 6, 1, 'SystemCore', 'Platform', 'Delete', 1, 'SystemCore', 'DeletePlatform', 1, -1, GETDATE()),
+    (10, 'Save Platform', 6, 1, 'SystemCore', 'Platform', 'Save', 1, 'SystemCore', 'SavePlatform', 1, -1, GETDATE()),
+    (11, 'Delete User', 7, 1, 'SystemCore', 'User', 'Delete', 1, 'SystemCore', 'DeleteUser', 1, -1, GETDATE()),
+    (12, 'Save User', 7, 1, 'SystemCore', 'User', 'Save', 1, 'SystemCore', 'SaveUser', 1, -1, GETDATE()),
+    (13, 'Delete User-Application', 8, 1, 'SystemCore', 'UserApplication', 'Delete', 1, 'SystemCore', 'DeleteUserApplication', 1, -1, GETDATE()),
+    (14, 'Save User-Application', 8, 1, 'SystemCore', 'UserApplication', 'Save', 1, 'SystemCore', 'SaveUserApplication', 1, -1, GETDATE()),
+    (15, 'Delete User-Module', 9, 1, 'SystemCore', 'UserModule', 'Delete', 1, 'SystemCore', 'DeleteUserModule', 1, -1, GETDATE()),
+    (16, 'Save User-Module', 9, 1, 'SystemCore', 'UserModule', 'Save', 1, 'SystemCore', 'SaveUserModule', 1, -1, GETDATE()),
+    (17, 'Delete User-Permission', 10, 1, 'SystemCore', 'UserPermission', 'Delete', 1, 'SystemCore', 'DeleteUserPermission', 1, -1, GETDATE()),
+    (18, 'Save User-Permission', 10, 1, 'SystemCore', 'UserPermission', 'Save', 1, 'SystemCore', 'SaveUserPermission', 1, -1, GETDATE());
 GO
 
 SET IDENTITY_INSERT [SystemCore].[Permission] OFF;
@@ -575,11 +558,7 @@ GO
 
 INSERT INTO [SystemCore].[Platform]([Id], [Name], [IsSystemDefined], [InsertedById], [InsertedOn]) VALUES
     (1, 'Windows', 1, -1, GETDATE()),
-    (2, 'Mac', 1, -1, GETDATE()),
-    (3, 'Linux', 1, -1, GETDATE()),
-    (4, 'Android', 1, -1, GETDATE()),
-    (5, 'iOS', 1, -1, GETDATE()),
-    (6, 'Web', 1, -1, GETDATE());
+    (2, 'Web', 1, -1, GETDATE());
 GO
 
 SET IDENTITY_INSERT [SystemCore].[Platform] OFF;
@@ -670,6 +649,27 @@ END
 GO
 
 -- -------------------------------------------------------------------------------------
+-- FUNCTIONS: dbo.Equal
+-- -------------------------------------------------------------------------------------
+
+IF OBJECT_ID('dbo.Equal') IS NOT NULL
+    DROP FUNCTION [dbo].[Equal];
+GO
+
+CREATE FUNCTION [dbo].[Equal](@Old SQL_VARIANT, @New SQL_VARIANT)
+RETURNS BIT AS
+BEGIN
+    IF @Old IS NULL AND @New IS NULL
+        RETURN 1;
+
+    IF (@Old IS NULL AND @New IS NOT NULL) OR (@Old IS NOT NULL AND @New IS NULL)
+        RETURN 0;
+
+    RETURN CASE WHEN @Old = @New THEN 1 ELSE 0 END;
+END
+GO
+
+-- -------------------------------------------------------------------------------------
 -- FUNCTIONS: dbo.GetSessionVariable
 -- -------------------------------------------------------------------------------------
 
@@ -681,6 +681,27 @@ CREATE FUNCTION [dbo].[GetSessionVariable](@Key NVARCHAR(64))
 RETURNS SQL_VARIANT AS
 BEGIN
     RETURN SESSION_CONTEXT(@Key);
+END
+GO
+
+-- -------------------------------------------------------------------------------------
+-- FUNCTIONS: dbo.HasChanges
+-- -------------------------------------------------------------------------------------
+
+IF OBJECT_ID('dbo.HasChanges') IS NOT NULL
+    DROP FUNCTION [dbo].[HasChanges];
+GO
+
+CREATE FUNCTION [dbo].[HasChanges](@Old SQL_VARIANT, @New SQL_VARIANT)
+RETURNS BIT AS
+BEGIN
+    IF @Old IS NULL AND @New IS NULL
+        RETURN 0;
+
+    IF (@Old IS NULL AND @New IS NOT NULL) OR (@Old IS NOT NULL AND @New IS NULL)
+        RETURN 1;
+
+    RETURN CASE WHEN @Old <> @New THEN 1 ELSE 0 END;
 END
 GO
 
@@ -763,12 +784,12 @@ RETURNS INT AS
 BEGIN
     DECLARE @Result AS INT;
 
-    SELECT @Result = [Permission].[Id]
+    SELECT @Result = [Id]
     FROM [SystemCore].[Permission]
     WHERE
-        [Permission].[IsDeleted] = 0 AND
-        [Permission].[DatabaseSchema] = @DatabaseSchema AND
-        [Permission].[DatabaseProcedure] = @DatabaseProcedure;
+        [IsDeleted] = 0 AND
+        [DatabaseSchema] = @DatabaseSchema AND
+        [DatabaseProcedure] = @DatabaseProcedure;
 
     RETURN @Result;
 END
@@ -827,12 +848,27 @@ IF OBJECT_ID('SystemCore.IsPermissionGranted') IS NOT NULL
     DROP FUNCTION [SystemCore].[IsPermissionGranted];
 GO
 
-CREATE FUNCTION [SystemCore].[IsPermissionGranted](@PermissionId INT)
+CREATE FUNCTION [SystemCore].[IsPermissionGranted](@DatabaseSchema NVARCHAR(250), @DatabaseProcedure NVARCHAR(250))
 RETURNS BIT AS
 BEGIN
-    IF @PermissionId IS NOT NULL AND @PermissionId > 0
-        RETURN [dbo].[NonNullableBit](CAST([dbo].[GetSessionVariable]([SystemCore].[BuildSessionPermissionKey](@PermissionId)) AS BIT));
-    RETURN 0;
+    RETURN CASE WHEN EXISTS
+        (
+            SELECT -1
+            FROM [SystemCore].[Permission]
+            INNER JOIN [SystemCore].[UserPermission] ON [Permission].[Id] = [UserPermission].[PermissionId]
+            INNER JOIN [SystemCore].[User] ON [UserPermission].[UserId] = [User].[Id]
+            INNER JOIN [SystemCore].[Session] ON [User].[Id] = [Session].[UserId]
+            WHERE
+                [Permission].[DatabaseSchema] = @DatabaseSchema
+                AND [Permission].[DatabaseProcedure] = @DatabaseProcedure
+                AND [Permission].[IsDeleted] = 0
+                AND [UserPermission].[IsDeleted] = 0
+                AND [UserPermission].[IsApproved] = 1
+                AND [UserPermission].[IsExpired] = 0
+                AND [User].[IsDeleted] = 0
+                AND [User].[IsActive] = 1
+                AND [Session].[SessionEnd] IS NULL
+        ) THEN 1 ELSE 0 END;
 END
 GO
 
@@ -885,20 +921,15 @@ CREATE PROCEDURE [SystemCore].[DeleteApplication]
 ) AS
 BEGIN
     DECLARE @SessionUserId AS INT;
-    DECLARE @PERMISSIONID_DeleteApplication AS INT = [SystemCore].[GetPermissionId]('SystemCore', 'DeleteApplication');
-    
     DECLARE @Application_IsSystemDefined AS BIT;
     DECLARE @Application_IsDeleted AS BIT;
 
-    SET NOCOUNT ON;
-    
     EXEC [dbo].[EnableDeleteCascade] @IsCascaded;
-    EXEC [SystemCore].[SetSessionId] @SessionId;
-    EXEC [SystemCore].[TryGrantPermission] @PERMISSIONID_DeleteApplication;
+    EXEC [SystemCore].[SetSessionId] @SessionId, @SessionUserId OUT;
 
     SELECT
-        @Application_IsSystemDefined = [Application].[IsSystemDefined],
-        @Application_IsDeleted = [Application].[IsDeleted]
+        @Application_IsSystemDefined = [IsSystemDefined],
+        @Application_IsDeleted = [IsDeleted]
     FROM [SystemCore].[Application]
     WHERE [Id] = @Id;
 
@@ -914,15 +945,11 @@ BEGIN
         RETURN;
     END
 
-    IF [SystemCore].[IsPermissionGranted](@PERMISSIONID_DeleteApplication) = 0
+    IF [SystemCore].[IsPermissionGranted]('SystemCore', 'DeleteApplication') = 0
     BEGIN
         RAISERROR('Denied to delete application', 18, -1);
         RETURN;
     END
-
-    SET @SessionUserId = [SystemCore].[GetSessionUserId]();
-
-    SET NOCOUNT OFF;
 
     UPDATE [SystemCore].[Application] SET
         [IsDeleted] = 1,
@@ -948,20 +975,15 @@ CREATE PROCEDURE [SystemCore].[DeleteModule]
 ) AS
 BEGIN
     DECLARE @SessionUserId AS INT;
-    DECLARE @PERMISSIONID_DeleteModule AS INT = [SystemCore].[GetPermissionId]('SystemCore', 'DeleteModule');
-
     DECLARE @Module_IsSystemDefined AS BIT;
     DECLARE @Module_IsDeleted AS BIT;
 
-    SET NOCOUNT ON;
-
     EXEC [dbo].[EnableDeleteCascade] @IsCascaded;
-    EXEC [SystemCore].[SetSessionId] @SessionId;
-    EXEC [SystemCore].[TryGrantPermission] @PERMISSIONID_DeleteModule;
+    EXEC [SystemCore].[SetSessionId] @SessionId, @SessionUserId OUT;
 
     SELECT
-        @Module_IsSystemDefined = [Module].[IsSystemDefined],
-        @Module_IsDeleted = [Module].[IsDeleted]
+        @Module_IsSystemDefined = [IsSystemDefined],
+        @Module_IsDeleted = [IsDeleted]
     FROM [SystemCore].[Module]
     WHERE [Id] = @Id;
 
@@ -977,15 +999,11 @@ BEGIN
         RETURN;
     END
 
-    IF [SystemCore].[IsPermissionGranted](@PERMISSIONID_DeleteModule) = 0
+    IF [SystemCore].[IsPermissionGranted]('SystemCore', 'DeleteModule') = 0
     BEGIN
         RAISERROR('Denied to delete module', 18, -1);
         RETURN;
     END
-
-    SET @SessionUserId = [SystemCore].[GetSessionUserId]();
-
-    SET NOCOUNT OFF;
 
     UPDATE [SystemCore].[Module] SET
         [IsDeleted] = 1,
@@ -1011,20 +1029,15 @@ CREATE PROCEDURE [SystemCore].[DeletePermission]
 ) AS
 BEGIN
     DECLARE @SessionUserId AS INT;
-    DECLARE @PERMISSIONID_DeletePermission AS INT = [SystemCore].[GetPermissionId]('SystemCore', 'DeletePermission');
-
     DECLARE @Permission_IsSystemDefined AS BIT;
     DECLARE @Permission_IsDeleted AS BIT;
 
-    SET NOCOUNT ON;
-
     EXEC [dbo].[EnableDeleteCascade] @IsCascaded;
-    EXEC [SystemCore].[SetSessionId] @SessionUserId;
-    EXEC [SystemCore].[TryGrantPermission] @PERMISSIONID_DeletePermission;
+    EXEC [SystemCore].[SetSessionId] @SessionId, @SessionUserId OUT;
 
     SELECT
-        @Permission_IsSystemDefined = [Permission].[IsSystemDefined],
-        @Permission_IsDeleted = [Permission].[IsDeleted]
+        @Permission_IsSystemDefined = [IsSystemDefined],
+        @Permission_IsDeleted = [IsDeleted]
     FROM [SystemCore].[Permission]
     WHERE [Id] = @Id;
 
@@ -1040,15 +1053,11 @@ BEGIN
         RETURN;
     END
 
-    IF [SystemCore].[IsPermissionGranted](@PERMISSIONID_DeletePermission) = 0
+    IF [SystemCore].[IsPermissionGranted]('SystemCore', 'DeletePermission') = 0
     BEGIN
         RAISERROR('Denied to delete permission', 18, -1);
         RETURN;
     END
-
-    SET @SessionUserId = [SystemCore].[GetSessionUserId]();
-
-    SET NOCOUNT OFF;
 
     UPDATE [SystemCore].[Permission] SET
         [IsDeleted] = 1,
@@ -1074,20 +1083,15 @@ CREATE PROCEDURE [SystemCore].[DeletePermissionGroup]
 ) AS
 BEGIN
     DECLARE @SessionUserId AS INT;
-    DECLARE @PERMISSIONID_DeletePermissionGroup AS INT = [SystemCore].[GetPermissionId]('SystemCore', 'DeletePermissionGroup');
-    
     DECLARE @PermissionGroup_IsSystemDefined AS BIT;
     DECLARE @PermissionGroup_IsDeleted AS BIT;
-
-    SET NOCOUNT ON;
     
     EXEC [dbo].[EnableDeleteCascade] @IsCascaded;
-    EXEC [SystemCore].[SetSessionId] @SessionId;
-    EXEC [SystemCore].[TryGrantPermission] @PERMISSIONID_DeletePermissionGroup;
+    EXEC [SystemCore].[SetSessionId] @SessionId, @SessionUserId OUT;
 
     SELECT
-        @PermissionGroup_IsSystemDefined = [PermissionGroup].[IsSystemDefined],
-        @PermissionGroup_IsDeleted = [PermissionGroup].[IsDeleted]
+        @PermissionGroup_IsSystemDefined = [IsSystemDefined],
+        @PermissionGroup_IsDeleted = [IsDeleted]
     FROM [SystemCore].[PermissionGroup]
     WHERE [Id] = @Id;
 
@@ -1103,15 +1107,11 @@ BEGIN
         RETURN;
     END
 
-    IF [SystemCore].[IsPermissionGranted](@PERMISSIONID_DeletePermissionGroup) = 0
+    IF [SystemCore].[IsPermissionGranted]('SystemCore', 'DeletePermissionGroup') = 0
     BEGIN
         RAISERROR('Denied to delete permission group', 18, -1);
         RETURN;
     END
-
-    SET @SessionUserId = [SystemCore].[GetSessionUserId]();
-
-    SET NOCOUNT OFF;
 
     UPDATE [SystemCore].[PermissionGroup] SET
         [IsDeleted] = 1,
@@ -1137,20 +1137,15 @@ CREATE PROCEDURE [SystemCore].[DeletePlatform]
 ) AS
 BEGIN
     DECLARE @SessionUserId AS INT;
-    DECLARE @PERMISSIONID_DeletePlatform AS INT = [SystemCore].[GetPermissionId]('SystemCore', 'DeletePlatform');
-    
     DECLARE @Platform_IsSystemDefined AS BIT;
     DECLARE @Platform_IsDeleted AS BIT;
 
-    SET NOCOUNT ON;
-    
     EXEC [dbo].[EnableDeleteCascade] @IsCascaded;
-    EXEC [SystemCore].[SetSessionId] @SessionId;
-    EXEC [SystemCore].[TryGrantPermission] @PERMISSIONID_DeletePlatform;
+    EXEC [SystemCore].[SetSessionId] @SessionId, @SessionUserId OUT;
 
     SELECT
-        @Platform_IsSystemDefined = [Platform].[IsSystemDefined],
-        @Platform_IsDeleted = [Platform].[IsDeleted]
+        @Platform_IsSystemDefined = [IsSystemDefined],
+        @Platform_IsDeleted = [IsDeleted]
     FROM [SystemCore].[Platform]
     WHERE [Id] = @Id;
 
@@ -1166,15 +1161,11 @@ BEGIN
         RETURN;
     END
 
-    IF [SystemCore].[IsPermissionGranted](@PERMISSIONID_DeletePlatform) = 0
+    IF [SystemCore].[IsPermissionGranted]('SystemCore', 'DeletePlatform') = 0
     BEGIN
         RAISERROR('Denied to delete platform', 18, -1);
         RETURN;
     END
-
-    SET @SessionUserId = [SystemCore].[GetSessionUserId]();
-
-    SET NOCOUNT OFF;
 
     UPDATE [SystemCore].[Platform] SET
         [IsDeleted] = 1,
@@ -1200,35 +1191,29 @@ CREATE PROCEDURE [SystemCore].[DeleteUser]
 ) AS
 BEGIN
     DECLARE @SessionUserId AS INT;
-    DECLARE @PERMISSIONID_DeleteUser AS INT = [SystemCore].[GetPermissionId]('SystemCore', 'DeleteUser');
-    
+    DECLARE @User_IsSystemDefined AS BIT;
     DECLARE @User_IsDeleted AS BIT;
-
-    SET NOCOUNT ON;
     
     EXEC [dbo].[EnableDeleteCascade] @IsCascaded;
-    EXEC [SystemCore].[SetSessionId] @SessionId;
-    EXEC [SystemCore].[TryGrantPermission] @PERMISSIONID_DeleteUser;
+    EXEC [SystemCore].[SetSessionId] @SessionId, @SessionUserId OUT;
 
-    SELECT @User_IsDeleted = [User].[IsDeleted]
+    SELECT
+        @User_IsSystemDefined = [IsSystemDefined],
+        @User_IsDeleted = [IsDeleted]
     FROM [SystemCore].[User]
     WHERE [Id] = @Id;
 
-    IF @User_IsDeleted IS NULL OR @User_IsDeleted = 1
+    IF @User_IsSystemDefined IS NULL OR @User_IsDeleted IS NULL OR @User_IsDeleted = 1
     BEGIN
         RAISERROR('User does not exists', 18, -1);
         RETURN;
     END
 
-    IF [SystemCore].[IsPermissionGranted](@PERMISSIONID_DeleteUser) = 0
+    IF [SystemCore].[IsPermissionGranted]('SystemCore', 'DeleteUser') = 0
     BEGIN
         RAISERROR('Denied to delete user', 18, -1);
         RETURN;
     END
-
-    SET @SessionUserId = [SystemCore].[GetSessionUserId]();
-
-    SET NOCOUNT OFF;
 
     UPDATE [SystemCore].[User] SET
         [IsDeleted] = 1,
@@ -1254,35 +1239,29 @@ CREATE PROCEDURE [SystemCore].[DeleteUserApplication]
 ) AS
 BEGIN
     DECLARE @SessionUserId AS INT;
-    DECLARE @PERMISSIONID_DeleteUserApplication AS INT = [SystemCore].[GetPermissionId]('SystemCore', 'DeleteUserApplication');
-    
+    DECLARE @UserApplication_IsSystemDefined AS BIT;
     DECLARE @UserApplication_IsDeleted AS BIT;
-
-    SET NOCOUNT ON;
     
     EXEC [dbo].[EnableDeleteCascade] @IsCascaded;
-    EXEC [SystemCore].[SetSessionId] @SessionId;
-    EXEC [SystemCore].[TryGrantPermission] @PERMISSIONID_DeleteUserApplication;
+    EXEC [SystemCore].[SetSessionId] @SessionId, @SessionUserId OUT;
 
-    SELECT @UserApplication_IsDeleted = [UserApplication].[IsDeleted]
+    SELECT
+        @UserApplication_IsSystemDefined = [IsSystemDefined],
+        @UserApplication_IsDeleted = [IsDeleted]
     FROM [SystemCore].[UserApplication]
     WHERE [Id] = @Id;
 
-    IF @UserApplication_IsDeleted IS NULL OR @UserApplication_IsDeleted = 1
+    IF @UserApplication_IsSystemDefined IS NULL OR @UserApplication_IsDeleted IS NULL OR @UserApplication_IsDeleted = 1
     BEGIN
         RAISERROR('User-application does not exists', 18, -1);
         RETURN;
     END
 
-    IF [SystemCore].[IsPermissionGranted](@PERMISSIONID_DeleteUserApplication) = 0
+    IF [SystemCore].[IsPermissionGranted]('SystemCore', 'DeleteUserApplication') = 0
     BEGIN
         RAISERROR('Denied to delete user-application', 18, -1);
         RETURN;
     END
-
-    SET @SessionUserId = [SystemCore].[GetSessionUserId]();
-
-    SET NOCOUNT OFF;
 
     UPDATE [SystemCore].[UserApplication] SET
         [IsDeleted] = 1,
@@ -1308,35 +1287,29 @@ CREATE PROCEDURE [SystemCore].[DeleteUserModule]
 ) AS
 BEGIN
     DECLARE @SessionUserId AS INT;
-    DECLARE @PERMISSIONID_DeleteUserModule AS INT = [SystemCore].[GetPermissionId]('SystemCore', 'DeleteUserModule');
-    
+    DECLARE @UserModule_IsSystemDefined AS BIT;
     DECLARE @UserModule_IsDeleted AS BIT;
-
-    SET NOCOUNT ON;
     
     EXEC [dbo].[EnableDeleteCascade] @IsCascaded;
-    EXEC [SystemCore].[SetSessionId] @SessionId;
-    EXEC [SystemCore].[TryGrantPermission] @PERMISSIONID_DeleteUserModule;
+    EXEC [SystemCore].[SetSessionId] @SessionId, @SessionUserId OUT;
 
-    SELECT @UserModule_IsDeleted = [UserModule].[IsDeleted]
+    SELECT
+        @UserModule_IsSystemDefined = [IsSystemDefined],
+        @UserModule_IsDeleted = [IsDeleted]
     FROM [SystemCore].[UserModule]
     WHERE [Id] = @Id;
 
-    IF @UserModule_IsDeleted IS NULL OR @UserModule_IsDeleted = 1
+    IF @UserModule_IsSystemDefined IS NULL OR @UserModule_IsDeleted IS NULL OR @UserModule_IsDeleted = 1
     BEGIN
         RAISERROR('User-module does not exists', 18, -1);
         RETURN;
     END
 
-    IF [SystemCore].[IsPermissionGranted](@PERMISSIONID_DeleteUserModule) = 0
+    IF [SystemCore].[IsPermissionGranted]('SystemCore', 'DeleteUserModule') = 0
     BEGIN
         RAISERROR('Denied to delete user-module', 18, -1);
         RETURN;
     END
-
-    SET @SessionUserId = [SystemCore].[GetSessionUserId]();
-
-    SET NOCOUNT OFF;
 
     UPDATE [SystemCore].[UserModule] SET
         [IsDeleted] = 1,
@@ -1362,41 +1335,1002 @@ CREATE PROCEDURE [SystemCore].[DeleteUserPermission]
 ) AS
 BEGIN
     DECLARE @SessionUserId AS INT;
-    DECLARE @PERMISSIONID_DeleteUserPermission AS INT = [SystemCore].[GetPermissionId]('SystemCore', 'DeleteUserPermission');
-    
+    DECLARE @UserPermission_IsSystemDefined AS BIT;
     DECLARE @UserPermission_IsDeleted AS BIT;
-
-    SET NOCOUNT ON;
     
     EXEC [dbo].[EnableDeleteCascade] @IsCascaded;
-    EXEC [SystemCore].[SetSessionId] @SessionId;
-    EXEC [SystemCore].[TryGrantPermission] @PERMISSIONID_DeleteUserPermission;
+    EXEC [SystemCore].[SetSessionId] @SessionId, @SessionUserId OUT;
 
-    SELECT @UserPermission_IsDeleted = [UserPermission].[IsDeleted]
+    SELECT
+        @UserPermission_IsSystemDefined = [IsSystemDefined],
+        @UserPermission_IsDeleted = [IsDeleted]
     FROM [SystemCore].[UserPermission]
     WHERE [Id] = @Id;
 
-    IF @UserPermission_IsDeleted IS NULL OR @UserPermission_IsDeleted = 1
+    IF @UserPermission_IsSystemDefined IS NULL OR @UserPermission_IsDeleted IS NULL OR @UserPermission_IsDeleted = 1
     BEGIN
         RAISERROR('User-permission does not exists', 18, -1);
         RETURN;
     END
 
-    IF [SystemCore].[IsPermissionGranted](@PERMISSIONID_DeleteUserPermission) = 0
+    IF [SystemCore].[IsPermissionGranted]('SystemCore', 'DeleteUserPermission') = 0
     BEGIN
         RAISERROR('Denied to delete user-permission', 18, -1);
         RETURN;
     END
-
-    SET @SessionUserId = [SystemCore].[GetSessionUserId]();
-
-    SET NOCOUNT OFF;
 
     UPDATE [SystemCore].[UserPermission] SET
         [IsDeleted] = 1,
         [DeletedById] = @SessionUserId,
         [DeletedOn] = GETDATE()
     WHERE [Id] = @Id;
+END
+GO
+
+-- -------------------------------------------------------------------------------------
+-- STORED PROCEDURES: SystemCore.GetApplication
+-- -------------------------------------------------------------------------------------
+
+IF EXISTS(SELECT -1 FROM [INFORMATION_SCHEMA].[ROUTINES] WHERE [SPECIFIC_SCHEMA] = 'SystemCore' AND [SPECIFIC_NAME] = 'GetApplication')
+    DROP PROCEDURE [SystemCore].[GetApplication];
+GO
+
+CREATE PROCEDURE [SystemCore].[GetApplication](@Id INT) AS
+BEGIN
+    SELECT
+        [Id],
+        [Name],
+        [PlatformId]
+    FROM [SystemCore].[Application]
+    WHERE [Id] = @Id AND [IsDeleted] = 0;
+END
+GO
+
+-- -------------------------------------------------------------------------------------
+-- STORED PROCEDURES: SystemCore.GetModule
+-- -------------------------------------------------------------------------------------
+
+IF EXISTS(SELECT -1 FROM [INFORMATION_SCHEMA].[ROUTINES] WHERE [SPECIFIC_SCHEMA] = 'SystemCore' AND [SPECIFIC_NAME] = 'GetModule')
+    DROP PROCEDURE [SystemCore].[GetModule];
+GO
+
+CREATE PROCEDURE [SystemCore].[GetModule](@Id INT) AS
+BEGIN
+    SELECT
+        [Id],
+        [Name],
+        [OrdinalNumber],
+        [ApplicationId]
+    FROM [SystemCore].[Module]
+    WHERE [Id] = @Id AND [IsDeleted] = 0;
+END
+GO
+
+-- -------------------------------------------------------------------------------------
+-- STORED PROCEDURES: SystemCore.GetPermission
+-- -------------------------------------------------------------------------------------
+
+IF EXISTS(SELECT -1 FROM [INFORMATION_SCHEMA].[ROUTINES] WHERE [SPECIFIC_SCHEMA] = 'SystemCore' AND [SPECIFIC_NAME] = 'GetPermission')
+    DROP PROCEDURE [SystemCore].[GetPermission];
+GO
+
+CREATE PROCEDURE [SystemCore].[GetPermission](@Id INT) AS
+BEGIN
+    SELECT
+        [Id],
+        [Description],
+        [IsApiPermission],
+        [ApiDomain],
+        [ApiController],
+        [ApiAction],
+        [IsDatabasePermission],
+        [DatabaseSchema],
+        [DatabaseProcedure],
+        [GroupId]
+    FROM [SystemCore].[Permission]
+    WHERE [Id] = @Id AND [IsDeleted] = 0;
+END
+GO
+
+-- -------------------------------------------------------------------------------------
+-- STORED PROCEDURES: SystemCore.GetPermissionGroup
+-- -------------------------------------------------------------------------------------
+
+IF EXISTS(SELECT -1 FROM [INFORMATION_SCHEMA].[ROUTINES] WHERE [SPECIFIC_SCHEMA] = 'SystemCore' AND [SPECIFIC_NAME] = 'GetPermissionGroup')
+    DROP PROCEDURE [SystemCore].[GetPermissionGroup];
+GO
+
+CREATE PROCEDURE [SystemCore].[GetPermissionGroup](@Id INT) AS
+BEGIN
+    SELECT
+        [Id],
+        [Name],
+        [ParentId]
+    FROM [SystemCore].[PermissionGroup]
+    WHERE [Id] = @Id AND [IsDeleted] = 0;
+END
+GO
+
+-- -------------------------------------------------------------------------------------
+-- STORED PROCEDURES: SystemCore.GetPlatform
+-- -------------------------------------------------------------------------------------
+
+IF EXISTS(SELECT -1 FROM [INFORMATION_SCHEMA].[ROUTINES] WHERE [SPECIFIC_SCHEMA] = 'SystemCore' AND [SPECIFIC_NAME] = 'GetPlatform')
+    DROP PROCEDURE [SystemCore].[GetPlatform];
+GO
+
+CREATE PROCEDURE [SystemCore].[GetPlatform](@Id INT) AS
+BEGIN
+    SELECT
+        [Id],
+        [Name]
+    FROM [SystemCore].[Platform]
+    WHERE [Id] = @Id AND [IsDeleted] = 0;
+END
+GO
+
+-- -------------------------------------------------------------------------------------
+-- STORED PROCEDURES: SystemCore.GetUser
+-- -------------------------------------------------------------------------------------
+
+IF EXISTS(SELECT -1 FROM [INFORMATION_SCHEMA].[ROUTINES] WHERE [SPECIFIC_SCHEMA] = 'SystemCore' AND [SPECIFIC_NAME] = 'GetUser')
+    DROP PROCEDURE [SystemCore].[GetUser];
+GO
+
+CREATE PROCEDURE [SystemCore].[GetUser](@Id INT) AS
+BEGIN
+    SELECT
+        [Id],
+        [FirstName],
+        [MiddleName],
+        [LastName],
+        [NameExtension],
+        [FullName],
+        [Username],
+        [IsActive],
+        [IsPasswordChangeRequired]
+    FROM [SystemCore].[User]
+    WHERE [Id] = @Id AND [IsDeleted] = 0;
+END
+GO
+
+-- -------------------------------------------------------------------------------------
+-- STORED PROCEDURES: SystemCore.GetUserApplication
+-- -------------------------------------------------------------------------------------
+
+IF EXISTS(SELECT -1 FROM [INFORMATION_SCHEMA].[ROUTINES] WHERE [SPECIFIC_SCHEMA] = 'SystemCore' AND [SPECIFIC_NAME] = 'GetUserApplication')
+    DROP PROCEDURE [SystemCore].[GetUserApplication];
+GO
+
+CREATE PROCEDURE [SystemCore].[GetUserApplication](@Id BIGINT) AS
+BEGIN
+    SELECT
+        [Id],
+        [IsApproved],
+        [Expiration],
+        [IsExpired],
+        [UserId],
+        [ApplicationId]
+    FROM [SystemCore].[UserApplication]
+    WHERE [Id] = @Id AND [IsDeleted] = 0;
+END
+GO
+
+-- -------------------------------------------------------------------------------------
+-- STORED PROCEDURES: SystemCore.GetUserModule
+-- -------------------------------------------------------------------------------------
+
+IF EXISTS(SELECT -1 FROM [INFORMATION_SCHEMA].[ROUTINES] WHERE [SPECIFIC_SCHEMA] = 'SystemCore' AND [SPECIFIC_NAME] = 'GetUserModule')
+    DROP PROCEDURE [SystemCore].[GetUserModule];
+GO
+
+CREATE PROCEDURE [SystemCore].[GetUserModule](@Id BIGINT) AS
+BEGIN
+    SELECT
+        [Id],
+        [IsApproved],
+        [Expiration],
+        [IsExpired],
+        [UserId],
+        [ModuleId]
+    FROM [SystemCore].[UserModule]
+    WHERE [Id] = @Id AND [IsDeleted] = 0;
+END
+GO
+
+-- -------------------------------------------------------------------------------------
+-- STORED PROCEDURES: SystemCore.GetUserPermission
+-- -------------------------------------------------------------------------------------
+
+IF EXISTS(SELECT -1 FROM [INFORMATION_SCHEMA].[ROUTINES] WHERE [SPECIFIC_SCHEMA] = 'SystemCore' AND [SPECIFIC_NAME] = 'GetUserPermission')
+    DROP PROCEDURE [SystemCore].[GetUserPermission];
+GO
+
+CREATE PROCEDURE [SystemCore].[GetUserPermission](@Id BIGINT) AS
+BEGIN
+    SELECT
+        [Id],
+        [IsApproved],
+        [Expiration],
+        [IsExpired],
+        [UserId],
+        [PermissionId]
+    FROM [SystemCore].[UserPermission]
+    WHERE [Id] = @Id AND [IsDeleted] = 0;
+END
+GO
+
+-- -------------------------------------------------------------------------------------
+-- STORED PROCEDURES: SystemCore.SaveApplication
+-- -------------------------------------------------------------------------------------
+
+IF EXISTS(SELECT -1 FROM [INFORMATION_SCHEMA].[ROUTINES] WHERE [SPECIFIC_SCHEMA] = 'SystemCore' AND [SPECIFIC_NAME] = 'SaveApplication')
+    DROP PROCEDURE [SystemCore].[SaveApplication];
+GO
+
+CREATE PROCEDURE [SystemCore].[SaveApplication]
+(
+    @Id INT OUT,
+    @Name NVARCHAR(250),
+    @PlatformId INT,
+    @SessionId BIGINT
+) AS
+BEGIN
+    DECLARE @SessionUserId AS INT;
+    DECLARE @Application_IsSystemDefined AS BIT;
+    DECLARE @Application_IsDeleted AS BIT;
+
+    EXEC [SystemCore].[SetSessionId] @SessionId, @SessionUserId OUT;
+
+    IF [SystemCore].[IsPermissionGranted]('SystemCore', 'SaveApplication') = 0
+    BEGIN
+        RAISERROR('Denied to save application', 18, -1);
+        RETURN;
+    END
+
+    IF @Id IS NULL OR @Id <= 0
+    BEGIN
+        SELECT
+            @Application_IsSystemDefined = [IsSystemDefined],
+            @Application_IsDeleted = [IsDeleted]
+        FROM [SystemCore].[Application]
+        WHERE [Id] = @Id;
+
+        IF @Application_IsSystemDefined IS NULL OR @Application_IsDeleted IS NULL OR @Application_IsDeleted = 1
+        BEGIN
+            RAISERROR('Application does not exists', 18, -1);
+            RETURN;
+        END
+
+        IF @Application_IsSystemDefined = 1
+        BEGIN
+            RAISERROR('Cannot update system-defined application', 18, -1);
+            RETURN;
+        END
+
+        UPDATE [SystemCore].[Application] SET
+            [Name] = @Name,
+            [PlatformId] = @PlatformId,
+            [UpdatedById] = @SessionUserId,
+            [UpdatedOn] = GETDATE()
+        WHERE
+            [Id] = @Id AND
+            (
+                [dbo].[HasChanges]([Name], @Name) = 1 OR
+                [dbo].[HasChanges]([PlatformId], @PlatformId) = 1
+            );
+    END
+    ELSE
+    BEGIN
+        IF EXISTS
+        (
+            SELECT -1
+            FROM [SystemCore].[Application]
+            WHERE
+                [IsDeleted] = 0 AND
+                [dbo].[Equal]([Name], @Name) = 1 AND
+                [dbo].[Equal]([PlatformId], @PlatformId) = 1
+        )
+        BEGIN
+            RAISERROR('Application already exists', 18, -1);
+            RETURN;
+        END
+
+        INSERT INTO [SystemCore].[Application]
+        (
+            [Name],
+            [PlatformId],
+            [InsertedById],
+            [InsertedOn]
+        )
+        VALUES
+        (
+            @Name,
+            @PlatformId,
+            @SessionUserId,
+            GETDATE()
+        );
+
+        SET @Id = SCOPE_IDENTITY();
+    END
+END
+GO
+
+-- -------------------------------------------------------------------------------------
+-- STORED PROCEDURES: SystemCore.SaveModule
+-- -------------------------------------------------------------------------------------
+
+IF EXISTS(SELECT -1 FROM [INFORMATION_SCHEMA].[ROUTINES] WHERE [SPECIFIC_SCHEMA] = 'SystemCore' AND [SPECIFIC_NAME] = 'SaveModule')
+    DROP PROCEDURE [SystemCore].[SaveModule];
+GO
+
+CREATE PROCEDURE [SystemCore].[SaveModule]
+(
+    @Id INT OUT,
+    @Name NVARCHAR(250),
+    @OrdinalNumber INT,
+    @ApplicationId INT,
+    @SessionId BIGINT
+) AS
+BEGIN
+    DECLARE @SessionUserId AS INT;
+    DECLARE @Module_IsSystemDefined AS BIT;
+    DECLARE @Module_IsDeleted AS BIT;
+
+    SET NOCOUNT ON
+    
+    EXEC [SystemCore].[SetSessionId] @SessionId, @SessionUserId OUT;
+
+    IF [SystemCore].[IsPermissionGranted]('SystemCore', 'SaveModule') = 0
+    BEGIN
+        RAISERROR('Denied to save module', 18, -1);
+        RETURN;
+    END
+
+    IF @Id IS NULL OR @Id <= 0
+    BEGIN
+        SELECT
+            @Module_IsSystemDefined = [IsSystemDefined],
+            @Module_IsDeleted = [IsDeleted]
+        FROM [SystemCore].[Module]
+        WHERE [Id] = @Id;
+
+        IF @Module_IsSystemDefined IS NULL OR @Module_IsDeleted IS NULL OR @Module_IsDeleted = 1
+        BEGIN
+            RAISERROR('Module does not exists', 18, -1);
+            RETURN;
+        END
+
+        IF @Module_IsSystemDefined = 1
+        BEGIN
+            RAISERROR('Cannot update system-defined module', 18, -1);
+            RETURN;
+        END
+
+        UPDATE [SystemCore].[Module] SET
+            [Name] = @Name,
+            [OrdinalNumber] = @OrdinalNumber,
+            [ApplicationId] = @ApplicationId,
+            [UpdatedById] = @SessionUserId,
+            [UpdatedOn] = GETDATE()
+        WHERE
+            [Id] = @Id AND
+            (
+                [dbo].[HasChanges]([Name], @Name) = 1 OR
+                [dbo].[HasChanges]([OrdinalNumber], @OrdinalNumber) = 1 OR
+                [dbo].[HasChanges]([ApplicationId], @ApplicationId) = 1
+            );
+    END
+    ELSE
+    BEGIN
+        IF EXISTS
+        (
+            SELECT -1
+            FROM [SystemCore].[Module]
+            WHERE
+                [IsDeleted] = 0 AND
+                [dbo].[Equal]([Name], @Name) = 1 AND
+                [dbo].[Equal]([OrdinalNumber], @OrdinalNumber) = 1 AND
+                [dbo].[Equal]([ApplicationId], @ApplicationId) = 1
+        )
+        BEGIN
+            RAISERROR('Module already exists', 18, -1);
+            RETURN;
+        END
+
+        INSERT INTO [SystemCore].[Module]
+        (
+            [Name],
+            [OrdinalNumber],
+            [ApplicationId],
+            [InsertedById],
+            [InsertedOn]
+        )
+        VALUES
+        (
+            @Name,
+            @OrdinalNumber,
+            @ApplicationId,
+            @SessionUserId,
+            GETDATE()
+        );
+
+        SET @Id = SCOPE_IDENTITY();
+    END
+END
+GO
+
+-- -------------------------------------------------------------------------------------
+-- STORED PROCEDURES: SystemCore.SavePermission
+-- -------------------------------------------------------------------------------------
+
+IF EXISTS(SELECT -1 FROM [INFORMATION_SCHEMA].[ROUTINES] WHERE [SPECIFIC_SCHEMA] = 'SystemCore' AND [SPECIFIC_NAME] = 'SavePermission')
+    DROP PROCEDURE [SystemCore].[SavePermission];
+GO
+
+CREATE PROCEDURE [SystemCore].[SavePermission]
+(
+    @Id INT OUT,
+    @Description NVARCHAR(250),
+    @IsApiPermission BIT,
+    @ApiDomain NVARCHAR(250),
+    @ApiController NVARCHAR(250),
+    @ApiAction NVARCHAR(250),
+    @IsDatabasePermission BIT,
+    @DatabaseSchema NVARCHAR(250),
+    @DatabaseProcedure NVARCHAR(250),
+    @GroupId INT,
+    @SessionId BIGINT
+) AS
+BEGIN
+    DECLARE @SessionUserId AS INT;
+    DECLARE @Permission_IsSystemDefined AS BIT;
+    DECLARE @Permission_IsDeleted AS BIT;
+
+    EXEC [SystemCore].[SetSessionId] @SessionId, @SessionUserId OUT;
+
+    IF [SystemCore].[IsPermissionGranted]('SystemCore', 'SavePermission') = 0
+    BEGIN
+        RAISERROR('Denied to save permission', 18, -1);
+        RETURN;
+    END
+
+    IF @Id IS NULL OR @Id <= 0
+    BEGIN
+        SELECT
+            @Permission_IsSystemDefined = [IsSystemDefined],
+            @Permission_IsDeleted = [IsDeleted]
+        FROM [SystemCore].[Permission]
+        WHERE [Id] = @Id;
+
+        IF @Permission_IsSystemDefined IS NULL OR @Permission_IsDeleted IS NULL OR @Permission_IsDeleted = 1
+        BEGIN
+            RAISERROR('Permission does not exists', 18, -1);
+            RETURN;
+        END
+
+        IF @Permission_IsSystemDefined = 1
+        BEGIN
+            RAISERROR('Cannot update system-defined permission', 18, -1);
+            RETURN;
+        END
+
+        UPDATE [SystemCore].[Permission] SET
+            [Description] = @Description,
+            [IsApiPermission] = @IsApiPermission,
+            [ApiDomain] = @ApiDomain,
+            [ApiController] = @ApiController,
+            [ApiAction] = @ApiAction,
+            [IsDatabasePermission] = @IsDatabasePermission,
+            [DatabaseSchema] = @DatabaseSchema,
+            [DatabaseProcedure] = @DatabaseProcedure,
+            [GroupId] = @GroupId,
+            [UpdatedById] = @SessionUserId,
+            [UpdatedOn] = GETDATE()
+        WHERE
+            [Id] = @Id AND
+            (
+                [dbo].[HasChanges]([Description], @Description) = 1 OR
+                [dbo].[HasChanges]([IsApiPermission], @IsApiPermission) = 1 OR
+                [dbo].[HasChanges]([ApiDomain], @ApiDomain) = 1 OR
+                [dbo].[HasChanges]([ApiController], @ApiController) = 1 OR
+                [dbo].[HasChanges]([ApiAction], @ApiAction) = 1 OR
+                [dbo].[HasChanges]([IsDatabasePermission], @IsDatabasePermission) = 1 OR
+                [dbo].[HasChanges]([DatabaseSchema], @DatabaseSchema) = 1 OR
+                [dbo].[HasChanges]([DatabaseProcedure], @DatabaseProcedure) = 1 OR
+                [dbo].[HasChanges]([GroupId], @GroupId) = 1
+            );
+    END
+    ELSE
+    BEGIN
+        IF EXISTS
+        (
+            SELECT -1
+            FROM [SystemCore].[Permission]
+            WHERE
+                [IsDeleted] = 0 AND
+                [dbo].[Equal]([Description], @Description) = 1 AND
+                [dbo].[Equal]([IsApiPermission], @IsApiPermission) = 1 AND
+                [dbo].[Equal]([ApiDomain], @ApiDomain) = 1 AND
+                [dbo].[Equal]([ApiController], @ApiController) = 1 AND
+                [dbo].[Equal]([ApiAction], @ApiAction) = 1 AND
+                [dbo].[Equal]([IsDatabasePermission], @IsDatabasePermission) = 1 AND
+                [dbo].[Equal]([DatabaseSchema], @DatabaseSchema) = 1 AND
+                [dbo].[Equal]([DatabaseProcedure], @DatabaseProcedure) = 1 AND
+                [dbo].[Equal]([GroupId], @GroupId) = 1
+        )
+        BEGIN
+            RAISERROR('Permission already exists', 18, -1);
+            RETURN;
+        END
+
+        INSERT INTO [SystemCore].[Permission]
+        (
+            [Description],
+            [IsApiPermission],
+            [ApiDomain],
+            [ApiController],
+            [ApiAction],
+            [IsDatabasePermission],
+            [DatabaseSchema],
+            [DatabaseProcedure],
+            [GroupId],
+            [InsertedById],
+            [InsertedOn] 
+        )
+        VALUES
+        (
+            @Description,
+            @IsApiPermission,
+            @ApiDomain,
+            @ApiController,
+            @ApiAction,
+            @IsDatabasePermission,
+            @DatabaseSchema,
+            @DatabaseProcedure,
+            @GroupId,
+            @SessionUserId,
+            GETDATE()
+        );
+
+        SET @Id = SCOPE_IDENTITY();
+    END
+END
+GO
+
+-- -------------------------------------------------------------------------------------
+-- STORED PROCEDURES: SystemCore.SavePermissionGroup
+-- -------------------------------------------------------------------------------------
+
+IF EXISTS(SELECT -1 FROM [INFORMATION_SCHEMA].[ROUTINES] WHERE [SPECIFIC_SCHEMA] = 'SystemCore' AND [SPECIFIC_NAME] = 'SavePermissionGroup')
+    DROP PROCEDURE [SystemCore].[SavePermissionGroup];
+GO
+
+CREATE PROCEDURE [SystemCore].[SavePermissionGroup]
+(
+    @Id INT OUT,
+    @Name NVARCHAR(100),
+    @ParentId INT,
+    @SessionId BIGINT
+) AS
+BEGIN
+    DECLARE @SessionUserId AS INT;
+    DECLARE @PermissionGroup_IsSystemDefined AS BIT;
+    DECLARE @PermissionGroup_IsDeleted AS BIT;
+
+    EXEC [SystemCore].[SetSessionId] @SessionId, @SessionUserId OUT;
+
+    IF [SystemCore].[IsPermissionGranted]('SystemCore', 'SavePermissionGroup') = 0
+    BEGIN
+        RAISERROR('Denied to save permission group', 18, -1);
+        RETURN;
+    END
+
+    IF @Id IS NULL OR @Id <= 0
+    BEGIN
+        SELECT
+            @PermissionGroup_IsSystemDefined = [IsSystemDefined],
+            @PermissionGroup_IsDeleted = [IsDeleted]
+        FROM [SystemCore].[PermissionGroup]
+        WHERE [Id] = @Id;
+
+        IF @PermissionGroup_IsSystemDefined IS NULL OR @PermissionGroup_IsDeleted IS NULL OR @PermissionGroup_IsDeleted = 1
+        BEGIN
+            RAISERROR('Permission group does not exists', 18, -1);
+            RETURN;
+        END
+
+        IF @PermissionGroup_IsSystemDefined = 1
+        BEGIN
+            RAISERROR('Cannot update system-defined permission group', 18, -1);
+            RETURN;
+        END
+
+        UPDATE [SystemCore].[PermissionGroup] SET
+            [Name] = @Name,
+            [ParentId] = @ParentId,
+            [UpdatedById] = @SessionUserId,
+            [UpdatedOn] = GETDATE()
+        WHERE
+            [Id] = @Id AND
+            (
+                [dbo].[HasChanges]([Name], @Name) = 1 OR
+                [dbo].[HasChanges]([ParentId], @ParentId) = 1
+            );
+    END
+    ELSE
+    BEGIN
+        IF EXISTS
+        (
+            SELECT -1
+            FROM [SystemCore].[PermissionGroup]
+            WHERE
+                [IsDeleted] = 0 AND
+                [dbo].[Equal]([Name], @Name) = 1 AND
+                [dbo].[Equal]([ParentId], @ParentId) = 1
+        )
+        BEGIN
+            RAISERROR('Permission group already exists', 18, -1);
+            RETURN;
+        END
+
+        INSERT INTO [SystemCore].[PermissionGroup]
+        (
+            [Name],
+            [ParentId],
+            [InsertedById],
+            [InsertedOn]
+        )
+        VALUES
+        (
+            @Name,
+            @ParentId,
+            @SessionUserId,
+            GETDATE()
+        );
+
+        SET @Id = SCOPE_IDENTITY();
+    END
+END
+GO
+
+-- -------------------------------------------------------------------------------------
+-- STORED PROCEDURES: SystemCore.SavePlatform
+-- -------------------------------------------------------------------------------------
+
+IF EXISTS(SELECT -1 FROM [INFORMATION_SCHEMA].[ROUTINES] WHERE [SPECIFIC_SCHEMA] = 'SystemCore' AND [SPECIFIC_NAME] = 'SavePlatform')
+    DROP PROCEDURE [SystemCore].[SavePlatform];
+GO
+
+CREATE PROCEDURE [SystemCore].[SavePlatform]
+(
+    @Id INT OUT,
+    @Name NVARCHAR(100),
+    @SessionId BIGINT
+) As
+BEGIN
+    DECLARE @SessionUserId AS INT;
+    DECLARE @Platform_IsSystemDefined AS BIT;
+    DECLARE @Platform_IsDeleted AS BIT;
+
+    EXEC [SystemCore].[SetSessionId] @SessionId, @SessionUserId OUT;
+    
+    IF [SystemCore].[IsPermissionGranted]('SystemCore', 'SavePlatform') = 0
+    BEGIN
+        RAISERROR('Denied to save platform', 18, -1);
+        RETURN;
+    END
+
+    IF @Id IS NULL OR @Id <= 0
+    BEGIN
+        SELECT
+            @Platform_IsSystemDefined = [IsSystemDefined],
+            @Platform_IsDeleted = [IsDeleted]
+        FROM [SystemCore].[Platform]
+        WHERE [Id] = @Id;
+
+        IF @Platform_IsSystemDefined IS NULL OR @Platform_IsDeleted IS NULL OR @Platform_IsDeleted = 1
+        BEGIN
+            RAISERROR('Platform does not exists', 18, -1);
+            RETURN;
+        END
+
+        IF @Platform_IsSystemDefined = 1
+        BEGIN
+            RAISERROR('Cannot update system-defined platform', 18, -1);
+            RETURN;
+        END
+
+        UPDATE [SystemCore].[Platform] SET
+            [Name] = @Name,
+            [UpdatedById] = @SessionUserId,
+            [UpdatedOn] = GETDATE()
+        WHERE
+            [Id] = @Id AND
+            [dbo].[HasChanges]([Name], @Name) = 1;
+    END
+    ELSE
+    BEGIN
+        IF EXISTS
+        (
+            SELECT -1
+            FROM [SystemCore].[Platform]
+            WHERE
+                [IsDeleted] = 0 AND
+                [dbo].[Equal]([Name], @Name) = 1
+        )
+        BEGIN
+            RAISERROR('Platform already exists', 18, -1);
+            RETURN;
+        END
+
+        INSERT INTO [SystemCore].[Platform]
+        (
+            [Name],
+            [InsertedById],
+            [InsertedOn]
+        )
+        VALUES
+        (
+            @Name,
+            @SessionUserId,
+            GETDATE()
+        );
+
+        SET @Id = SCOPE_IDENTITY();
+    END
+END
+GO
+
+-- -------------------------------------------------------------------------------------
+-- STORED PROCEDURES: SystemCore.SaveUser
+-- -------------------------------------------------------------------------------------
+
+IF EXISTS(SELECT -1 FROM [INFORMATION_SCHEMA].[ROUTINES] WHERE [SPECIFIC_SCHEMA] = 'SystemCore' AND [SPECIFIC_NAME] = 'SaveUser')
+    DROP PROCEDURE [SystemCore].[SaveUser];
+GO
+
+CREATE PROCEDURE [SystemCore].[SaveUser]
+(
+    @Id INT OUT,
+    @FirstName NVARCHAR(75),
+    @MiddleName NVARCHAR(75),
+    @LastName NVARCHAR(75),
+    @NameExtension NVARCHAR(10),
+    @Username NVARCHAR(250),
+    @PasswordHash NVARCHAR(250),
+    @IsActive BIT,
+    @IsPasswordChangeRequired BIT,
+    @SessionId BIGINT
+) AS
+BEGIN
+    DECLARE @SessionUserId AS INT;
+    DECLARE @User_IsSystemDefined AS BIT;
+    DECLARE @User_IsDeleted AS BIT;
+    
+    EXEC [SystemCore].[SetSessionId] @SessionId, @SessionUserId OUT;
+
+    IF [SystemCore].[IsPermissionGranted]('SystemCore', 'SaveUser') = 0 AND [dbo].[Equal](@SessionUserId, @Id) = 0
+    BEGIN
+        RAISERROR('Denied to save user', 18, -1);
+        RETURN;
+    END
+
+    IF EXISTS
+    (
+        SELECT -1
+        FROM [SystemCore].[User]
+        WHERE
+            [dbo].[Equal]([Username], @Username) = 1 AND
+            [IsDeleted] = 0 AND
+            CASE WHEN (@Id IS NOT NULL OR @Id > 0) AND [Id] <> @Id THEN 1 ELSE 0 END = 1
+    )
+    BEGIN
+        RAISERROR('Username already exists', 18, -1);
+        RETURN;
+    END
+
+    IF @Id IS NULL OR @Id <= 0
+    BEGIN
+        SELECT
+            @User_IsSystemDefined = [IsSystemDefined],
+            @User_IsDeleted = [IsDeleted]
+        FROM [SystemCore].[User]
+        WHERE [Id] = @Id;
+
+        IF @User_IsSystemDefined IS NULL OR @User_IsDeleted IS NULL OR @User_IsDeleted = 1
+        BEGIN
+            RAISERROR('User does not exists', 18, -1);
+            RETURN;
+        END
+
+        IF @User_IsSystemDefined = 1
+        BEGIN
+            RAISERROR('Cannot update system-defined user', 18, -1);
+            RETURN;
+        END
+
+        UPDATE [SystemCore].[User] SET
+            [FirstName] = @FirstName,
+            [MiddleName] = @MiddleName,
+            [LastName] = @LastName,
+            [NameExtension] = @NameExtension,
+            [FullName] = [dbo].[BuildFullName](@FirstName, @MiddleName, @LastName, @NameExtension),
+            [Username] = @Username,
+            [IsActive] = @IsActive,
+            [IsPasswordChangeRequired] = @IsPasswordChangeRequired,
+            [UpdatedById] = @SessionUserId,
+            [UpdatedOn] = GETDATE()
+        WHERE
+            [Id] = @Id AND
+            (
+                [dbo].[HasChanges]([FirstName], @FirstName) = 1 OR
+                [dbo].[HasChanges]([MiddleName], @MiddleName) = 1 OR
+                [dbo].[HasChanges]([LastName], @LastName) = 1 OR
+                [dbo].[HasChanges]([NameExtension], @NameExtension) = 1 OR
+                [dbo].[HasChanges]([Username], @Username) = 1 OR
+                [dbo].[HasChanges]([IsActive], @IsActive) = 1 OR
+                [dbo].[HasChanges]([IsPasswordChangeRequired], @IsPasswordChangeRequired) = 1
+            );
+    END
+    ELSE
+    BEGIN
+        IF LEN([dbo].[Trim](@PasswordHash)) <= 0
+        BEGIN
+            RAISERROR('Password is required', 18, -1);
+            RETURN;
+        END
+
+        INSERT INTO [SystemCore].[User]
+        (
+            [FirstName],
+            [MiddleName],
+            [LastName],
+            [NameExtension],
+            [FullName],
+            [Username],
+            [PasswordHash],
+            [IsActive],
+            [IsPasswordChangeRequired],
+            [InsertedById],
+            [InsertedOn]
+        )
+        VALUES
+        (
+            @FirstName,
+            @MiddleName,
+            @LastName,
+            @NameExtension,
+            [dbo].[BuildFullName](@FirstName, @MiddleName, @LastName, @NameExtension),
+            @Username,
+            @PasswordHash,
+            @IsActive,
+            @IsPasswordChangeRequired,
+            @SessionUserId,
+            GETDATE()
+        );
+
+        SET @Id = SCOPE_IDENTITY();
+    END
+END
+GO
+
+-- -------------------------------------------------------------------------------------
+-- STORED PROCEDURES: SystemCore.SaveUserApplication
+-- -------------------------------------------------------------------------------------
+
+IF EXISTS(SELECT -1 FROM [INFORMATION_SCHEMA].[ROUTINES] WHERE [SPECIFIC_SCHEMA] = 'SystemCore' AND [SPECIFIC_NAME] = 'SaveUserApplication')
+    DROP PROCEDURE [SystemCore].[SaveUserApplication];
+GO
+
+CREATE PROCEDURE [SystemCore].[SaveUserApplication]
+(
+    @Id BIGINT OUT,
+    @IsApproved BIT,
+    @Expiration DATETIME,
+    @IsExpired BIT,
+    @UserId INT,
+    @ApplicationId INT,
+    @SessionId BIGINT
+) AS
+BEGIN
+    DECLARE @SessionUserId AS INT;
+
+    DECLARE @UserApplication_IsSystemDefined AS BIT;
+    DECLARE @UserApplication_IsDeleted AS BIT;
+    
+    SET NOCOUNT ON;
+    
+    EXEC [SystemCore].[SetSessionId] @SessionId, @SessionUserId OUT;
+
+    IF [SystemCore].[IsPermissionGranted]('SystemCore', 'SaveUserApplication') = 0
+    BEGIN
+        RAISERROR('Denied to save user-application', 18, -1);
+        RETURN;
+    END
+
+    SET NOCOUNT OFF;
+
+    IF @Id IS NULL OR @Id <= 0
+    BEGIN
+        SELECT
+            @UserApplication_IsSystemDefined = [IsSystemDefined],
+            @UserApplication_IsDeleted = [IsDeleted]
+        FROM [SystemCore].[UserApplication]
+        WHERE [Id] = @Id;
+
+        IF @UserApplication_IsSystemDefined IS NULL OR @UserApplication_IsDeleted IS NULL OR @UserApplication_IsDeleted = 1
+        BEGIN
+            RAISERROR('User-application does not exists', 18, -1);
+            RETURN;
+        END
+
+        IF @UserApplication_IsSystemDefined = 1
+        BEGIN
+            RAISERROR('Cannot update system-defined user-application', 18, -1);
+            RETURN;
+        END
+
+        UPDATE [SystemCore].[UserApplication] SET
+            [IsApproved] = @IsApproved,
+            [Expiration] = @Expiration,
+            [IsExpired] = @IsExpired,
+            [UserId] = @UserId,
+            [ApplicationId] = @ApplicationId,
+            [UpdatedById] = @SessionUserId,
+            [UpdatedOn] = GETDATE()
+        WHERE
+            [Id] = @Id AND
+            (
+                [dbo].[HasChanges]([IsApproved], @IsApproved) = 1 OR
+                [dbo].[HasChanges]([Expiration], @Expiration) = 1 OR
+                [dbo].[HasChanges]([IsExpired], @IsExpired) = 1 OR
+                [dbo].[HasChanges]([UserId], @UserId) = 1 OR
+                [dbo].[HasChanges]([ApplicationId], @ApplicationId) = 1
+            );
+    END
+    ELSE
+    BEGIN
+        IF EXISTS
+        (
+            SELECT -1
+            FROM [SystemCore].[UserApplication]
+            WHERE
+                [IsDeleted] = 0 AND
+                [dbo].[Equal]([IsApproved], @IsApproved) = 1 AND
+                [dbo].[Equal]([Expiration], @Expiration) = 1 AND
+                [dbo].[Equal]([IsExpired], @IsExpired) = 1 AND
+                [dbo].[Equal]([UserId], @UserId) = 1 AND
+                [dbo].[Equal]([ApplicationId], @ApplicationId) = 1
+        )
+        BEGIN
+            RAISERROR('User-application already exists', 18, -1);
+            RETURN;
+        END
+
+        INSERT INTO [SystemCore].[UserApplication]
+        (
+            [IsApproved],
+            [Expiration],
+            [IsExpired],
+            [UserId],
+            [ApplicationId],
+            [InsertedById],
+            [InsertedOn]
+        )
+        VALUES
+        (
+            @IsApproved,
+            @Expiration,
+            @IsExpired,
+            @UserId,
+            @ApplicationId,
+            @SessionUserId,
+            GETDATE()
+        );
+
+        SET @Id = SCOPE_IDENTITY();
+    END
 END
 GO
 
@@ -1408,81 +2342,16 @@ IF EXISTS(SELECT -1 FROM [INFORMATION_SCHEMA].[ROUTINES] WHERE [SPECIFIC_SCHEMA]
     DROP PROCEDURE [SystemCore].[SetSessionId];
 GO
 
-CREATE PROCEDURE [SystemCore].[SetSessionId](@SessionId BIGINT) AS
+CREATE PROCEDURE [SystemCore].[SetSessionId](@SessionId BIGINT, @UserId INT = NULL OUT, @ApplicationId INT = NULL OUT) AS
 BEGIN
-    DECLARE @UserId AS INT;
-    DECLARE @ApplicationId AS INT;
-
     SELECT
-        @UserId = [Session].[UserId],
-        @ApplicationId = [Session].[ApplicationId]
+        @UserId = [UserId],
+        @ApplicationId = [ApplicationId]
     FROM [SystemCore].[Session]
-    WHERE [Session].[Id] = @SessionId;
+    WHERE [Id] = @SessionId;
     
     EXEC [dbo].[SetSessionVariable] 'SystemCore.Session.Id', @SessionId, 1;
     EXEC [dbo].[SetSessionVariable] 'SystemCore.Session.UserId', @UserId, 1;
     EXEC [dbo].[SetSessionVariable] 'SystemCore.Session.ApplicationId', @ApplicationId, 1;
-END
-GO
-
--- -------------------------------------------------------------------------------------
--- STORED PROCEDURES: SystemCore.TryGrantPermission
--- -------------------------------------------------------------------------------------
-
-IF EXISTS(SELECT -1 FROM [INFORMATION_SCHEMA].[ROUTINES] WHERE [SPECIFIC_SCHEMA] = 'SystemCore' AND [SPECIFIC_NAME] = 'TryGrantPermission')
-    DROP PROCEDURE [SystemCore].[TryGrantPermission];
-GO
-
-CREATE PROCEDURE [SystemCore].[TryGrantPermission]
-(
-    @PermissionId INT,
-    @SessionId BIGINT = NULL,
-    @Granted BIT = NULL
-) AS
-BEGIN
-    DECLARE @SessionVariableKey AS NVARCHAR(64) = [SystemCore].[BuildSessionPermissionKey](@PermissionId);
-
-    IF @PermissionId IS NULL OR @PermissionId <= 0 OR NOT EXISTS(SELECT -1 FROM [SystemCore].[Permission] WHERE [IsDeleted] = 0 AND [Id] = @PermissionId)
-    BEGIN
-        RAISERROR('Invalid permission', 18, -1);
-        RETURN;
-    END
-
-    IF @SessionId IS NULL OR @SessionId <= 0
-        SET @SessionId = [SystemCore].[GetSessionId]();
-
-    IF @Granted IS NULL
-    BEGIN
-        SET @Granted = CASE WHEN EXISTS
-        (
-            SELECT -1
-            FROM [SystemCore].[Permission]
-            INNER JOIN [SystemCore].[UserPermission] ON [Permission].[Id] = [UserPermission].[PermissionId]
-            INNER JOIN [SystemCore].[User] ON [UserPermission].[UserId] = [User].[Id]
-            INNER JOIN [SystemCore].[Session] ON [User].[Id] = [Session].[UserId]
-            WHERE
-                [Permission].[IsDeleted] = 0
-                AND [UserPermission].[IsDeleted] = 0
-                AND [UserPermission].[IsApproved] = 1
-                AND [UserPermission].[IsExpired] = 0
-                AND [User].[IsDeleted] = 0
-                AND [User].[IsActive] = 1
-                AND [Session].[SessionEnd] IS NULL
-        ) THEN 1 ELSE 0 END;
-    END
-
-    IF @SessionId IS NULL
-    BEGIN
-        RAISERROR('Invalid session', 18, -1);
-        RETURN;
-    END
-
-    IF @Granted IS NULL
-    BEGIN
-        RAISERROR('Failed to grant permission', 18, -1);
-        RETURN;
-    END
-
-    EXEC [dbo].[SetSessionVariable] @SessionVariableKey, @Granted;
 END
 GO
