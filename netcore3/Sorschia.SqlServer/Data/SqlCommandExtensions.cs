@@ -3,6 +3,7 @@ using Sorschia.SystemCore;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 
 namespace Sorschia.Data
 {
@@ -83,13 +84,14 @@ namespace Sorschia.Data
             return instance;
         }
 
-        public static SqlCommand AddSingleTypeParameter<T>(this SqlCommand instance, string parameterName, IEnumerable<T> values, string fieldName, string dbTypeName, ParameterDirection direction = ParameterDirection.Input)
+        public static SqlCommand AddSingleValueTypeParameter<T>(this SqlCommand instance, string parameterName, IEnumerable<T> values, string fieldName, string dbTypeName, ParameterDirection direction = ParameterDirection.Input)
         {
             var dataTable = new DataTable();
             dataTable.Columns.Add(new DataColumn(fieldName, typeof(T)));
 
-            foreach (var value in values)
-                dataTable.Rows.Add(value);
+            if (values != null && values.Any())
+                foreach (var value in values)
+                    dataTable.Rows.Add(value);
 
             instance.Parameters.Add(new SqlParameter
             {
@@ -104,6 +106,6 @@ namespace Sorschia.Data
         }
 
         public static SqlCommand AddIntsParameter(this SqlCommand instance, string parameterName, IEnumerable<int> values, string fieldName = "Value", string dbTypeName = "dbo.Ints", ParameterDirection direction = ParameterDirection.Input) =>
-            instance.AddSingleTypeParameter(parameterName, values, fieldName, dbTypeName, direction);
+            instance.AddSingleValueTypeParameter(parameterName, values, fieldName, dbTypeName, direction);
     }
 }
