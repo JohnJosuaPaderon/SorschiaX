@@ -8,6 +8,7 @@
     <Authors>John Josua Paderon</Authors>
     <Company>Sorschia</Company>
     <Copyright>Copyright (c) 2020 John Josua Paderon</Copyright>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup>
