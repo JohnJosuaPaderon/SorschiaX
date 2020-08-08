@@ -3,6 +3,12 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
     <RootNamespace>Sorschia</RootNamespace>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageId>SorschiaX.Api.Client</PackageId>
+    <Version>1.0.0-pre</Version>
+    <Authors>John Josua Paderon</Authors>
+    <Company>Sorschia</Company>
+    <Copyright>Copyright (c) 2020 John Josua Paderon</Copyright>
   </PropertyGroup>
 
   <ItemGroup>

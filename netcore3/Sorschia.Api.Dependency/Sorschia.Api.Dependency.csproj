@@ -3,6 +3,11 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <RootNamespace>Sorschia</RootNamespace>
+    <PackageId>SorschiaX.Api.Dependency</PackageId>
+    <Version>1.0.0-pre</Version>
+    <Authors>John Josua Paderon</Authors>
+    <Company>Sorschia</Company>
+    <Copyright>Copyright (c) 2020 John Josua Paderon</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
