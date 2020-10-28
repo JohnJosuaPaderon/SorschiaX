@@ -45,8 +45,8 @@ namespace Sorschia.Data
             return instance;
         }
 
-        public static SqlCommand AddSessionIdParameter(this SqlCommand instance, ISessionProvider sessionProvider, string parameterName = default) =>
-            instance.AddInParameter(string.IsNullOrWhiteSpace(parameterName) ? "@SessionId" : parameterName, sessionProvider.Current?.Id);
+        public static SqlCommand AddSessionIdParameter(this SqlCommand instance, ISessionIdProvider sessionIdProvider, string parameterName = default) =>
+            instance.AddInParameter(string.IsNullOrWhiteSpace(parameterName) ? "@SessionId" : parameterName, sessionIdProvider.GetCurrent());
 
         public static SqlCommand AddSkipParameter(this SqlCommand instance, int? skip, string parameterName = default) =>
             instance.AddInParameter(string.IsNullOrWhiteSpace(parameterName) ? "@Skip" : parameterName, skip);
@@ -105,7 +105,7 @@ namespace Sorschia.Data
             return instance;
         }
 
-        public static SqlCommand AddIntsParameter(this SqlCommand instance, string parameterName, IEnumerable<int> values, string fieldName = "Value", string dbTypeName = "dbo.Ints", ParameterDirection direction = ParameterDirection.Input) =>
+        public static SqlCommand AddIntValueParameter(this SqlCommand instance, string parameterName, IEnumerable<int> values, string fieldName = "Value", string dbTypeName = "dbo.IntValue", ParameterDirection direction = ParameterDirection.Input) =>
             instance.AddSingleValueTypeParameter(parameterName, values, fieldName, dbTypeName, direction);
     }
 }

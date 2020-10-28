@@ -14,7 +14,7 @@
         public string ComputeHash(string cipherPassword)
         {
             if (string.IsNullOrWhiteSpace(cipherPassword))
-                throw SorschiaException.InvalidParameter<string>(nameof(cipherPassword));
+                    return null;
 
             return _cryptoHash.ComputeHash(_decryptor.Decrypt(cipherPassword));
         }

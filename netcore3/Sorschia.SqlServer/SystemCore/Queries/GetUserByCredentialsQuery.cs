@@ -13,6 +13,7 @@ namespace Sorschia.SystemCore.Queries
         public sealed class Model
         {
             public string Username { get; set; }
+            public string EmailAddress { get; set; }
             public string CipherPassword { get; set; }
 
             public static implicit operator Model(LoginUserModel source)
@@ -22,13 +23,15 @@ namespace Sorschia.SystemCore.Queries
                 return new Model
                 {
                     Username = source.Username,
+                    EmailAddress = source.EmailAddress,
                     CipherPassword = source.CipherPassword
                 };
             }
         }
 
         private const string PROCEDURE = "[SystemCore].[GetUserByCredentials]";
-        private const string PARAM_USERNAME = "@Useername";
+        private const string PARAM_USERNAME = "@Username";
+        private const string PARAM_EMAILADDRESS = "@EmailAddress";
         private const string PARAM_PASSWORDHASH = "@PasswordHash";
 
         private readonly UserConverter _converter;
@@ -52,6 +55,7 @@ namespace Sorschia.SystemCore.Queries
         private SqlCommand CreateCommand(Model model, SqlConnection connection, SqlTransaction transaction = default) => connection
             .CreateProcedureCommand(PROCEDURE, transaction)
             .AddInParameter(PARAM_USERNAME, model.Username)
+            .AddInParameter(PARAM_EMAILADDRESS, model.EmailAddress)
             .AddInParameter(PARAM_PASSWORDHASH, _passwordCryptoTransformer.ComputeHash(model.CipherPassword));
     }
 }

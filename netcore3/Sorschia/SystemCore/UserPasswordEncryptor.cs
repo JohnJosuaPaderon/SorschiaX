@@ -16,7 +16,7 @@ namespace Sorschia.SystemCore
         public string Encrypt(string password)
         {
             if (string.IsNullOrWhiteSpace(password))
-                throw new SorschiaSecurityException("Password is null or white-space");
+                return null;
 
             return _crypto.Encrypt(password, _keyProvider.Request());
         }

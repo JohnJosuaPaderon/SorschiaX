@@ -4,6 +4,7 @@ using Sorschia.SystemCore.Queries;
 using Sorschia.Utilities;
 using System;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -15,6 +16,9 @@ namespace Sorschia.SystemCore.Processes
         private readonly StartSessionQuery _startSessionQuery;
         private readonly SaveAccessTokenQuery _saveAccessTokenQuery;
         private readonly SaveRefreshTokenQuery _saveRefreshTokenQuery;
+        private readonly SearchModuleQuery _searchModuleQuery;
+        private readonly SearchPermissionQuery _searchPermissionQuery;
+        private readonly GetApplicationQuery _getApplicationQuery;
         private readonly IAccessTokenGenerator _accessTokenGenerator;
         private readonly IRefreshTokenGenerator _refreshTokenGenerator;
 
@@ -25,6 +29,9 @@ namespace Sorschia.SystemCore.Processes
             StartSessionQuery startSessionQuery,
             SaveAccessTokenQuery saveAccessTokenQuery,
             SaveRefreshTokenQuery saveRefreshTokenQuery,
+            SearchModuleQuery searchModuleQuery,
+            SearchPermissionQuery searchPermissionQuery,
+            GetApplicationQuery getApplicationQuery,
             IAccessTokenGenerator accessTokenGenerator,
             IRefreshTokenGenerator refreshTokenGenerator) : base(connectionStringProvider)
         {
@@ -32,6 +39,9 @@ namespace Sorschia.SystemCore.Processes
             _startSessionQuery = startSessionQuery;
             _saveAccessTokenQuery = saveAccessTokenQuery;
             _saveRefreshTokenQuery = saveRefreshTokenQuery;
+            _searchModuleQuery = searchModuleQuery;
+            _searchPermissionQuery = searchPermissionQuery;
+            _getApplicationQuery = getApplicationQuery;
             _accessTokenGenerator = accessTokenGenerator;
             _refreshTokenGenerator = refreshTokenGenerator;
         }
@@ -47,6 +57,8 @@ namespace Sorschia.SystemCore.Processes
                 await StartSessionAsync(model, result, connection, transaction, cancellationToken);
                 await GenerateAccessTokenAsync(result, connection, transaction, cancellationToken);
                 await GenerateRefreshTokenAsync(result, connection, transaction, cancellationToken);
+                await GetModulesAsync(result, connection, transaction, cancellationToken);
+                await GetPermissionsAsync(result, connection, transaction, cancellationToken);
                 transaction.Commit();
                 return result;
             }
@@ -60,9 +72,16 @@ namespace Sorschia.SystemCore.Processes
         private async Task StartSessionAsync(LoginUserModel model, LoginUserResult result, SqlConnection connection, SqlTransaction transaction, CancellationToken cancellationToken)
         {
             var user = await _getUserByCredentialsQuery.ExecuteAsync(model, connection, transaction, cancellationToken);
+            var application = await _getApplicationQuery.ExecuteAsync(model.ApplicationId, connection, transaction, cancellationToken);
 
             if (user is null)
-                throw SorschiaException.VariableIsNull<User>(nameof(user));
+                throw new SorschiaException("Username or password are incorrect", true);
+
+            if (application is null)
+                throw new SorschiaException("Application is incorrect", true);
+
+            result.User = user;
+            result.Application = application;
 
             var session = new Session
             {
@@ -75,7 +94,7 @@ namespace Sorschia.SystemCore.Processes
             if (_session is null)
                 throw SorschiaException.VariableIsNull<Session>(nameof(_session));
 
-            result.Session = session;
+            result.Session = _session;
 
         }
 
@@ -99,6 +118,33 @@ namespace Sorschia.SystemCore.Processes
                 throw SorschiaException.VariableIsNull<RefreshToken>(nameof(_refreshToken));
 
             result.RefreshToken = _refreshToken;
+        }
+
+        private async Task GetModulesAsync(LoginUserResult result, SqlConnection connection, SqlTransaction transaction, CancellationToken cancellationToken)
+        {
+            var searchModel = new SearchModuleModel();
+            var searchResult = new SearchModuleResult();
+
+            searchModel.ApplicationIds.Add(result.Session.ApplicationId ?? 0);
+            searchModel.UserIds.Add(result.Session.UserId ?? 0);
+
+            await _searchModuleQuery.ExecuteAsync(searchModel, searchResult, connection, transaction, cancellationToken);
+
+            if (searchResult.Modules != null && searchResult.Modules.Any())
+                result.Modules = searchResult.Modules;
+        }
+
+        private async Task GetPermissionsAsync(LoginUserResult result, SqlConnection connection, SqlTransaction transaction, CancellationToken cancellationToken)
+        {
+            var searchModel = new SearchPermissionModel();
+            var searchResult = new SearchPermissionResult();
+
+            searchModel.UserIds.Add(result.Session.UserId ?? 0);
+
+            await _searchPermissionQuery.ExecuteAsync(searchModel, searchResult, connection, transaction, cancellationToken);
+
+            if (searchResult.Permissions != null && searchResult.Permissions.Any())
+                result.Permissions = searchResult.Permissions;
         }
     }
 }

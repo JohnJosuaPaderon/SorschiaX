@@ -12,11 +12,11 @@ namespace Sorschia.SystemCore.Queries
         private const string PARAM_ID = "@Id";
         private const string PARAM_ISCASCADED = "@IsCascaded";
 
-        private readonly ISessionProvider _sessionProvider;
+        private readonly ISessionIdProvider _sessionIdProvider;
 
-        public DeleteUserModuleQuery(ISessionProvider sessionProvider)
+        public DeleteUserModuleQuery(ISessionIdProvider sessionIdProvider)
         {
-            _sessionProvider = sessionProvider;
+            _sessionIdProvider = sessionIdProvider;
         }
 
         public async Task<bool> ExecuteAsync(DeleteUserModuleModel model, SqlConnection connection, SqlTransaction transaction, CancellationToken cancellationToken = default)
@@ -30,6 +30,6 @@ namespace Sorschia.SystemCore.Queries
             .CreateProcedureCommand(PROCEDURE, transaction)
             .AddInParameter(PARAM_ID, model.Id)
             .AddInParameter(PARAM_ISCASCADED, model.IsCascaded)
-            .AddSessionIdParameter(_sessionProvider);
+            .AddSessionIdParameter(_sessionIdProvider);
     }
 }

@@ -56,6 +56,7 @@ namespace Sorschia.Processes
             throw exception switch
             {
                 SqlException sqlException => new SorschiaDataException(exception.Message, sqlException, sqlException.Number == 50_000),
+                SorschiaException sorschiaException => sorschiaException,
                 _ => new SorschiaException("An error occured", exception, true),
             };
         }

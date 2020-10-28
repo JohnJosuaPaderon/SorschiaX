@@ -12,9 +12,9 @@ namespace Sorschia.SystemCore.Queries
     {
         private const string PROCEDURE = "[SystemCore].[SearchApplication]";
         private const string PARAM_FILTERTEXT = "@FilterText";
-        private const string PARAM_FILTERBYPLATFORM = "@FilterByPlatform";
         private const string PARAM_PLATFORMIDS = "@PlatformIds";
         private const string PARAM_SKIPPEDIDS = "@SkippedIds";
+        private const string PARAM_USERIDS = "@UserIds";
 
         private readonly ApplicationConverter _converter;
 
@@ -39,8 +39,8 @@ namespace Sorschia.SystemCore.Queries
             .CreateProcedureCommand(PROCEDURE)
             .AddPaginationParameters(model)
             .AddInParameter(PARAM_FILTERTEXT, model.FilterText)
-            .AddInParameter(PARAM_FILTERBYPLATFORM, model.FilterByPlatform)
-            .AddIntsParameter(PARAM_PLATFORMIDS, model.PlatformIds)
-            .AddIntsParameter(PARAM_SKIPPEDIDS, model.SkippedIds);
+            .AddIntValueParameter(PARAM_PLATFORMIDS, model.PlatformIds)
+            .AddIntValueParameter(PARAM_SKIPPEDIDS, model.SkippedIds)
+            .AddIntValueParameter(PARAM_USERIDS, model.UserIds);
     }
 }

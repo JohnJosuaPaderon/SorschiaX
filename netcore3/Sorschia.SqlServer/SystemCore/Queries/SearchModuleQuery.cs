@@ -12,9 +12,9 @@ namespace Sorschia.SystemCore.Queries
     {
         private const string PROCEDURE = "[SystemCore].[SearchModule]";
         private const string PARAM_FILTERTEXT = "@FilterText";
-        private const string PARAM_FILTERBYAPPLICATION = "@FilterByApplication";
         private const string PARAM_APPLICATIONIDS = "@ApplicationIds";
         private const string PARAM_SKIPPEDIDS = "@SkippedIds";
+        private const string PARAM_USERIDS = "@UserIds";
 
         private readonly ModuleConverter _converter;
 
@@ -23,9 +23,9 @@ namespace Sorschia.SystemCore.Queries
             _converter = converter;
         }
 
-        public async Task ExecuteAsync(SearchModuleModel model, SearchModuleResult result, SqlConnection connection, CancellationToken cancellationToken = default)
+        public async Task ExecuteAsync(SearchModuleModel model, SearchModuleResult result, SqlConnection connection, SqlTransaction transaction = default, CancellationToken cancellationToken = default)
         {
-            using var command = CreateCommand(model, connection);
+            using var command = CreateCommand(model, connection, transaction);
             using var reader = await command.ExecuteReaderAsync(cancellationToken);
 
             if (reader.HasRows)
@@ -35,12 +35,12 @@ namespace Sorschia.SystemCore.Queries
             await ReadTotalCountAsync(reader, result, cancellationToken);
         }
 
-        private SqlCommand CreateCommand(SearchModuleModel model, SqlConnection connection) => connection
-            .CreateProcedureCommand(PROCEDURE)
+        private SqlCommand CreateCommand(SearchModuleModel model, SqlConnection connection, SqlTransaction transaction = default) => connection
+            .CreateProcedureCommand(PROCEDURE, transaction)
             .AddPaginationParameters(model)
             .AddInParameter(PARAM_FILTERTEXT, model.FilterText)
-            .AddInParameter(PARAM_FILTERBYAPPLICATION, model.FilterByApplication)
-            .AddIntsParameter(PARAM_APPLICATIONIDS, model.ApplicationIds)
-            .AddIntsParameter(PARAM_SKIPPEDIDS, model.SkippedIds);
+            .AddIntValueParameter(PARAM_APPLICATIONIDS, model.ApplicationIds)
+            .AddIntValueParameter(PARAM_SKIPPEDIDS, model.SkippedIds)
+            .AddIntValueParameter(PARAM_USERIDS, model.UserIds);
     }
 }

@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Sorschia.Caching;
+using Sorschia.SystemCore;
+using System;
 
 namespace Sorschia
 {
@@ -19,17 +21,26 @@ namespace Sorschia
         public void ConfigureServices(IServiceCollection services)
         {
             services
-                .AddSorschia()
+                .AddSorschia(settings =>
+                {
+                    settings.SystemCore.UserPasswordCryptoKeySource = UserPasswordCryptoKeySource.File;
+                    settings.SystemCore.UserPasswordPrivateKeyFilePath = Configuration.GetValue<string>("UserPasswordCryptoKeyPath:Private");
+                    settings.SystemCore.UserPasswordPublicKeyFilePath = Configuration.GetValue<string>("UserPasswordCryptoKeyPath:Public");
+                })
                 .AddSorschiaBouncyCastle()
                 .AddSorschiaCaching()
                 .AddSorschiaSqlServer();
 
             services.AddControllers()
-                .AddSorschiaApi(Configuration);
+                .AddSorschiaApi(Configuration)
+                .AddJsonOptions(options =>
+                {
+                    options.JsonSerializerOptions.IgnoreNullValues = true;
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app)
         {
             //if (env.IsDevelopment())
             //{
@@ -46,10 +57,18 @@ namespace Sorschia
 
             app.UseAuthorization();
 
+            app.UseCors(builder =>
+            {
+                builder
+                    .AllowAnyOrigin()
+                    .AllowAnyHeader();
+            });
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
         }
     }
 }

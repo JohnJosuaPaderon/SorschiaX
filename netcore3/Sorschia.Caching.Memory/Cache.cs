@@ -21,6 +21,7 @@ namespace Sorschia.Caching
             switch (expirationMode)
             {
                 case CacheExpirationMode.Absolute:
+                case CacheExpirationMode.Default:
                     result.AbsoluteExpirationRelativeToNow = expiration;
                     break;
                 case CacheExpirationMode.Sliding:
@@ -59,7 +60,7 @@ namespace Sorschia.Caching
                 _memoryCache.Remove(key);
         }
 
-        public T Save<T>(string key, T value, TimeSpan? expiration = null, CacheExpirationMode expirationMode = CacheExpirationMode.Sliding, bool continueOnDefault = false)
+        public T Save<T>(string key, T value, TimeSpan? expiration = null, CacheExpirationMode expirationMode = CacheExpirationMode.Default, bool continueOnDefault = false)
         {
             ValidateKey(key);
             lock (_memoryCache)
@@ -76,6 +77,6 @@ namespace Sorschia.Caching
             return value;
         }
 
-        public T Save<T>(string key, T value, long? expirationSeconds = null, CacheExpirationMode expirationMode = CacheExpirationMode.Sliding, bool continueOnDefault = false) => Save(key, value, GetExpirationFromSeconds(expirationSeconds), expirationMode, continueOnDefault);
+        public T Save<T>(string key, T value, long? expirationSeconds = null, CacheExpirationMode expirationMode = CacheExpirationMode.Default, bool continueOnDefault = false) => Save(key, value, GetExpirationFromSeconds(expirationSeconds), expirationMode, continueOnDefault);
     }
 }

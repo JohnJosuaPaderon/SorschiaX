@@ -1,7 +1,6 @@
 ﻿using Refit;
 using Sorschia.SystemCore.Entities;
 using Sorschia.SystemCore.Processes;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Sorschia.SystemCore.ApiServices
@@ -20,9 +19,8 @@ namespace Sorschia.SystemCore.ApiServices
         [Headers(ApiConstants.JwtAuthorizationHeader)]
         Task<SavePlatformResult> Save([Body] SavePlatformModel model);
 
-        [Get(ApiServicePaths.Search)]
+        [Post(ApiServicePaths.Search)]
         [Headers(ApiConstants.JwtAuthorizationHeader)]
-        Task<SearchPlatformResult> Search([Query] SearchPlatformModel model,
-            [Query(CollectionFormat.Multi)] IList<int> skippedIds);
+        Task<SearchPlatformResult> Search([Body] SearchPlatformModel model);
     }
 }

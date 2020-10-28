@@ -28,7 +28,7 @@ namespace Sorschia.SystemCore.Controllers
         [HttpPost]
         public async Task<ActionResult<SaveModuleResult>> Save([FromBody] SaveModuleModel model) => await _repository.SaveAsync(model);
 
-        [HttpGet(ActionTemplates.Search)]
-        public async Task<ActionResult<SearchModuleResult>> Search([FromQuery] SearchModuleModel model) => await _repository.SearchAsync(model);
+        [HttpPost(ActionTemplates.Search)]
+        public async Task<ActionResult<SearchModuleResult>> Search([FromBody] SearchModuleModel model) => await _repository.SearchAsync(model);
     }
 }

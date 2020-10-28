@@ -28,7 +28,7 @@ namespace Sorschia.SystemCore.Controllers
         [HttpPost]
         public async Task<ActionResult<SavePermissionResult>> Save([FromBody] SavePermissionModel model) => await _repository.SaveAsync(model);
 
-        [HttpGet(ActionTemplates.Search)]
-        public async Task<ActionResult<SearchPermissionResult>> Search([FromQuery] SearchPermissionModel model) => await _repository.SearchAsync(model);
+        [HttpPost(ActionTemplates.Search)]
+        public async Task<ActionResult<SearchPermissionResult>> Search([FromBody] SearchPermissionModel model) => await _repository.SearchAsync(model);
     }
 }

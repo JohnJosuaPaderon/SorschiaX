@@ -24,7 +24,7 @@ namespace Sorschia.Security
             return ProcessCrypto(data, 0, data.Length, _pemStringConverter.ToPublicKey(publicKeyString));
         }
 
-        public string Encrypt(string text, string publicKeyString) => Convert.ToBase64String(Encrypt(_utf8.GetBytes(text), publicKeyString));
+        public string Encrypt(string text, string publicKeyString) => text == null ? null : Convert.ToBase64String(Encrypt(_utf8.GetBytes(text), publicKeyString));
 
         public byte[] Decrypt(byte[] cipherData, string privateKeyString)
         {
@@ -32,7 +32,7 @@ namespace Sorschia.Security
             return ProcessCrypto(cipherData, 0, cipherData.Length, _pemStringConverter.ToPrivateKey(privateKeyString));
         }
 
-        public string Decrypt(string cipherText, string privateKeyString) => _utf8.GetString(Decrypt(Convert.FromBase64String(cipherText), privateKeyString));
+        public string Decrypt(string cipherText, string privateKeyString) => cipherText == null ? null : _utf8.GetString(Decrypt(Convert.FromBase64String(cipherText), privateKeyString));
 
         private byte[] ProcessCrypto(byte[] buffer, int offset, int length, AsymmetricKeyParameter key)
         {

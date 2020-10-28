@@ -13,5 +13,9 @@
     <ProjectReference Include="..\Sorschia.SqlServer.Dependency\Sorschia.SqlServer.Dependency.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="SystemCore\" />
+  </ItemGroup>
+
 
 </Project>

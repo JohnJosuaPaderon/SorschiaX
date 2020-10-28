@@ -14,12 +14,13 @@ namespace Sorschia.SystemCore.Queries
         private const string PARAM_NAME = "@Name";
         private const string PARAM_ORDINALNUMBER = "@OrdinalNumber";
         private const string PARAM_APPLICATIONID = "@ApplicationId";
+        private const string PARAM_ROUTEURL = "@RouteUrl";
         
-        private readonly ISessionProvider _sessionProvider;
+        private readonly ISessionIdProvider _sessionIdProvider;
 
-        public SaveModuleQuery(ISessionProvider sessionProvider)
+        public SaveModuleQuery(ISessionIdProvider sessionIdProvider)
         {
-            _sessionProvider = sessionProvider;
+            _sessionIdProvider = sessionIdProvider;
         }
 
         public async Task<Module> ExecuteAsync(Module module, SqlConnection connection, SqlTransaction transaction, CancellationToken cancellationToken = default)
@@ -36,6 +37,7 @@ namespace Sorschia.SystemCore.Queries
             .AddInParameter(PARAM_NAME, module.Name)
             .AddInParameter(PARAM_ORDINALNUMBER, module.OrdinalNumber)
             .AddInParameter(PARAM_APPLICATIONID, module.ApplicationId)
-            .AddSessionIdParameter(_sessionProvider);
+            .AddInParameter(PARAM_ROUTEURL, module.RouteUrl)
+            .AddSessionIdParameter(_sessionIdProvider);
     }
 }

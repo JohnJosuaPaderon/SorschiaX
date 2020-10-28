@@ -1,6 +1,6 @@
 ﻿namespace Sorschia.SystemCore.Configuration
 {
-    public sealed partial class SystemCoreConfiguration
+    partial class SystemCoreConfiguration
     {
         public sealed partial class CacheExpirationSection
         {
@@ -14,6 +14,7 @@
             public PermissionSection Permission { get; set; } = new PermissionSection();
             public PermissionGroupSection PermissionGroup { get; set; } = new PermissionGroupSection();
             public PlatformSection Platform { get; set; } = new PlatformSection();
+            public SessionSection Session { get; set; } = new SessionSection();
             public UserSection User { get; set; } = new UserSection();
         }
     }

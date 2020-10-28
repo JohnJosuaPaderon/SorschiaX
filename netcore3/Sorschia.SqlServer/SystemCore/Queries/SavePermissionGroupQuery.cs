@@ -14,11 +14,11 @@ namespace Sorschia.SystemCore.Queries
         private const string PARAM_NAME = "@Name";
         private const string PARAM_PARENTID = "@ParentId";
 
-        private readonly ISessionProvider _sessionProvider;
+        private readonly ISessionIdProvider _sessionIdProvider;
 
-        public SavePermissionGroupQuery(ISessionProvider sessionProvider)
+        public SavePermissionGroupQuery(ISessionIdProvider sessionIdProvider)
         {
-            _sessionProvider = sessionProvider;
+            _sessionIdProvider = sessionIdProvider;
         }
 
         public async Task<PermissionGroup> ExecuteAsync(PermissionGroup group, SqlConnection connection, SqlTransaction transaction, CancellationToken cancellationToken = default)
@@ -34,6 +34,6 @@ namespace Sorschia.SystemCore.Queries
             .AddInOutParameter(PARAM_ID, group.Id, SqlDbType.Int)
             .AddInParameter(PARAM_NAME, group.Name)
             .AddInParameter(PARAM_PARENTID, group.ParentId)
-            .AddSessionIdParameter(_sessionProvider);
+            .AddSessionIdParameter(_sessionIdProvider);
     }
 }

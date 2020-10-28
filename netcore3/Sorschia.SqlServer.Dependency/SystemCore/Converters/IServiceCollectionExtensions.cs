@@ -10,6 +10,7 @@ namespace Sorschia.SystemCore.Converters
             .AddSingleton<PermissionConverter>()
             .AddSingleton<PermissionGroupConverter>()
             .AddSingleton<PlatformConverter>()
+            .AddSingleton<SessionConverter>()
             .AddSingleton<UserConverter>();
     }
 }

@@ -21,11 +21,11 @@ namespace Sorschia.SystemCore.Queries
         private const string PARAM_DATABASESCHEMA = "@DatabaseSchema";
         private const string PARAM_DATABASEPROCEDURE = "@DatabaseProcedure";
 
-        private readonly ISessionProvider _sessionProvider;
+        private readonly ISessionIdProvider _sessionIdProvider;
 
-        public SavePermissionQuery(ISessionProvider sessionProvider)
+        public SavePermissionQuery(ISessionIdProvider sessionIdProvider)
         {
-            _sessionProvider = sessionProvider;
+            _sessionIdProvider = sessionIdProvider;
         }
 
         public async Task<Permission> ExecuteAsync(Permission permission, SqlConnection connection, SqlTransaction transaction, CancellationToken cancellationToken = default)
@@ -41,7 +41,7 @@ namespace Sorschia.SystemCore.Queries
             .AddInOutParameter(PARAM_ID, permission.Id, SqlDbType.Int)
             .AddInParameter(PARAM_DESCRIPTION, permission.Description)
             .AddInParameter(PARAM_GROUPID, permission.GroupId)
-            .AddSessionIdParameter(_sessionProvider)
+            .AddSessionIdParameter(_sessionIdProvider)
             .AddInParameter(PARAM_ISAPIPERMISSION, permission.IsApiPermission)
             .AddInParameter(PARAM_APIDOMAIN, permission.ApiDomain)
             .AddInParameter(PARAM_APICONTROLLER, permission.ApiController)

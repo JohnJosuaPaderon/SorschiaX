@@ -28,7 +28,7 @@ namespace Sorschia.SystemCore.Controllers
         [HttpPost]
         public async Task<ActionResult<SavePlatformResult>> Save([FromBody] SavePlatformModel model) => await _repository.SaveAsync(model);
 
-        [HttpGet(ActionTemplates.Search)]
-        public async Task<ActionResult<SearchPlatformResult>> Search([FromQuery] SearchPlatformModel model) => await _repository.SearchAsync(model);
+        [HttpPost(ActionTemplates.Search)]
+        public async Task<ActionResult<SearchPlatformResult>> Search([FromBody] SearchPlatformModel model) => await _repository.SearchAsync(model);
     }
 }

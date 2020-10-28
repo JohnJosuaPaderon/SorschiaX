@@ -10,7 +10,7 @@ namespace Sorschia.SystemCore.Entities
         public long Id { get; set; }
         public string MacAddress { get; set; }
         public string IpAddress { get; set; }
-        public string Operatingsystem { get; set; }
+        public string OperatingSystem { get; set; }
         public DateTime SessionStart { get; set; }
         public DateTime? SessionEnd { get; set; }
 

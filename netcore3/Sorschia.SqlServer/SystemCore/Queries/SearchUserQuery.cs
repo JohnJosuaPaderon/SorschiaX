@@ -15,6 +15,9 @@ namespace Sorschia.SystemCore.Queries
         private const string PARAM_ISACTIVE = "@IsActive";
         private const string PARAM_ISPASSWORDCHANGEREQUIRED = "@IsPasswordChangeRequired";
         private const string PARAM_SKIPPEDIDS = "@SkippedIds";
+        private const string PARAM_APPLICATIONIDS = "@ApplicationIds";
+        private const string PARAM_MODULEIDS = "@ModuleIds";
+        private const string PARAM_PERMISSIONIDS = "@PermissionIds";
 
         private readonly UserConverter _converter;
 
@@ -41,7 +44,10 @@ namespace Sorschia.SystemCore.Queries
             .AddInParameter(PARAM_FILTERTEXT, model.FilterText)
             .AddInParameter(PARAM_ISACTIVE, model.IsActive)
             .AddInParameter(PARAM_ISPASSWORDCHANGEREQUIRED, model.IsPasswordChangeRequired)
-            .AddIntsParameter(PARAM_SKIPPEDIDS, model.SkippedIds);
+            .AddIntValueParameter(PARAM_SKIPPEDIDS, model.SkippedIds)
+            .AddIntValueParameter(PARAM_APPLICATIONIDS, model.ApplicationIds)
+            .AddIntValueParameter(PARAM_MODULEIDS, model.ModuleIds)
+            .AddIntValueParameter(PARAM_PERMISSIONIDS, model.PermissionIds);
     }
 
 }

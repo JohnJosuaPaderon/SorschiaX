@@ -35,12 +35,12 @@ namespace Sorschia.SystemCore.Queries
 
         private SqlCommand CreateCommand(Session session, SqlConnection connection, SqlTransaction transaction = default) => connection
             .CreateProcedureCommand(PROCEDURE, transaction)
-            .AddOutParameter(PARAM_ID, SqlDbType.UniqueIdentifier)
+            .AddOutParameter(PARAM_ID, SqlDbType.BigInt)
             .AddOutParameter(PARAM_SESSIONSTART, SqlDbType.DateTime)
             .AddInParameter(PARAM_USERID, session.UserId)
             .AddInParameter(PARAM_APPLICATIONID, session.ApplicationId)
             .AddInParameter(PARAM_MACADDRESS, session.MacAddress)
             .AddInParameter(PARAM_IPADDRESS, session.IpAddress)
-            .AddInParameter(PARAM_OPERATINGSYSTEM, session.Operatingsystem);
+            .AddInParameter(PARAM_OPERATINGSYSTEM, session.OperatingSystem);
     }
 }

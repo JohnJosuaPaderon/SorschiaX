@@ -19,17 +19,17 @@ namespace Sorschia.SystemCore.Queries
             _converter = converter;
         }
 
-        public async Task<Application> ExecuteAsync(int id, SqlConnection connection, CancellationToken cancellationToken = default)
+        public async Task<Application> ExecuteAsync(int id, SqlConnection connection, SqlTransaction transaction = default, CancellationToken cancellationToken = default)
         {
-            using var command = CreateCommand(id, connection);
+            using var command = CreateCommand(id, connection, transaction);
             using var reader = await command.ExecuteReaderAsync(cancellationToken);
             if (reader.HasRows && await reader.ReadAsync(cancellationToken))
                 return _converter.Convert(reader);
             return default;
         }
 
-        private SqlCommand CreateCommand(int id, SqlConnection connection) => connection
-            .CreateProcedureCommand(PROCEDURE)
+        private SqlCommand CreateCommand(int id, SqlConnection connection, SqlTransaction transaction) => connection
+            .CreateProcedureCommand(PROCEDURE, transaction)
             .AddInParameter(PARAM_ID, id);
     }
 }

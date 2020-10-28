@@ -7,8 +7,6 @@ namespace Sorschia.SystemCore
         public static IServiceCollection AddSystemCore(this IServiceCollection instance) => instance
             .AddSingleton<IAccessTokenGenerator, AccessTokenGenerator>()
             .AddSingleton<IRefreshTokenGenerator, RefreshTokenGenerator>()
-            .AddTransient<ISessionProvider, SessionProvider>()
-            .AddSingleton<IUserPasswordPrivateKeyProvider, UserPasswordPrivateKeyProvider>()
-            .AddSingleton<IUserPasswordPublicKeyProvider, UserPasswordPublicKeyProvider>();
+            .AddTransient<ISessionIdProvider, SessionIdProvider>();
     }
 }

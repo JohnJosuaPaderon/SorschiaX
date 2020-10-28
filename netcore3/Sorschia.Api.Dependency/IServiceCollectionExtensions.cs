@@ -26,6 +26,7 @@ namespace Sorschia
             var accessTokenConfiguration = configuration.GetSection<AccessTokenConfiguration>(ApiConstants.AccessTokenConfigurationKey);
 
             instance
+                .AddSingleton(accessTokenConfiguration)
                 .AddAuthentication(options =>
                 {
                     options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

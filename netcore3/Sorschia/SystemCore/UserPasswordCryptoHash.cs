@@ -14,7 +14,7 @@ namespace Sorschia.SystemCore
         public string ComputeHash(string password)
         {
             if (string.IsNullOrWhiteSpace(password))
-                throw SorschiaException.InvalidParameter<string>(nameof(password));
+                return null;
 
             return _cryptoHash.ComputeSha512(password);
         }

@@ -14,11 +14,11 @@ namespace Sorschia.SystemCore.Queries
         private const string PARAM_NAME = "@Name";
         private const string PARAM_PLATFORMID = "@PlatformId";
 
-        private readonly ISessionProvider _sessionProvider;
+        private readonly ISessionIdProvider _sessionIdProvider;
 
-        public SaveApplicationQuery(ISessionProvider sessionProvider)
+        public SaveApplicationQuery(ISessionIdProvider sessionIdProvider)
         {
-            _sessionProvider = sessionProvider;
+            _sessionIdProvider = sessionIdProvider;
         }
 
         public async Task<Application> ExecuteAsync(Application application, SqlConnection connection, SqlTransaction transaction, CancellationToken cancellationToken = default)
@@ -34,6 +34,6 @@ namespace Sorschia.SystemCore.Queries
             .AddInOutParameter(PARAM_ID, application.Id, SqlDbType.Int)
             .AddInParameter(PARAM_NAME, application.Name)
             .AddInParameter(PARAM_PLATFORMID, application.PlatformId)
-            .AddSessionIdParameter(_sessionProvider);
+            .AddSessionIdParameter(_sessionIdProvider);
     }
 }

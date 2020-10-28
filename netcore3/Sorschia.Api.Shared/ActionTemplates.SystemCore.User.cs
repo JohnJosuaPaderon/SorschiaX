@@ -10,6 +10,7 @@
                 public const string ValidateUserApplication = "validateUserApplication";
                 public const string ValidateUserModule = "validateUserModule";
                 public const string ValidateUserPermission = "validateUserPermission";
+                public const string PasswordPublicKey = "passwordPublicKey";
             }
         }
     }

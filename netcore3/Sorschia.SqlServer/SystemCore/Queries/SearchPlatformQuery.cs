@@ -37,6 +37,6 @@ namespace Sorschia.SystemCore.Queries
             .CreateProcedureCommand(PROCEDURE)
             .AddPaginationParameters(model)
             .AddInParameter(PARAM_FILTERTEXT, model.FilterText)
-            .AddIntsParameter(PARAM_SKIPPEDIDS, model.SkippedIds);
+            .AddIntValueParameter(PARAM_SKIPPEDIDS, model.SkippedIds);
     }
 }

@@ -21,13 +21,13 @@ namespace Sorschia.Repositories
             return _cache.Exists(cacheKey, out result);
         }
 
-        protected virtual T TrySaveToCache<T>(string cacheKey, T value, TimeSpan? expiration = default, CacheExpirationMode expirationMode = CacheExpirationMode.Sliding, bool continueOnDefault = default)
+        protected virtual T TrySaveToCache<T>(string cacheKey, T value, TimeSpan? expiration = default, CacheExpirationMode expirationMode = CacheExpirationMode.Default, bool continueOnDefault = default)
         {
             _cacheHelper.ValidateKey(cacheKey);
             return _cache.Save(cacheKey, value, expiration, expirationMode, continueOnDefault);
         }
 
-        protected virtual T TrySaveToCache<T>(string cacheKey, T value, long? expirationSeconds = default, CacheExpirationMode expirationMode = CacheExpirationMode.Sliding, bool continueOnDefault = default)
+        protected virtual T TrySaveToCache<T>(string cacheKey, T value, long? expirationSeconds = default, CacheExpirationMode expirationMode = CacheExpirationMode.Default, bool continueOnDefault = default)
         {
             _cacheHelper.ValidateKey(cacheKey);
             return _cache.Save(cacheKey, value, expirationSeconds, expirationMode, continueOnDefault);

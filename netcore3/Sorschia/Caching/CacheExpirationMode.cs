@@ -2,7 +2,8 @@
 {
     public enum CacheExpirationMode
     {
-        Absolute = 0,
-        Sliding = 1
+        Default = 0,
+        Absolute = 1,
+        Sliding = 2
     }
 }

@@ -12,6 +12,6 @@ namespace Sorschia.SystemCore.Processes
         {
         }
 
-        public Task<SearchPermissionGroupResult> ExecuteAsync(CancellationToken cancellationToken = default) => ExecuteAsync(() => _apiService.Search(Model, Model.ParentIds, Model.SkippedIds), cancellationToken);
+        public Task<SearchPermissionGroupResult> ExecuteAsync(CancellationToken cancellationToken = default) => ExecuteAsync(() => _apiService.Search(Model), cancellationToken);
     }
 }

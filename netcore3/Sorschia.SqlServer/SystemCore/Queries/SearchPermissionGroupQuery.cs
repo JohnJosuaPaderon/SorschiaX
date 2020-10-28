@@ -12,7 +12,6 @@ namespace Sorschia.SystemCore.Queries
     {
         private const string PROCEDURE = "[SystemCore].[SearchPermissionGroup]";
         private const string PARAM_FILTERTEXT = "@FilterText";
-        private const string PARAM_FILTERBYPARENT = "@FilterByParent";
         private const string PARAM_PARENTIDS = "@ParentIds";
         private const string PARAM_SKIPPEDIDS = "@SkippedIds";
 
@@ -39,8 +38,7 @@ namespace Sorschia.SystemCore.Queries
             .CreateProcedureCommand(PROCEDURE)
             .AddPaginationParameters(model)
             .AddInParameter(PARAM_FILTERTEXT, model.FilterText)
-            .AddInParameter(PARAM_FILTERBYPARENT, model.FilterByParent)
-            .AddIntsParameter(PARAM_PARENTIDS, model.ParentIds)
-            .AddIntsParameter(PARAM_SKIPPEDIDS, model.SkippedIds);
+            .AddIntValueParameter(PARAM_PARENTIDS, model.ParentIds)
+            .AddIntValueParameter(PARAM_SKIPPEDIDS, model.SkippedIds);
     }
 }

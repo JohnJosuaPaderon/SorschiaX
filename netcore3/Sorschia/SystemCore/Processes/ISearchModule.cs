@@ -12,9 +12,9 @@ namespace Sorschia.SystemCore.Processes
     public sealed class SearchModuleModel : PaginationModel
     {
         public string FilterText { get; set; }
-        public bool FilterByApplication { get; set; }
         public IList<int> ApplicationIds { get; set; } = new List<int>();
         public IList<int> SkippedIds { get; set; } = new List<int>();
+        public IList<int> UserIds { get; set; } = new List<int>();
     }
 
     public sealed class SearchModuleResult : PaginationResult

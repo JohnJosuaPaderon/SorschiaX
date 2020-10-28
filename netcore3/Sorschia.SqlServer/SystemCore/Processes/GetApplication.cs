@@ -24,7 +24,7 @@ namespace Sorschia.SystemCore.Processes
             {
                 var id = Id;
                 using var connection = await OpenConnectionAsync(cancellationToken);
-                return await _query.ExecuteAsync(id, connection, cancellationToken);
+                return await _query.ExecuteAsync(id, connection, default, cancellationToken);
             }
             catch (Exception ex)
             {

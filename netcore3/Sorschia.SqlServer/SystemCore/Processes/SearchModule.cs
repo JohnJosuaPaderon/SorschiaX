@@ -25,7 +25,7 @@ namespace Sorschia.SystemCore.Processes
                 var model = ObjectCopy.Copy(Model);
                 var result = new SearchModuleResult();
                 using var connection = await OpenConnectionAsync(cancellationToken);
-                await _query.ExecuteAsync(model, result, connection, cancellationToken);
+                await _query.ExecuteAsync(model, result, connection, default, cancellationToken);
                 return result;
             }
             catch (Exception ex)

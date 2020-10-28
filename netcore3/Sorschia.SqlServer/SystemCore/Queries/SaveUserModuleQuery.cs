@@ -17,11 +17,11 @@ namespace Sorschia.SystemCore.Queries
         private const string PARAM_EXPIRATION = "@Expiration";
         private const string PARAM_ISEXPIRED = "@IsExpired";
 
-        private readonly ISessionProvider _sessionProvider;
+        private readonly ISessionIdProvider _sessionIdProvider;
 
-        public SaveUserModuleQuery(ISessionProvider sessionProvider)
+        public SaveUserModuleQuery(ISessionIdProvider sessionIdProvider)
         {
-            _sessionProvider = sessionProvider;
+            _sessionIdProvider = sessionIdProvider;
         }
 
         public async Task<UserModule> ExecuteAsync(UserModule userModule, SqlConnection connection, SqlTransaction transaction, CancellationToken cancellationToken = default)
@@ -40,6 +40,6 @@ namespace Sorschia.SystemCore.Queries
             .AddInParameter(PARAM_ISAPPROVED, userModule.IsApproved)
             .AddInParameter(PARAM_EXPIRATION, userModule.Expiration)
             .AddInParameter(PARAM_ISEXPIRED, userModule.IsExpired)
-            .AddSessionIdParameter(_sessionProvider);
+            .AddSessionIdParameter(_sessionIdProvider);
     }
 }

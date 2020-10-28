@@ -11,6 +11,7 @@ namespace Sorschia.SystemCore.Converters
         private const string FIELD_NAME = "[Name]";
         private const string FIELD_ORDINALNUMBER = "[OrdinalNumber]";
         private const string FIELD_APPLICATIONID = "[ApplicationId]";
+        private const string FIELD_ROUTEURL = "[RouteUrl]";
 
         private readonly IFieldNameCache _fieldNameCache;
 
@@ -24,7 +25,8 @@ namespace Sorschia.SystemCore.Converters
             Id = reader.GetInt32(FIELD_ID, _fieldNameCache),
             Name = reader.GetString(FIELD_NAME, _fieldNameCache),
             OrdinalNumber = reader.GetInt32(FIELD_ORDINALNUMBER, _fieldNameCache),
-            ApplicationId = reader.GetNullableInt32(FIELD_APPLICATIONID, _fieldNameCache)
+            ApplicationId = reader.GetNullableInt32(FIELD_APPLICATIONID, _fieldNameCache),
+            RouteUrl = reader.GetString(FIELD_ROUTEURL, _fieldNameCache)
         };
     }
 }

@@ -15,6 +15,9 @@ namespace Sorschia.SystemCore.Processes
         public bool? IsActive { get; set; }
         public bool? IsPasswordChangeRequired { get; set; }
         public IList<int> SkippedIds { get; set; } = new List<int>();
+        public IList<int> ApplicationIds { get; set; } = new List<int>();
+        public IList<int> ModuleIds { get; set; } = new List<int>();
+        public IList<int> PermissionIds { get; set; } = new List<int>();
     }
 
     public sealed class SearchUserResult : PaginationResult

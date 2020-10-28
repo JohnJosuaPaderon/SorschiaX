@@ -21,14 +21,13 @@ namespace Sorschia.SystemCore.Queries
         private const string PARAM_OLDPASSWORDHASH = "@OldPasswordHash";
         private const string PARAM_ISACTIVE = "@IsActive";
         private const string PARAM_ISPASSWORDCHANGEREQUIRED = "@IsPasswordChangeRequired";
-        private const int AFFECTEDROWS = 1;
 
-        private readonly ISessionProvider _sessionProvider;
+        private readonly ISessionIdProvider _sessionIdProvider;
         private readonly IUserPasswordCryptoTransformer _passwordCryptoTransformer;
 
-        public SaveUserQuery(ISessionProvider sessionProvider, IUserPasswordCryptoTransformer passwordCryptoTransformer)
+        public SaveUserQuery(ISessionIdProvider sessionIdProvider, IUserPasswordCryptoTransformer passwordCryptoTransformer)
         {
-            _sessionProvider = sessionProvider;
+            _sessionIdProvider = sessionIdProvider;
             _passwordCryptoTransformer = passwordCryptoTransformer;
         }
 
@@ -52,6 +51,6 @@ namespace Sorschia.SystemCore.Queries
             .AddInParameter(PARAM_OLDPASSWORDHASH, _passwordCryptoTransformer.ComputeHash(user.CipherOldPassword))
             .AddInParameter(PARAM_ISACTIVE, user.IsActive)
             .AddInParameter(PARAM_ISPASSWORDCHANGEREQUIRED, user.IsPasswordChangeRequired)
-            .AddSessionIdParameter(_sessionProvider);
+            .AddSessionIdParameter(_sessionIdProvider);
     }
 }

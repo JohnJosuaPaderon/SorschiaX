@@ -9,6 +9,7 @@ namespace Sorschia.SystemCore.Entities
         public int Id { get; set; }
         public string Name { get; set; }
         public int OrdinalNumber { get; set; }
+        public string RouteUrl { get; set; }
 
         private int? _applicationId;
         public int? ApplicationId

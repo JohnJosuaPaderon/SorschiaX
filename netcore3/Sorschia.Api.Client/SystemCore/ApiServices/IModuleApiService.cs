@@ -1,7 +1,6 @@
 ﻿using Refit;
 using Sorschia.SystemCore.Entities;
 using Sorschia.SystemCore.Processes;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Sorschia.SystemCore.ApiServices
@@ -20,10 +19,8 @@ namespace Sorschia.SystemCore.ApiServices
         [Headers(ApiConstants.JwtAuthorizationHeader)]
         Task<SaveModuleResult> Save([Body] SaveModuleModel model);
 
-        [Get(ApiServicePaths.Search)]
+        [Post(ApiServicePaths.Search)]
         [Headers(ApiConstants.JwtAuthorizationHeader)]
-        Task<SearchModuleResult> Search([Query] SearchModuleModel model,
-            [Query(CollectionFormat.Multi)] IList<int> applicationIds,
-            [Query(CollectionFormat.Multi)] IList<int> skippedIds);
+        Task<SearchModuleResult> Search([Body] SearchModuleModel model);
     }
 }

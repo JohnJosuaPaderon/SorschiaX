@@ -14,10 +14,12 @@ namespace Sorschia.SystemCore.Controllers
     public sealed class UserController : ControllerBase
     {
         private readonly IUserRepository _repository;
+        private readonly IUserPasswordPublicKeyProvider _passwordPublicKeyProvider;
 
-        public UserController(IUserRepository repository)
+        public UserController(IUserRepository repository, IUserPasswordPublicKeyProvider passwordPublicKeyProvider)
         {
             _repository = repository;
+            _passwordPublicKeyProvider = passwordPublicKeyProvider;
         }
 
         [HttpDelete]
@@ -33,7 +35,7 @@ namespace Sorschia.SystemCore.Controllers
         [HttpPost]
         public async Task<ActionResult<SaveUserResult>> Save([FromBody] SaveUserModel model) => await _repository.SaveAsync(model);
 
-        [HttpGet(ActionTemplates.Search)]
+        [HttpPost(ActionTemplates.Search)]
         public async Task<ActionResult<SearchUserResult>> Search([FromBody] SearchUserModel model) => await _repository.SearchAsync(model);
 
         [HttpPost(ActionTemplates.SystemCore.User.ValidateUserApplication)]
@@ -44,5 +46,9 @@ namespace Sorschia.SystemCore.Controllers
 
         [HttpPost(ActionTemplates.SystemCore.User.ValidateUserPermission)]
         public async Task<ActionResult<bool>> ValidateUserPermission([FromBody] ValidateUserPermissionModel model) => await _repository.ValidateUserPermissionAsync(model);
+
+        [HttpGet(ActionTemplates.SystemCore.User.PasswordPublicKey)]
+        [AllowAnonymous]
+        public ActionResult<string> PasswordPublicKey() => _passwordPublicKeyProvider.Request();
     }
 }

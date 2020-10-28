@@ -25,6 +25,7 @@ namespace Sorschia.SystemCore
                         .AddSingleton<IPermissionRepository, PermissionRepository>()
                         .AddSingleton<IPermissionGroupRepository, PermissionGroupRepository>()
                         .AddSingleton<IPlatformRepository, PlatformRepository>()
+                        .AddSingleton<ISessionRepository, SessionRepository>()
                         .AddSingleton<IUserRepository, UserRepository>();
                     break;
                 case RepositoryOption.Cached:
@@ -34,7 +35,27 @@ namespace Sorschia.SystemCore
                         .AddSingleton<IPermissionRepository, PermissionCachedRepository>()
                         .AddSingleton<IPermissionGroupRepository, PermissionGroupCachedRepository>()
                         .AddSingleton<IPlatformRepository, PlatformCachedRepository>()
+                        .AddSingleton<ISessionRepository, SessionCachedRepository>()
                         .AddSingleton<IUserRepository, UserCachedRepository>();
+                    break;
+            }
+
+            switch (dependencySettings.UserPasswordCryptoKeySource)
+            {
+                case UserPasswordCryptoKeySource.File:
+                    if (string.IsNullOrWhiteSpace(dependencySettings.UserPasswordPrivateKeyFilePath))
+                        throw new SorschiaException("User password private key file path is null or white-space");
+
+                    if (string.IsNullOrWhiteSpace(dependencySettings.UserPasswordPublicKeyFilePath))
+                        throw new SorschiaException("User password public key file path is null or white-space");
+
+                    instance
+                        .AddSingleton(new UserPasswordPrivateKeyFilePathProvider(dependencySettings.UserPasswordPrivateKeyFilePath))
+                        .AddSingleton(new UserPasswordPublicKeyFilePathProvider(dependencySettings.UserPasswordPublicKeyFilePath))
+                        .AddSingleton<IUserPasswordPrivateKeyReader, UserPasswordPrivateKeyFileReader>()
+                        .AddSingleton<IUserPasswordPrivateKeyWriter, UserPasswordPrivateKeyFileWriter>()
+                        .AddSingleton<IUserPasswordPublicKeyReader, UserPasswordPublicKeyFileReader>()
+                        .AddSingleton<IUserPasswordPublicKeyWriter, UserPasswordPublicKeyFileWriter>();
                     break;
             }
 
@@ -46,9 +67,13 @@ namespace Sorschia.SystemCore
             if (dependencySettings.UseDefaultConfiguration)
             {
                 var configuration = new SystemCoreConfiguration();
-                dependencySettings?.Configure(configuration);
+                dependencySettings.ConfigureConfiguration?.Invoke(configuration);
                 instance.AddSingleton(configuration);
-            }    
+            }
+
+            instance
+                .AddSingleton<IUserPasswordPrivateKeyProvider, UserPasswordPrivateKeyProvider>()
+                .AddSingleton<IUserPasswordPublicKeyProvider, UserPasswordPublicKeyProvider>();
 
             return instance;
         }
