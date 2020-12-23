@@ -5,52 +5,9 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "net5", "net5", "{14C52491-FC38-4BE0-8889-61B1E093B533}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorschia", "net5\Sorschia\Sorschia.csproj", "{1BBF01B9-294D-479B-ACCB-EEA100E4C90D}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorschia.SchoolManagement", "net5\Sorschia.SchoolManagement\Sorschia.SchoolManagement.csproj", "{F44E8EE7-5E93-415F-A4F8-3A62CF2E8871}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestApp", "net5\tests\TestApp\TestApp.csproj", "{A0090336-A465-4310-8EB5-563E639A40AB}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorschia.EfCore", "net5\Sorschia.EfCore\Sorschia.EfCore.csproj", "{A62F1052-780E-4B05-95FC-C80925E5AA3A}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.TaskManagement", "net5\Sorschia.TaskManagement\Sorschia.TaskManagement.csproj", "{F716BED4-15E3-4603-86BB-2EBD0C9CC7B6}"
-EndProject
 Global
-	GlobalSection(SolutionConfigurationPlatforms) = preSolution
-		Debug|Any CPU = Debug|Any CPU
-		Release|Any CPU = Release|Any CPU
-	EndGlobalSection
-	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{1BBF01B9-294D-479B-ACCB-EEA100E4C90D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1BBF01B9-294D-479B-ACCB-EEA100E4C90D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1BBF01B9-294D-479B-ACCB-EEA100E4C90D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1BBF01B9-294D-479B-ACCB-EEA100E4C90D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F44E8EE7-5E93-415F-A4F8-3A62CF2E8871}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F44E8EE7-5E93-415F-A4F8-3A62CF2E8871}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F44E8EE7-5E93-415F-A4F8-3A62CF2E8871}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F44E8EE7-5E93-415F-A4F8-3A62CF2E8871}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A0090336-A465-4310-8EB5-563E639A40AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A0090336-A465-4310-8EB5-563E639A40AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A0090336-A465-4310-8EB5-563E639A40AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A0090336-A465-4310-8EB5-563E639A40AB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A62F1052-780E-4B05-95FC-C80925E5AA3A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A62F1052-780E-4B05-95FC-C80925E5AA3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A62F1052-780E-4B05-95FC-C80925E5AA3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A62F1052-780E-4B05-95FC-C80925E5AA3A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{F716BED4-15E3-4603-86BB-2EBD0C9CC7B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{F716BED4-15E3-4603-86BB-2EBD0C9CC7B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{F716BED4-15E3-4603-86BB-2EBD0C9CC7B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{F716BED4-15E3-4603-86BB-2EBD0C9CC7B6}.Release|Any CPU.Build.0 = Release|Any CPU
-	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{1BBF01B9-294D-479B-ACCB-EEA100E4C90D} = {14C52491-FC38-4BE0-8889-61B1E093B533}
-		{F44E8EE7-5E93-415F-A4F8-3A62CF2E8871} = {14C52491-FC38-4BE0-8889-61B1E093B533}
-		{A0090336-A465-4310-8EB5-563E639A40AB} = {14C52491-FC38-4BE0-8889-61B1E093B533}
-		{A62F1052-780E-4B05-95FC-C80925E5AA3A} = {14C52491-FC38-4BE0-8889-61B1E093B533}
-		{F716BED4-15E3-4603-86BB-2EBD0C9CC7B6} = {14C52491-FC38-4BE0-8889-61B1E093B533}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {38FD30CD-A97E-4AF3-A21A-7AED792E2BB4}
