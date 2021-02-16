@@ -1,13 +1,14 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 
-namespace Sorschia.Repositories
+namespace Sorschia.Models
 {
-    public class AddUserModel
+    public class UserModel
     {
         public string FirstName { get; set; }
         public string MiddleName { get; set; }
         public string LastName { get; set; }
         public string NameSuffix { get; set; }
+        public string FullName { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
         public string EmailAddress { get; set; }
@@ -16,8 +17,8 @@ namespace Sorschia.Repositories
         public bool IsPasswordChangeRequired { get; set; }
         public bool IsEmailAddressVerified { get; set; }
         public bool IsMobileNumberVerified { get; set; }
-
-        public IList<int> ApplicationIds { get; set; } = new List<int>();
-        public IList<int> PermissionIds { get; set; } = new List<int>();
+        public IList<int> ApplicationIds { get; set; }
+        public IList<int> RoleIds { get; set; }
+        public IList<int> PermissionIds { get; set; }
     }
 }

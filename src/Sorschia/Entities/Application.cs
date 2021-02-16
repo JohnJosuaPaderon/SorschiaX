@@ -2,7 +2,7 @@
 
 namespace Sorschia.Entities
 {
-    public class Application : EntityBase
+    public class Application : EntityBase, IIdInt32
     {
         public int Id { get; set; }
         public string Name { get; set; }

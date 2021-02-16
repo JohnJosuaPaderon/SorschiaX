@@ -1,6 +1,6 @@
 ﻿namespace Sorschia.Entities
 {
-    public class UserRole : EntityBase
+    public class UserRole : EntityBase, IIdInt64
     {
         public long Id { get; set; }
         public int UserId { get; set; }

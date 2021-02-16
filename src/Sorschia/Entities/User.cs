@@ -2,7 +2,7 @@
 
 namespace Sorschia.Entities
 {
-    public class User : EntityBase, IName
+    public class User : EntityBase, IName, IIdInt32
     {
         public int Id { get; set; }
         public string FirstName { get; set; }
@@ -21,5 +21,6 @@ namespace Sorschia.Entities
 
         public ICollection<UserApplication> Applications { get; set; } = new List<UserApplication>();
         public ICollection<UserPermission> Permissions { get; set; } = new List<UserPermission>();
+        public ICollection<UserRole> Roles { get; set; } = new List<UserRole>();
     }
 }

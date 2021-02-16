@@ -1,22 +1,34 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Sorschia.Builders;
 using Sorschia.Entities;
 
-namespace Sorschia.Configuration
+namespace Sorschia.Data
 {
     public abstract class EntityConfigurationBase<TEntity> : IEntityTypeConfiguration<TEntity> where TEntity : EntityBase
     {
-        protected bool IsInsertIgnored { get; set; } = false;
-        protected bool IsUpdateIgnored { get; set; } = false;
-        protected bool IsDeleteIgnored { get; set; } = false;
+        private readonly TableSettings _settings;
+        protected bool IsInsertFootprintIgnored { get; set; }
+        protected bool IsUpdateFootprintIgnored { get; set; }
+        protected bool IsDeleteFootprintIgnored { get; set; }
 
-        protected void IgnoreInsert() => IsInsertIgnored = true;
-        protected void IgnoreUpdate() => IsUpdateIgnored = true;
-        protected void IgnoreDelete() => IsDeleteIgnored = true;
+        public EntityConfigurationBase(TableSettings settings)
+        {
+            _settings = settings;
+            IsInsertFootprintIgnored = settings.IsInsertFootprintIgnored ?? false;
+            IsUpdateFootprintIgnored = settings.IsUpdateFootprintIgnored ?? false;
+            IsDeleteFootprintIgnored = settings.IsDeleteFootprintIgnored ?? false;
+        }
+
+        protected void IgnoreInsertFootprint() => IsInsertFootprintIgnored = true;
+        protected void IgnoreUpdateFootprint() => IsUpdateFootprintIgnored = true;
+        protected void IgnoreDeleteFootprint() => IsDeleteFootprintIgnored = true;
 
         public virtual void Configure(EntityTypeBuilder<TEntity> builder)
         {
-            if (IsInsertIgnored)
+            builder.Apply(_settings);
+
+            if (IsInsertFootprintIgnored)
             {
                 builder
                     .Ignore(_ => _.InsertedBy)
@@ -31,7 +43,7 @@ namespace Sorschia.Configuration
                     .HasForeignKey(_ => _.InsertedById);
             }
 
-            if (IsUpdateIgnored)
+            if (IsUpdateFootprintIgnored)
             {
                 builder
                     .Ignore(_ => _.UpdatedBy)
@@ -46,7 +58,7 @@ namespace Sorschia.Configuration
                     .HasForeignKey(_ => _.UpdatedById);
             }
 
-            if (IsDeleteIgnored)
+            if (IsDeleteFootprintIgnored)
             {
                 builder
                     .Ignore(_ => _.IsDeleted)

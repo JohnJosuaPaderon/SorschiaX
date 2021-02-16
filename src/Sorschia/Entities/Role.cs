@@ -2,7 +2,7 @@
 
 namespace Sorschia.Entities
 {
-    public class Role : EntityBase
+    public class Role : EntityBase, IIdInt32
     {
         public int Id { get; set; }
         public string Name { get; set; }
