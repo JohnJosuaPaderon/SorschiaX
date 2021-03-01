@@ -5,9 +5,24 @@ VisualStudioVersion = 16.0.29709.97
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C9B19449-2171-49AD-BD54-09EBAA1FD4D0}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia", "src\Sorschia\Sorschia.csproj", "{9172FF11-052C-40C8-A008-24D1F420164B}"
+EndProject
 Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9172FF11-052C-40C8-A008-24D1F420164B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9172FF11-052C-40C8-A008-24D1F420164B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9172FF11-052C-40C8-A008-24D1F420164B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9172FF11-052C-40C8-A008-24D1F420164B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{9172FF11-052C-40C8-A008-24D1F420164B} = {C9B19449-2171-49AD-BD54-09EBAA1FD4D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {38FD30CD-A97E-4AF3-A21A-7AED792E2BB4}
