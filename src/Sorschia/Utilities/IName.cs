@@ -1,4 +1,4 @@
-﻿namespace Sorschia.Entities
+﻿namespace Sorschia.Utilities
 {
     public interface IName
     {
