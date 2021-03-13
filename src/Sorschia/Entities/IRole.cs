@@ -1,9 +1,10 @@
 ﻿namespace Sorschia.Entities
 {
-    public interface IApplication
+    public interface IRole
     {
-        short Id { get; set; }
+        int Id { get; set; }
         string Name { get; set; }
         string Description { get; set; }
+        short? ApplicationId { get; set; }
     }
 }
