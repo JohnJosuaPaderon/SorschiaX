@@ -2,14 +2,13 @@
 
 namespace Sorschia.Processes
 {
-    public interface IGetApplication : IAsyncProcess<GetApplicationInput, GetApplicationOutput>
+    public interface ISearchApplication : IAsyncProcess<SearchApplicationInput, SearchApplicationOutput>
     {
     }
 
-    public sealed class GetApplicationInput
+    public sealed class SearchApplicationInput : PaginationInputInt32
     {
-        public short Id { get; set; }
-        public bool AllowDeleted { get; set; }
+        public string FilterText { get; set; }
         public bool IncludeRoles { get; set; }
         public bool IncludePermissions { get; set; }
         public RoleObj Role { get; set; }
@@ -32,15 +31,21 @@ namespace Sorschia.Processes
         }
     }
 
-    public sealed class GetApplicationOutput
+    public sealed class SearchApplicationOutput
     {
-        public short Id { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-        public IList<RoleObj> Roles { get; set; }
-        public int RolesTotalCount { get; set; }
-        public IList<PermissionObj> Permissions { get; set; }
-        public int PermissionsTotalCount { get; set; }
+        public IList<ApplicationObj> Applications { get; set; }
+        public int ApplicationsTotalCount { get; set; }
+
+        public sealed class ApplicationObj
+        {
+            public short Id { get; set; }
+            public string Name { get; set; }
+            public string Description { get; set; }
+            public IList<RoleObj> Roles { get; set; }
+            public int RolesTotalCount { get; set; }
+            public IList<PermissionObj> Permissions { get; set; }
+            public int PermissionsTotalCount { get; set; }
+        }
 
         public sealed class RoleObj
         {

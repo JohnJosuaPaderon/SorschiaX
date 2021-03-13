@@ -5,7 +5,7 @@ namespace Sorschia
 {
     public class SorschiaException : Exception
     {
-        public bool IsUserFriendlyMessage { get; }
+        public bool IsUserFriendlyMessage { get; init; }
 
         public SorschiaException(bool isUserFriendlyMessage = false)
         {
