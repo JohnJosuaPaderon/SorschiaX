@@ -1,9 +1,9 @@
 ﻿namespace Sorschia.Entities
 {
-    public interface IUserApplication
+    public interface IUserRole
     {
         long Id { get; set; }
         int UserId { get; set; }
-        int ApplicationId { get; set; }
+        int RoleId { get; set; }
     }
 }

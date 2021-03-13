@@ -4,7 +4,7 @@
     {
         int Id { get; set; }
         string Name { get; set; }
-        string Description { get; set; }
-        IApplication Application { get; set; }
+        string? Description { get; set; }
+        int? ApplicationId { get; set; }
     }
 }
