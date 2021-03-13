@@ -5,6 +5,6 @@
         int Id { get; set; }
         string Name { get; set; }
         string Description { get; set; }
-        short? ApplicationId { get; set; }
+        IApplication Application { get; set; }
     }
 }

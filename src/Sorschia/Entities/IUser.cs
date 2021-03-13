@@ -4,7 +4,7 @@
     {
         int Id { get; set; }
         string Username { get; set; }
-        string SecurePassword { get; set; }
+        string Password { get; set; }
         string EmailAddress { get; set; }
         string MobileNumber { get; set; }
         bool IsActive { get; set; }

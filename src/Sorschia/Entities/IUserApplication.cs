@@ -3,7 +3,14 @@
     public interface IUserApplication
     {
         long Id { get; set; }
-        int UserId { get; set; }
-        short ApplicationId { get; set; }
+        IUser User { get; set; }
+        IApplication Application { get; set; }
+    }
+
+    public interface IUserRole
+    {
+        long Id { get; set; }
+        IUser User { get; set; }
+        IRole Role { get; set; }
     }
 }
