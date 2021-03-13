@@ -7,10 +7,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C9B19449-217
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorschia", "src\Sorschia\Sorschia.csproj", "{9172FF11-052C-40C8-A008-24D1F420164B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorschia.EfCore", "src\Sorschia.EfCore\Sorschia.EfCore.csproj", "{BA6ADD05-BB94-4343-9147-9B4490263651}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.EfCore.DependencyInjector", "src\Sorschia.EfCore.DependencyInjector\Sorschia.EfCore.DependencyInjector.csproj", "{1F874659-03B1-4858-8F28-50A20507C250}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,22 +17,12 @@ Global
 		{9172FF11-052C-40C8-A008-24D1F420164B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9172FF11-052C-40C8-A008-24D1F420164B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9172FF11-052C-40C8-A008-24D1F420164B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{BA6ADD05-BB94-4343-9147-9B4490263651}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{BA6ADD05-BB94-4343-9147-9B4490263651}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{BA6ADD05-BB94-4343-9147-9B4490263651}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{BA6ADD05-BB94-4343-9147-9B4490263651}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1F874659-03B1-4858-8F28-50A20507C250}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1F874659-03B1-4858-8F28-50A20507C250}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1F874659-03B1-4858-8F28-50A20507C250}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1F874659-03B1-4858-8F28-50A20507C250}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{9172FF11-052C-40C8-A008-24D1F420164B} = {C9B19449-2171-49AD-BD54-09EBAA1FD4D0}
-		{BA6ADD05-BB94-4343-9147-9B4490263651} = {C9B19449-2171-49AD-BD54-09EBAA1FD4D0}
-		{1F874659-03B1-4858-8F28-50A20507C250} = {C9B19449-2171-49AD-BD54-09EBAA1FD4D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {38FD30CD-A97E-4AF3-A21A-7AED792E2BB4}
