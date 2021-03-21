@@ -5,15 +5,8 @@ namespace Sorschia.Utilities.ExceptionBuilders
 {
     public sealed class SorschiaEntityNotFoundExceptionBuilder
     {
-        public string? EntityName { get; private set; }
         public Type? EntityType { get; private set; }
         public IDictionary<string, object> LookupParameters { get; } = new Dictionary<string, object>();
-
-        public SorschiaEntityNotFoundExceptionBuilder WithEntityName(string entityName)
-        {
-            EntityName = entityName;
-            return this;
-        }
 
         public SorschiaEntityNotFoundExceptionBuilder WithEntityType(Type entityType)
         {
@@ -35,7 +28,7 @@ namespace Sorschia.Utilities.ExceptionBuilders
 
         public SorschiaEntityNotFoundException Build()
         {
-            return new SorschiaEntityNotFoundException(EntityName, EntityType, LookupParameters);
+            return new SorschiaEntityNotFoundException(EntityType, LookupParameters);
         }
     }
 }
