@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sorschia", "src\Sorschia\So
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.EfCore.SqlServer", "src\Sorschia.EfCore.SqlServer\Sorschia.EfCore.SqlServer.csproj", "{8FF43EEC-C1DF-45FD-8F7E-6FC44C73C181}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.FluentValidation", "src\Sorschia.FluentValidation\Sorschia.FluentValidation.csproj", "{1FD03E48-2F22-4F04-A17B-C14603883FB2}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,6 +25,10 @@ Global
 		{8FF43EEC-C1DF-45FD-8F7E-6FC44C73C181}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8FF43EEC-C1DF-45FD-8F7E-6FC44C73C181}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FF43EEC-C1DF-45FD-8F7E-6FC44C73C181}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1FD03E48-2F22-4F04-A17B-C14603883FB2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1FD03E48-2F22-4F04-A17B-C14603883FB2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1FD03E48-2F22-4F04-A17B-C14603883FB2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1FD03E48-2F22-4F04-A17B-C14603883FB2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -30,6 +36,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{9172FF11-052C-40C8-A008-24D1F420164B} = {C9B19449-2171-49AD-BD54-09EBAA1FD4D0}
 		{8FF43EEC-C1DF-45FD-8F7E-6FC44C73C181} = {C9B19449-2171-49AD-BD54-09EBAA1FD4D0}
+		{1FD03E48-2F22-4F04-A17B-C14603883FB2} = {C9B19449-2171-49AD-BD54-09EBAA1FD4D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {38FD30CD-A97E-4AF3-A21A-7AED792E2BB4}
