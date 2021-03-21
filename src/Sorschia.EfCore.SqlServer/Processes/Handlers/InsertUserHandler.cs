@@ -42,21 +42,8 @@ namespace Sorschia.Processes.Handlers
         #region Insert User
         private async Task InsertUserAsync(SorschiaDbContext context, InsertUser request, Footprint footprint, InsertUser.Result result, CancellationToken cancellationToken)
         {
-            var user = new User
-            {
-                FirstName = request.FirstName,
-                MiddleName = request.MiddleName,
-                LastName = request.LastName,
-                NameSuffix = request.NameSuffix,
-                FullName = _fullNameBuilder.Build(request.FirstName, request.MiddleName, request.LastName, request.NameSuffix),
-                Username = request.Username,
-                EmailAddress = request.EmailAddress,
-                MobileNumber = request.MobileNumber,
-                IsActive = request.IsActive,
-                IsPasswordChangeRequired = request.IsPasswordChangeRequired,
-                IsEmailAddressVerified = request.IsEmailAddressVerified,
-                IsMobileNumberVerified = request.IsMobileNumberVerified
-            };
+            var user = request.ToSource();
+            user.FullName = _fullNameBuilder.Build(user);
 
             if (await context.Users.AnyAsync(_ => _.Username == request.Username, cancellationToken))
                 throw new SorschiaDuplicateEntityFieldExceptionBuilder()
@@ -121,23 +108,14 @@ namespace Sorschia.Processes.Handlers
             var userApplication = new UserApplication
             {
                 UserId = userId,
-                ApplicationId = application.Id
+                ApplicationId = application.Id,
+                Application = application
             };
 
             context.Entry(userApplication).SetInsertFootprint(footprint);
             await context.AddAsync(userApplication, cancellationToken);
             await context.SaveChangesAsync(cancellationToken);
-
-            resultUserApplications.Add(new InsertUser.UserApplicationObj
-            {
-                Id = userApplication.Id,
-                Application = new InsertUser.ApplicationObj
-                {
-                    Id = application.Id,
-                    Name = application.Name,
-                    Description = application.Description
-                }
-            });
+            resultUserApplications.Add(userApplication);
         }
         #endregion
 
@@ -178,17 +156,7 @@ namespace Sorschia.Processes.Handlers
             context.Entry(userRole).SetInsertFootprint(footprint);
             await context.AddAsync(userRole, cancellationToken);
             await context.SaveChangesAsync(cancellationToken);
-
-            resultUserRoles.Add(new InsertUser.UserRoleObj
-            {
-                Id = userRole.Id,
-                Role = new InsertUser.RoleObj
-                {
-                    Id = role.Id,
-                    Name = role.Name,
-                    Description = role.Description
-                }
-            });
+            resultUserRoles.Add(userRole);
         }
         #endregion
 
@@ -229,17 +197,7 @@ namespace Sorschia.Processes.Handlers
             context.Entry(userPermission).SetInsertFootprint(footprint);
             await context.AddAsync(userPermission, cancellationToken);
             await context.SaveChangesAsync(cancellationToken);
-
-            resultUserPermissions.Add(new InsertUser.UserPermissionObj
-            {
-                Id = userPermission.Id,
-                Permission = new InsertUser.PermissionObj
-                {
-                    Id = permission.Id,
-                    Name = permission.Name,
-                    Description = permission.Description
-                }
-            });
+            resultUserPermissions.Add(userPermission);
         }
         #endregion
     }

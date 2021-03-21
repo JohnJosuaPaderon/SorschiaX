@@ -1,5 +1,5 @@
 ﻿using MediatR;
-using Sorschia.Utilities;
+using Sorschia.Entities;
 using System.Collections.Generic;
 
 namespace Sorschia.Processes
@@ -22,11 +22,40 @@ namespace Sorschia.Processes
         public ICollection<int> RoleIds { get; set; } = new List<int>();
         public ICollection<int> PermissionIds { get; set; } = new List<int>();
 
+        public User ToSource()
+        {
+            return new User
+            {
+                FirstName = FirstName,
+                MiddleName = MiddleName,
+                LastName = LastName,
+                NameSuffix = NameSuffix,
+                EmailAddress = EmailAddress,
+                MobileNumber = MobileNumber,
+                IsActive = IsActive,
+                IsPasswordChangeRequired = IsPasswordChangeRequired,
+                IsEmailAddressVerified = IsEmailAddressVerified,
+                IsMobileNumberVerified = IsMobileNumberVerified
+            };
+        }
+
         public sealed class ApplicationObj
         {
             public short Id { get; set; }
             public string Name { get; set; } = default!;
             public string? Description { get; set; }
+
+            public static implicit operator ApplicationObj?(Application source)
+            {
+                if (source is null) return null;
+
+                return new ApplicationObj
+                {
+                    Id = source.Id,
+                    Name = source.Name,
+                    Description = source.Description
+                };
+            }
         }
 
         public sealed class RoleObj
@@ -34,6 +63,18 @@ namespace Sorschia.Processes
             public int Id { get; set; }
             public string Name { get; set; } = default!;
             public string? Description { get; set; }
+
+            public static implicit operator RoleObj?(Role source)
+            {
+                if (source is null) return null;
+
+                return new RoleObj
+                {
+                    Id = source.Id,
+                    Name = source.Name,
+                    Description = source.Description
+                };
+            }
         }
 
         public sealed class PermissionObj
@@ -41,24 +82,69 @@ namespace Sorschia.Processes
             public int Id { get; set; }
             public string Name { get; set; } = default!;
             public string? Description { get; set; }
+
+            public static implicit operator PermissionObj?(Permission source)
+            {
+                if (source is null) return null;
+
+                return new PermissionObj
+                {
+                    Id = source.Id,
+                    Name = source.Name,
+                    Description = source.Description
+                };
+            }
         }
 
         public sealed class UserApplicationObj
         {
             public long Id { get; set; }
             public ApplicationObj Application { get; set; } = default!;
+
+            public static implicit operator UserApplicationObj?(UserApplication source)
+            {
+                if (source is null) return null;
+
+                return new UserApplicationObj
+                {
+                    Id = source.Id,
+                    Application = source.Application!
+                };
+            }
         }
 
         public sealed class UserRoleObj
         {
             public long Id { get; set; }
             public RoleObj Role { get; set; } = default!;
+
+            public static implicit operator UserRoleObj?(UserRole source)
+            {
+                if (source is null) return null;
+
+                return new UserRoleObj
+                {
+                    Id = source.Id,
+                    Role = source.Role!
+                };
+            }
         }
 
         public sealed class UserPermissionObj
         {
             public long Id { get; set; }
             public PermissionObj Permission { get; set; } = default!;
+
+            public static implicit operator UserPermissionObj?(UserPermission source)
+            {
+                if (source is null) return null;
+
+                return new UserPermissionObj
+                {
+                    Id = source.Id,
+                    Permission = source.Permission!
+                };
+            }
         }
 
         public class Result

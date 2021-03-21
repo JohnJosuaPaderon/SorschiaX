@@ -44,10 +44,7 @@ namespace Sorschia.Processes.Handlers
             else
                 application = await UpdateApplicationAsync(context, request, footprint, cancellationToken);
 
-            result.Id = application.Id;
-            result.Name = application.Name;
-            result.Description = application.Description;
-
+            result.FromSource(application);
             await SaveRolesAsync(context, request.Roles, application.Id, footprint, result.Roles, cancellationToken);
             await SavePermissionsAsync(context, request.Permissions, application.Id, null, footprint, result.Permissions, cancellationToken);
             await DeleteRolesAsync(context, request.DeletedRoleIds, footprint, result.DeletedRoleIds, cancellationToken);
@@ -56,11 +53,7 @@ namespace Sorschia.Processes.Handlers
 
         private static async Task<Application> InsertApplicationAsync(SorschiaDbContext context, SaveApplication request, Footprint footprint, CancellationToken cancellationToken)
         {
-            var application = new Application
-            {
-                Name = request.Name,
-                Description = request.Description
-            };
+            var application = request.ToSource();
 
             if (await context.Applications.AnyAsync(_ => _.Name == request.Name, cancellationToken))
                 throw new SorschiaDuplicateEntityFieldExceptionBuilder()
@@ -130,9 +123,7 @@ namespace Sorschia.Processes.Handlers
             else
                 role = await UpdateRoleAsync(context, requestRole, applicationId, footprint, cancellationToken);
 
-            resultRole.Id = role.Id;
-            resultRole.Name = role.Name;
-            resultRole.Description = role.Description;
+            resultRole.FromSource(role);
             await SavePermissionsAsync(context, requestRole.Permissions, null, role.Id, footprint, resultRole.Permissions, cancellationToken);
             await DeletePermissionsAsync(context, requestRole.DeletedPermissionIds, footprint, resultRole.DeletedPermissionIds, cancellationToken);
             resultRoles.Add(resultRole);
@@ -140,12 +131,7 @@ namespace Sorschia.Processes.Handlers
 
         private static async Task<Role> InsertRoleAsync(SorschiaDbContext context, SaveApplication.RoleObj requestRole, short? applicationId, Footprint Footprint, CancellationToken cancellationToken)
         {
-            var role = new Role
-            {
-                Name = requestRole.Name,
-                Description = requestRole.Description,
-                ApplicationId = applicationId
-            };
+            var role = requestRole.ToSource();
 
             if (await context.Roles.AnyAsync(_ => _.ApplicationId == applicationId && _.Name == requestRole.Name, cancellationToken))
                 throw new SorschiaDuplicateEntityFieldExceptionBuilder()
@@ -250,8 +236,7 @@ namespace Sorschia.Processes.Handlers
             else
                 permission = await UpdatePermissionAsync(context, requestPermission, applicationId, roleId, footprint, cancellationToken);
 
-            resultPermission.Name = permission.Name;
-            resultPermission.Description = permission.Description;
+            resultPermission.FromSource(permission);
             await SavePermissionAspNetRoutesAsync(context, requestPermission.AspNetRoutes, permission.Id, footprint, requestPermission.AspNetRoutes, cancellationToken);
             await DeletePermissionAspNetRoutesAsync(context, requestPermission.DeletedAspNetRouteIds, footprint, requestPermission.DeletedAspNetRouteIds, cancellationToken);
             resultPermissions.Add(resultPermission);
@@ -259,13 +244,7 @@ namespace Sorschia.Processes.Handlers
 
         private static async Task<Permission> InsertPermissionAsync(SorschiaDbContext context, SaveApplication.PermissionObj requestPermission, short? applicationId, int? roleId, Footprint footprint, CancellationToken cancellationToken)
         {
-            var permission = new Permission
-            {
-                Name = requestPermission.Name,
-                Description = requestPermission.Description,
-                ApplicationId = applicationId,
-                RoleId = roleId
-            };
+            var permission = requestPermission.ToSource(applicationId, roleId);
 
             if (await context.Permissions.AnyAsync(_ => _.ApplicationId == applicationId && _.RoleId == roleId && _.Name == requestPermission.Name, cancellationToken))
                 throw new SorschiaDuplicateEntityFieldExceptionBuilder()
@@ -372,24 +351,12 @@ namespace Sorschia.Processes.Handlers
             else
                 permissionAspNetRoute = await UpdatePermissionAspNetRouteAsync(context, requestPermissionAspNetRoute, permissionId, footprint, cancellationToken);
 
-            resultPermissionAspNetRoutes.Add(new SaveApplication.PermissionAspNetRouteObj
-            {
-                Id = permissionAspNetRoute.Id,
-                AspNetArea = permissionAspNetRoute.AspNetArea,
-                AspNetController = permissionAspNetRoute.AspNetController,
-                AspNetAction = permissionAspNetRoute.AspNetAction
-            });
+            resultPermissionAspNetRoutes.Add(permissionAspNetRoute);
         }
 
         private static async Task<PermissionAspNetRoute> InsertPermissionAspNetRouteAsync(SorschiaDbContext context, SaveApplication.PermissionAspNetRouteObj requestPermissionAspNetRoute, int permissionId, Footprint footprint, CancellationToken cancellationToken)
         {
-            var permissionAspNetRoute = new PermissionAspNetRoute
-            {
-                AspNetArea = requestPermissionAspNetRoute.AspNetArea,
-                AspNetController = requestPermissionAspNetRoute.AspNetController,
-                AspNetAction = requestPermissionAspNetRoute.AspNetAction,
-                PermissionId = permissionId
-            };
+            var permissionAspNetRoute = requestPermissionAspNetRoute.ToSource(permissionId);
 
             if (await context.PermissionAspNetRoutes.AnyAsync(_ => _.PermissionId == permissionId && _.AspNetArea == requestPermissionAspNetRoute.AspNetArea && _.AspNetController == requestPermissionAspNetRoute.AspNetController && _.AspNetAction == requestPermissionAspNetRoute.AspNetAction, cancellationToken))
                 throw new SorschiaDuplicateEntityFieldExceptionBuilder()
