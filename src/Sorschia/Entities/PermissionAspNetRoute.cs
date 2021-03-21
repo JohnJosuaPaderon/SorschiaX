@@ -8,7 +8,7 @@
         public string AspNetController { get; set; } = default!;
         public string AspNetAction { get; set; } = default!;
 
-        public Permission Permission { get; set; } = default!;
+        public Permission? Permission { get; set; }
 
         public const int AspNetAreaMaxLength = 100;
         public const int AspNetControllerMaxLength = 100;
