@@ -7,7 +7,7 @@ namespace Sorschia.Data
 {
     partial class SorschiaDbContext
     {
-        private class Role_ConfigObj : IEntityTypeConfiguration<Role>
+        private sealed class Role_ConfigObj : IEntityTypeConfiguration<Role>
         {
             public void Configure(EntityTypeBuilder<Role> builder)
             {

@@ -7,7 +7,7 @@ namespace Sorschia.Data
 {
     partial class SorschiaDbContext
     {
-        private class PermissionAspNetRoute_ConfigObj : IEntityTypeConfiguration<PermissionAspNetRoute>
+        private sealed class PermissionAspNetRoute_ConfigObj : IEntityTypeConfiguration<PermissionAspNetRoute>
         {
             public void Configure(EntityTypeBuilder<PermissionAspNetRoute> builder)
             {

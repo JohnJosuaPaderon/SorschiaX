@@ -7,7 +7,7 @@ namespace Sorschia.Data
 {
     partial class SorschiaDbContext
     {
-        private class Permission_ConfigObj : IEntityTypeConfiguration<Permission>
+        private sealed class Permission_ConfigObj : IEntityTypeConfiguration<Permission>
         {
             public void Configure(EntityTypeBuilder<Permission> builder)
             {

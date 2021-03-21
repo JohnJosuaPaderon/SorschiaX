@@ -7,7 +7,7 @@ namespace Sorschia.Data
 {
     partial class SorschiaDbContext
     {
-        private class Application_ConfigObj : IEntityTypeConfiguration<Application>
+        private sealed class Application_ConfigObj : IEntityTypeConfiguration<Application>
         {
             public void Configure(EntityTypeBuilder<Application> builder)
             {
