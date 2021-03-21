@@ -10,7 +10,7 @@ namespace Sorschia.Entities
         public short? ApplicationId { get; set; }
 
         public Application? Application { get; set; }
-        public ICollection<Permission> Permissions { get; set; } = new HashSet<Permission>();
+        public ICollection<Permission> Permissions { get; set; } = new List<Permission>();
 
         public const int NameMaxLength = 100;
         public const int DescriptionMaxLength = 500;

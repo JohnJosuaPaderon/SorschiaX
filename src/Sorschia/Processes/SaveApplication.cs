@@ -8,18 +8,18 @@ namespace Sorschia.Processes
         public short Id { get; set; }
         public string Name { get; set; } = default!;
         public string? Description { get; set; }
-        public ICollection<RoleObj> Roles { get; set; } = new HashSet<RoleObj>();
-        public ICollection<PermissionObj> Permissions { get; set; } = new HashSet<PermissionObj>();
-        public ICollection<int> DeletedRoleIds { get; set; } = new HashSet<int>();
-        public ICollection<int> DeletedPermissionIds { get; set; } = new HashSet<int>();
+        public ICollection<RoleObj> Roles { get; set; } = new List<RoleObj>();
+        public ICollection<PermissionObj> Permissions { get; set; } = new List<PermissionObj>();
+        public ICollection<int> DeletedRoleIds { get; set; } = new List<int>();
+        public ICollection<int> DeletedPermissionIds { get; set; } = new List<int>();
 
         public sealed class RoleObj
         {
             public int Id { get; set; }
             public string Name { get; set; } = default!;
             public string? Description { get; set; }
-            public ICollection<PermissionObj> Permissions { get; set; } = new HashSet<PermissionObj>();
-            public ICollection<int> DeletedPermissionIds { get; set; } = new HashSet<int>();
+            public ICollection<PermissionObj> Permissions { get; set; } = new List<PermissionObj>();
+            public ICollection<int> DeletedPermissionIds { get; set; } = new List<int>();
         }
 
         public sealed class PermissionObj
@@ -27,8 +27,8 @@ namespace Sorschia.Processes
             public int Id { get; set; }
             public string Name { get; set; } = default!;
             public string? Description { get; set; }
-            public ICollection<PermissionAspNetRouteObj> AspNetRoutes { get; set; } = new HashSet<PermissionAspNetRouteObj>();
-            public ICollection<long> DeletedAspNetRouteIds { get; set; } = new HashSet<long>();
+            public ICollection<PermissionAspNetRouteObj> AspNetRoutes { get; set; } = new List<PermissionAspNetRouteObj>();
+            public ICollection<long> DeletedAspNetRouteIds { get; set; } = new List<long>();
         }
 
         public sealed class PermissionAspNetRouteObj
@@ -44,10 +44,10 @@ namespace Sorschia.Processes
             public short Id { get; set; }
             public string Name { get; set; } = default!;
             public string? Description { get; set; }
-            public ICollection<RoleObj> Roles { get; set; } = new HashSet<RoleObj>();
-            public ICollection<PermissionObj> Permissions { get; set; } = new HashSet<PermissionObj>();
-            public ICollection<int> DeletedRoleIds { get; set; } = new HashSet<int>();
-            public ICollection<int> DeletedPermissionIds { get; set; } = new HashSet<int>();
+            public ICollection<RoleObj> Roles { get; set; } = new List<RoleObj>();
+            public ICollection<PermissionObj> Permissions { get; set; } = new List<PermissionObj>();
+            public ICollection<int> DeletedRoleIds { get; set; } = new List<int>();
+            public ICollection<int> DeletedPermissionIds { get; set; } = new List<int>();
         }
     }
 }
