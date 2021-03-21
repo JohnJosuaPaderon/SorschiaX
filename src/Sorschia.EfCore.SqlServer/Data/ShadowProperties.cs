@@ -9,5 +9,10 @@
         public const string UpdatedOn = "UpdatedOn";
         public const string DeletedById = "DeletedById";
         public const string DeletedOn = "DeletedOn";
+
+        public static class User
+        {
+            public const string SecurePassword = "SecurePassword";
+        }
     }
 }

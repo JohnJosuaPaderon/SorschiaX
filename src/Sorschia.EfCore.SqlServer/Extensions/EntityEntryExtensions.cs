@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Sorschia.Data;
+using Sorschia.Entities;
 using Sorschia.Utilities;
 using System;
 
@@ -35,6 +36,12 @@ namespace Sorschia.Extensions
         {
             instance.Property<int?>(ShadowProperties.DeletedById).CurrentValue = footprint.UserId;
             instance.Property<DateTimeOffset?>(ShadowProperties.DeletedOn).CurrentValue = footprint.Timestamp;
+            return instance;
+        }
+
+        public static EntityEntry<User> SetSecurePassword(this EntityEntry<User> instance, string securePassword)
+        {
+            instance.Property<string>(ShadowProperties.User.SecurePassword).CurrentValue = securePassword;
             return instance;
         }
     }
