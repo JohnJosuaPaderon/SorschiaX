@@ -46,7 +46,7 @@ namespace Sorschia.Processes
             public string Name { get; set; } = default!;
             public string? Description { get; set; }
 
-            public static implicit operator ApplicationObj?(Application source)
+            public static implicit operator ApplicationObj?(Application? source)
             {
                 if (source is null) return null;
 
@@ -65,7 +65,7 @@ namespace Sorschia.Processes
             public string Name { get; set; } = default!;
             public string? Description { get; set; }
 
-            public static implicit operator RoleObj?(Role source)
+            public static implicit operator RoleObj?(Role? source)
             {
                 if (source is null) return null;
 
@@ -84,7 +84,7 @@ namespace Sorschia.Processes
             public string Name { get; set; } = default!;
             public string? Description { get; set; }
 
-            public static implicit operator PermissionObj?(Permission source)
+            public static implicit operator PermissionObj?(Permission? source)
             {
                 if (source is null) return null;
 
@@ -100,16 +100,16 @@ namespace Sorschia.Processes
         public sealed class UserApplicationObj
         {
             public long Id { get; set; }
-            public ApplicationObj Application { get; set; } = default!;
+            public ApplicationObj? Application { get; set; }
 
-            public static implicit operator UserApplicationObj?(UserApplication source)
+            public static implicit operator UserApplicationObj?(UserApplication? source)
             {
                 if (source is null) return null;
 
                 return new UserApplicationObj
                 {
                     Id = source.Id,
-                    Application = source.Application!
+                    Application = source.Application
                 };
             }
         }
@@ -117,9 +117,9 @@ namespace Sorschia.Processes
         public sealed class UserRoleObj
         {
             public long Id { get; set; }
-            public RoleObj Role { get; set; } = default!;
+            public RoleObj? Role { get; set; }
 
-            public static implicit operator UserRoleObj?(UserRole source)
+            public static implicit operator UserRoleObj?(UserRole? source)
             {
                 if (source is null) return null;
 
@@ -134,9 +134,9 @@ namespace Sorschia.Processes
         public sealed class UserPermissionObj
         {
             public long Id { get; set; }
-            public PermissionObj Permission { get; set; } = default!;
+            public PermissionObj? Permission { get; set; }
 
-            public static implicit operator UserPermissionObj?(UserPermission source)
+            public static implicit operator UserPermissionObj?(UserPermission? source)
             {
                 if (source is null) return null;
 
@@ -167,7 +167,7 @@ namespace Sorschia.Processes
             public ICollection<UserRoleObj> UserRoles { get; set; } = new List<UserRoleObj>();
             public ICollection<UserPermissionObj> UserPermissions { get; set; } = new List<UserPermissionObj>(); 
 
-            public void FromSource(User source)
+            public void FromSource(User? source)
             {
                 if (source is null) return;
 

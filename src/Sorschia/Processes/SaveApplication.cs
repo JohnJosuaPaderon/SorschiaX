@@ -42,7 +42,7 @@ namespace Sorschia.Processes
                 };
             }
 
-            public void FromSource(Role source)
+            public void FromSource(Role? source)
             {
                 if (source is null) return;
 
@@ -72,7 +72,7 @@ namespace Sorschia.Processes
                 };
             }
 
-            public void FromSource(Permission source)
+            public void FromSource(Permission? source)
             {
                 if (source is null) return;
                 
@@ -101,7 +101,7 @@ namespace Sorschia.Processes
                 };
             }
 
-            public static implicit operator PermissionAspNetRouteObj?(PermissionAspNetRoute source)
+            public static implicit operator PermissionAspNetRouteObj?(PermissionAspNetRoute? source)
             {
                 if (source is null) return null;
 
@@ -125,7 +125,7 @@ namespace Sorschia.Processes
             public ICollection<int> DeletedRoleIds { get; set; } = new List<int>();
             public ICollection<int> DeletedPermissionIds { get; set; } = new List<int>();
 
-            public void FromSource(Application source)
+            public void FromSource(Application? source)
             {
                 if (source is null) return;
 
