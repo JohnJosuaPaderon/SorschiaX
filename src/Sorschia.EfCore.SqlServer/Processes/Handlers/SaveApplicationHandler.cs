@@ -74,7 +74,7 @@ namespace Sorschia.Processes.Handlers
             if (application is null)
                 throw new SorschiaEntityNotFoundExceptionBuilder()
                     .WithEntityType<Application>()
-                    .AddLookupField("request.Id", request.Id)
+                    .AddLookupField("Id", request.Id)
                     .Build();
 
             if (application.HasChanges(request))
@@ -139,7 +139,7 @@ namespace Sorschia.Processes.Handlers
             if (role is null)
                 throw new SorschiaEntityNotFoundExceptionBuilder()
                     .WithEntityType<Role>()
-                    .AddLookupField("requestRole.Id", requestRole.Id)
+                    .AddLookupField("Id", requestRole.Id)
                     .Build();
 
             if (role.HasChanges(requestRole, applicationId))
@@ -171,7 +171,7 @@ namespace Sorschia.Processes.Handlers
             if (role is null)
                 throw new SorschiaEntityNotFoundExceptionBuilder()
                     .WithEntityType<Role>()
-                    .AddLookupField("requestDeletedRoleId", requestDeletedRoleId)
+                    .AddLookupField("Id", requestDeletedRoleId)
                     .Build();
 
             context.Entry(role)
@@ -234,7 +234,7 @@ namespace Sorschia.Processes.Handlers
             if (permission is null)
                 throw new SorschiaEntityNotFoundExceptionBuilder()
                     .WithEntityType<Permission>()
-                    .AddLookupField("requestPermission.Id", requestPermission.Id)
+                    .AddLookupField("Id", requestPermission.Id)
                     .Build();
 
             if (permission.HasChanges(requestPermission, applicationId, roleId))
@@ -266,7 +266,7 @@ namespace Sorschia.Processes.Handlers
             if (permission is null)
                 throw new SorschiaEntityNotFoundExceptionBuilder()
                     .WithEntityType<Permission>()
-                    .AddLookupField("requestDeletedPermissionId", requestDeletedPermissionId)
+                    .AddLookupField("Id", requestDeletedPermissionId)
                     .Build();
 
             context.Entry(permission)
