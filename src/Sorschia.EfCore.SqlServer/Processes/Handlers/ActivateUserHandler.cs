@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Sorschia.Data;
+using Sorschia.Entities.ExceptionBuilders;
 using Sorschia.Extensions;
 using Sorschia.Utilities;
-using Sorschia.Utilities.ExceptionBuilders;
 using System.Threading;
 using System.Threading.Tasks;
 

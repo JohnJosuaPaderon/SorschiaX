@@ -2,10 +2,10 @@
 using Microsoft.EntityFrameworkCore;
 using Sorschia.Data;
 using Sorschia.Entities;
+using Sorschia.Entities.ExceptionBuilders;
 using Sorschia.Extensions;
 using Sorschia.Security;
 using Sorschia.Utilities;
-using Sorschia.Utilities.ExceptionBuilders;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
