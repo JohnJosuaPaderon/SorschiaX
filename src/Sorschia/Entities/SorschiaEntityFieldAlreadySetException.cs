@@ -4,32 +4,27 @@ using System.Runtime.Serialization;
 
 namespace Sorschia.Entities
 {
-    public class SorschiaEntityFieldAlreadySetException : SorschiaException
+    public class SorschiaEntityFieldAlreadySetException : SorschiaEntityException
     {
-        public Type? EntityType { get; }
         public IDictionary<string, object> EntityFields { get; }
 
-        public SorschiaEntityFieldAlreadySetException(Type? entityType, IDictionary<string, object> entityFields, bool isUserFriendlyMessage = false) : base(isUserFriendlyMessage)
+        public SorschiaEntityFieldAlreadySetException(Type? entityType, IDictionary<string, object> entityFields, bool isUserFriendlyMessage = false) : base(entityType, isUserFriendlyMessage)
         {
-            EntityType = entityType;
             EntityFields = entityFields;
         }
 
-        public SorschiaEntityFieldAlreadySetException(Type? entityType, IDictionary<string, object> entityFields, string message, bool isUserFriendlyMessage = false) : base(message, isUserFriendlyMessage)
+        public SorschiaEntityFieldAlreadySetException(Type? entityType, IDictionary<string, object> entityFields, string message, bool isUserFriendlyMessage = false) : base(entityType, message, isUserFriendlyMessage)
         {
-            EntityType = entityType;
             EntityFields = entityFields;
         }
 
-        public SorschiaEntityFieldAlreadySetException(Type? entityType, IDictionary<string, object> entityFields, string message, Exception innerException, bool isUserFriendlyMessage = false) : base(message, innerException, isUserFriendlyMessage)
+        public SorschiaEntityFieldAlreadySetException(Type? entityType, IDictionary<string, object> entityFields, string message, Exception innerException, bool isUserFriendlyMessage = false) : base(entityType, message, innerException, isUserFriendlyMessage)
         {
-            EntityType = entityType;
             EntityFields = entityFields;
         }
 
-        protected SorschiaEntityFieldAlreadySetException(Type? entityType, IDictionary<string, object> entityFields, SerializationInfo info, StreamingContext context, bool isUserFriendlyMessage = false) : base(info, context, isUserFriendlyMessage)
+        protected SorschiaEntityFieldAlreadySetException(Type? entityType, IDictionary<string, object> entityFields, SerializationInfo info, StreamingContext context, bool isUserFriendlyMessage = false) : base(entityType, info, context, isUserFriendlyMessage)
         {
-            EntityType = entityType;
             EntityFields = entityFields;
         }
     }
