@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Sorschia.Utilities.ExceptionBuilders
+namespace Sorschia.Entities.ExceptionBuilders
 {
     public sealed class SorschiaEntityNotFoundExceptionBuilder
     {
