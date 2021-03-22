@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace Sorschia
+namespace Sorschia.Entities
 {
     public class SorschiaDuplicateEntityFieldException : SorschiaException
     {
