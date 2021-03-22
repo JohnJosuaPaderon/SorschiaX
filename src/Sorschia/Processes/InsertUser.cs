@@ -166,6 +166,25 @@ namespace Sorschia.Processes
             public ICollection<UserApplicationObj> UserApplications { get; set; } = new List<UserApplicationObj>();
             public ICollection<UserRoleObj> UserRoles { get; set; } = new List<UserRoleObj>();
             public ICollection<UserPermissionObj> UserPermissions { get; set; } = new List<UserPermissionObj>(); 
+
+            public void FromSource(User source)
+            {
+                if (source is null) return;
+
+                Id = source.Id;
+                FirstName = source.FirstName;
+                MiddleName = source.MiddleName;
+                LastName = source.LastName;
+                NameSuffix = source.NameSuffix;
+                FullName = source.FullName;
+                Username = source.Username;
+                EmailAddress = source.EmailAddress;
+                MobileNumber = source.MobileNumber;
+                IsActive = source.IsActive;
+                IsPasswordChangeRequired = source.IsPasswordChangeRequired;
+                IsEmailAddressVerified = source.IsEmailAddressVerified;
+                IsMobileNumberVerified = source.IsMobileNumberVerified;
+            }
         }
     }
 }
