@@ -20,7 +20,7 @@ namespace Sorschia.Utilities.ExceptionBuilders
             return this;
         }
 
-        public SorschiaDuplicateEntityFieldExceptionBuilder AddDuplicateFields(string key, object value)
+        public SorschiaDuplicateEntityFieldExceptionBuilder AddDuplicateField(string key, object value)
         {
             DuplicateFields.Add(key, value);
             return this;

@@ -41,7 +41,7 @@ namespace Sorschia.Processes.Handlers
             if (await context.Applications.AnyAsync(_ => _.Id != request.Id && _.Name == request.Name, cancellationToken))
                 throw new SorschiaDuplicateEntityFieldExceptionBuilder()
                     .WithEntityType<Application>()
-                    .AddDuplicateFields("Name", request.Name)
+                    .AddDuplicateField("Name", request.Name)
                     .Build();
 
             Application application;
@@ -74,7 +74,7 @@ namespace Sorschia.Processes.Handlers
             if (application is null)
                 throw new SorschiaEntityNotFoundExceptionBuilder()
                     .WithEntityType<Application>()
-                    .AddLookupParameter("request.Id", request.Id)
+                    .AddLookupField("request.Id", request.Id)
                     .Build();
 
             if (application.HasChanges(request))
@@ -105,8 +105,8 @@ namespace Sorschia.Processes.Handlers
             if (await context.Roles.AnyAsync(_ => _.Id != requestRole.Id && _.ApplicationId == applicationId && _.Name == requestRole.Name, cancellationToken))
                 throw new SorschiaDuplicateEntityFieldExceptionBuilder()
                     .WithEntityType<Role>()
-                    .AddDuplicateFields("ApplicationId", applicationId)
-                    .AddDuplicateFields("Name", requestRole.Name)
+                    .AddDuplicateField("ApplicationId", applicationId)
+                    .AddDuplicateField("Name", requestRole.Name)
                     .Build();
 
             Role role;
@@ -139,7 +139,7 @@ namespace Sorschia.Processes.Handlers
             if (role is null)
                 throw new SorschiaEntityNotFoundExceptionBuilder()
                     .WithEntityType<Role>()
-                    .AddLookupParameter("requestRole.Id", requestRole.Id)
+                    .AddLookupField("requestRole.Id", requestRole.Id)
                     .Build();
 
             if (role.HasChanges(requestRole, applicationId))
@@ -171,7 +171,7 @@ namespace Sorschia.Processes.Handlers
             if (role is null)
                 throw new SorschiaEntityNotFoundExceptionBuilder()
                     .WithEntityType<Role>()
-                    .AddLookupParameter("requestDeletedRoleId", requestDeletedRoleId)
+                    .AddLookupField("requestDeletedRoleId", requestDeletedRoleId)
                     .Build();
 
             context.Entry(role)
@@ -199,9 +199,9 @@ namespace Sorschia.Processes.Handlers
             if (await context.Permissions.AnyAsync(_ => _.Id != requestPermission.Id && _.ApplicationId == applicationId && _.RoleId == roleId && _.Name == requestPermission.Name, cancellationToken))
                 throw new SorschiaDuplicateEntityFieldExceptionBuilder()
                     .WithEntityType<Permission>()
-                    .AddDuplicateFields("ApplicationId", applicationId)
-                    .AddDuplicateFields("RoleId", roleId)
-                    .AddDuplicateFields("Name", requestPermission.Name)
+                    .AddDuplicateField("ApplicationId", applicationId)
+                    .AddDuplicateField("RoleId", roleId)
+                    .AddDuplicateField("Name", requestPermission.Name)
                     .Build();
 
             Permission permission;
@@ -234,7 +234,7 @@ namespace Sorschia.Processes.Handlers
             if (permission is null)
                 throw new SorschiaEntityNotFoundExceptionBuilder()
                     .WithEntityType<Permission>()
-                    .AddLookupParameter("requestPermission.Id", requestPermission.Id)
+                    .AddLookupField("requestPermission.Id", requestPermission.Id)
                     .Build();
 
             if (permission.HasChanges(requestPermission, applicationId, roleId))
@@ -266,7 +266,7 @@ namespace Sorschia.Processes.Handlers
             if (permission is null)
                 throw new SorschiaEntityNotFoundExceptionBuilder()
                     .WithEntityType<Permission>()
-                    .AddLookupParameter("requestDeletedPermissionId", requestDeletedPermissionId)
+                    .AddLookupField("requestDeletedPermissionId", requestDeletedPermissionId)
                     .Build();
 
             context.Entry(permission)
@@ -294,10 +294,10 @@ namespace Sorschia.Processes.Handlers
             if (await context.PermissionAspNetRoutes.AnyAsync(_ => _.Id != requestPermissionAspNetRoute.Id && _.PermissionId == permissionId && _.AspNetArea == requestPermissionAspNetRoute.AspNetArea && _.AspNetController == requestPermissionAspNetRoute.AspNetController && _.AspNetAction == requestPermissionAspNetRoute.AspNetAction, cancellationToken))
                 throw new SorschiaDuplicateEntityFieldExceptionBuilder()
                     .WithEntityType<PermissionAspNetRoute>()
-                    .AddDuplicateFields("PermissionId", permissionId)
-                    .AddDuplicateFields("AspNetArea", requestPermissionAspNetRoute.AspNetArea)
-                    .AddDuplicateFields("AspNetController", requestPermissionAspNetRoute.AspNetController)
-                    .AddDuplicateFields("AspNetAction", requestPermissionAspNetRoute.AspNetAction)
+                    .AddDuplicateField("PermissionId", permissionId)
+                    .AddDuplicateField("AspNetArea", requestPermissionAspNetRoute.AspNetArea)
+                    .AddDuplicateField("AspNetController", requestPermissionAspNetRoute.AspNetController)
+                    .AddDuplicateField("AspNetAction", requestPermissionAspNetRoute.AspNetAction)
                     .Build();
 
             PermissionAspNetRoute permissionAspNetRoute;
@@ -326,7 +326,7 @@ namespace Sorschia.Processes.Handlers
             if (permissionAspNetRoute is null)
                 throw new SorschiaEntityNotFoundExceptionBuilder()
                     .WithEntityType<PermissionAspNetRoute>()
-                    .AddLookupParameter("requestPermissionAspNetRoute.Id", requestPermissionAspNetRoute.Id)
+                    .AddLookupField("Id", requestPermissionAspNetRoute.Id)
                     .Build();
 
             if (permissionAspNetRoute.HasChanges(requestPermissionAspNetRoute, permissionId))
@@ -358,7 +358,7 @@ namespace Sorschia.Processes.Handlers
             if (permissionAspNetRoute is null)
                 throw new SorschiaEntityNotFoundExceptionBuilder()
                     .WithEntityType<PermissionAspNetRoute>()
-                    .AddLookupParameter("requestDeletedPermissionAspNetRouteId", requestDeletedPermissionAspNetRouteId)
+                    .AddLookupField("Id", requestDeletedPermissionAspNetRouteId)
                     .Build();
 
             context.Entry(permissionAspNetRoute)

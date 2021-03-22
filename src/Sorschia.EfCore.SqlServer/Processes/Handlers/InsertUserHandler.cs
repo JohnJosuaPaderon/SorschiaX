@@ -48,7 +48,7 @@ namespace Sorschia.Processes.Handlers
             if (await context.Users.AnyAsync(_ => _.Username == request.Username, cancellationToken))
                 throw new SorschiaDuplicateEntityFieldExceptionBuilder()
                     .WithEntityType<User>()
-                    .AddDuplicateFields("Username", request.Username)
+                    .AddDuplicateField("Username", request.Username)
                     .Build();
 
             context.Entry(user)
@@ -82,14 +82,14 @@ namespace Sorschia.Processes.Handlers
             if (application is null)
                 throw new SorschiaEntityNotFoundExceptionBuilder()
                     .WithEntityType<Application>()
-                    .AddLookupParameter("requestApplicationId", requestApplicationId)
+                    .AddLookupField("requestApplicationId", requestApplicationId)
                     .Build();
 
             if (await context.UserApplications.AnyAsync(_ => _.UserId == userId && _.ApplicationId == application.Id, cancellationToken))
                 throw new SorschiaDuplicateEntityFieldExceptionBuilder()
                     .WithEntityType<UserApplication>()
-                    .AddDuplicateFields("UserId", userId)
-                    .AddDuplicateFields("ApplicationId", application.Id)
+                    .AddDuplicateField("UserId", userId)
+                    .AddDuplicateField("ApplicationId", application.Id)
                     .Build();
 
             var userApplication = new UserApplication
@@ -124,14 +124,14 @@ namespace Sorschia.Processes.Handlers
             if (role is null)
                 throw new SorschiaEntityNotFoundExceptionBuilder()
                     .WithEntityType<Role>()
-                    .AddLookupParameter("requestRoleId", requestRoleId)
+                    .AddLookupField("requestRoleId", requestRoleId)
                     .Build();
 
             if (await context.UserRoles.AnyAsync(_ => _.UserId == userId && _.RoleId == role.Id, cancellationToken))
                 throw new SorschiaDuplicateEntityFieldExceptionBuilder()
                     .WithEntityType<UserRole>()
-                    .AddDuplicateFields("UserId", userId)
-                    .AddDuplicateFields("RoleId", role.Id)
+                    .AddDuplicateField("UserId", userId)
+                    .AddDuplicateField("RoleId", role.Id)
                     .Build();
 
             var userRole = new UserRole
@@ -166,14 +166,14 @@ namespace Sorschia.Processes.Handlers
             if (permission is null)
                 throw new SorschiaEntityNotFoundExceptionBuilder()
                     .WithEntityType<Permission>()
-                    .AddLookupParameter("requestPermissionId", requestPermissionId)
+                    .AddLookupField("requestPermissionId", requestPermissionId)
                     .Build();
 
             if (await context.UserPermissions.AnyAsync(_ => _.UserId == userId && _.PermissionId == permission.Id, cancellationToken))
                 throw new SorschiaDuplicateEntityFieldExceptionBuilder()
                     .WithEntityType<UserPermission>()
-                    .AddDuplicateFields("UserId", userId)
-                    .AddDuplicateFields("PermissionId", permission.Id)
+                    .AddDuplicateField("UserId", userId)
+                    .AddDuplicateField("PermissionId", permission.Id)
                     .Build();
 
             var userPermission = new UserPermission
