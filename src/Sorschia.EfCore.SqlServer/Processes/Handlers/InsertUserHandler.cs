@@ -51,10 +51,9 @@ namespace Sorschia.Processes.Handlers
                     .AddDuplicateField("Username", request.Username)
                     .Build();
 
-            context.Entry(user)
+            context.Add(user)
                 .SetSecurePassword(_userPasswordTransformer.ToSecurePassword(request.Password))
                 .SetInsertFootprint(footprint);
-            await context.AddAsync(user, cancellationToken);
             await context.SaveChangesAsync(cancellationToken);
 
             await InsertUserApplicationsAsync(context, request.ApplicationIds, user.Id, footprint, result.UserApplications, cancellationToken);
@@ -99,8 +98,9 @@ namespace Sorschia.Processes.Handlers
                 Application = application
             };
 
-            context.Entry(userApplication).SetInsertFootprint(footprint);
-            await context.AddAsync(userApplication, cancellationToken);
+            context
+                .Add(userApplication)
+                .SetInsertFootprint(footprint);
             await context.SaveChangesAsync(cancellationToken);
             resultUserApplications.Add(userApplication);
         }
@@ -141,8 +141,9 @@ namespace Sorschia.Processes.Handlers
                 Role = role
             };
 
-            context.Entry(userRole).SetInsertFootprint(footprint);
-            await context.AddAsync(userRole, cancellationToken);
+            context
+                .Add(userRole)
+                .SetInsertFootprint(footprint);
             await context.SaveChangesAsync(cancellationToken);
             resultUserRoles.Add(userRole);
         }
@@ -183,8 +184,9 @@ namespace Sorschia.Processes.Handlers
                 Permission = permission
             };
 
-            context.Entry(userPermission).SetInsertFootprint(footprint);
-            await context.AddAsync(userPermission, cancellationToken);
+            context
+                .Add(userPermission)
+                .SetInsertFootprint(footprint);
             await context.SaveChangesAsync(cancellationToken);
             resultUserPermissions.Add(userPermission);
         }

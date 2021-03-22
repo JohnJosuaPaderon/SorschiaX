@@ -61,8 +61,8 @@ namespace Sorschia.Processes.Handlers
         private static async Task<Application> InsertApplicationAsync(SorschiaDbContext context, SaveApplication request, Footprint footprint, CancellationToken cancellationToken)
         {
             var application = request.ToSource();
-            context.Entry(application).SetInsertFootprint(footprint);
-            await context.AddAsync(application, cancellationToken);
+            context.Add(application)
+                .SetInsertFootprint(footprint);
             await context.SaveChangesAsync(cancellationToken);
             return application;
         }
@@ -80,8 +80,8 @@ namespace Sorschia.Processes.Handlers
             if (application.HasChanges(request))
             {
                 application.FromRequest(request);
-                context.Entry(application).SetUpdateFootprint(footprint);
-                context.Update(application);
+                context.Update(application)
+                    .SetUpdateFootprint(footprint);
             }
 
             return application;
@@ -126,8 +126,8 @@ namespace Sorschia.Processes.Handlers
         private static async Task<Role> InsertRoleAsync(SorschiaDbContext context, SaveApplication.RoleObj requestRole, short? applicationId, Footprint Footprint, CancellationToken cancellationToken)
         {
             var role = requestRole.ToSource();
-            context.Entry(role).SetInsertFootprint(Footprint);
-            await context.AddAsync(role, cancellationToken);
+            context.Add(role)
+                .SetInsertFootprint(Footprint);
             await context.SaveChangesAsync(cancellationToken);
             return role;
         }
@@ -145,8 +145,8 @@ namespace Sorschia.Processes.Handlers
             if (role.HasChanges(requestRole, applicationId))
             {
                 role.FromRequest(requestRole, applicationId);
-                context.Entry(role).SetUpdateFootprint(footprint);
-                context.Update(role);
+                context.Update(role)
+                    .SetUpdateFootprint(footprint);
             }
 
             return role;
@@ -174,10 +174,9 @@ namespace Sorschia.Processes.Handlers
                     .AddLookupField("Id", requestDeletedRoleId)
                     .Build();
 
-            context.Entry(role)
+            context.Update(role)
                 .SoftDelete()
                 .SetDeleteFootprint(footprint);
-            context.Update(role);
 
             resultDeletedRoleIds.Add(role.Id);
         }
@@ -221,8 +220,8 @@ namespace Sorschia.Processes.Handlers
         private static async Task<Permission> InsertPermissionAsync(SorschiaDbContext context, SaveApplication.PermissionObj requestPermission, short? applicationId, int? roleId, Footprint footprint, CancellationToken cancellationToken)
         {
             var permission = requestPermission.ToSource(applicationId, roleId);
-            context.Entry(permission).SetInsertFootprint(footprint);
-            await context.AddAsync(permission, cancellationToken);
+            context.Add(permission)
+                .SetInsertFootprint(footprint);
             await context.SaveChangesAsync(cancellationToken);
             return permission;
         }
@@ -240,8 +239,8 @@ namespace Sorschia.Processes.Handlers
             if (permission.HasChanges(requestPermission, applicationId, roleId))
             {
                 permission.FromRequest(requestPermission, applicationId, roleId);
-                context.Entry(permission).SetUpdateFootprint(footprint);
-                context.Update(permission);
+                context.Update(permission)
+                    .SetUpdateFootprint(footprint);
             }
 
             return permission;
@@ -269,10 +268,9 @@ namespace Sorschia.Processes.Handlers
                     .AddLookupField("Id", requestDeletedPermissionId)
                     .Build();
 
-            context.Entry(permission)
+            context.Update(permission)
                 .SoftDelete()
                 .SetDeleteFootprint(footprint);
-            context.Update(permission);
 
             resultDeletedPermissionIds.Add(permission.Id);
         }
@@ -313,8 +311,8 @@ namespace Sorschia.Processes.Handlers
         private static async Task<PermissionAspNetRoute> InsertPermissionAspNetRouteAsync(SorschiaDbContext context, SaveApplication.PermissionAspNetRouteObj requestPermissionAspNetRoute, int permissionId, Footprint footprint, CancellationToken cancellationToken)
         {
             var permissionAspNetRoute = requestPermissionAspNetRoute.ToSource(permissionId);
-            context.Entry(permissionAspNetRoute).SetInsertFootprint(footprint);
-            await context.AddAsync(permissionAspNetRoute, cancellationToken);
+            context.Add(permissionAspNetRoute)
+                .SetInsertFootprint(footprint);
             await context.SaveChangesAsync(cancellationToken);
             return permissionAspNetRoute;
         }
@@ -332,8 +330,8 @@ namespace Sorschia.Processes.Handlers
             if (permissionAspNetRoute.HasChanges(requestPermissionAspNetRoute, permissionId))
             {
                 permissionAspNetRoute.FromRequest(requestPermissionAspNetRoute, permissionId);
-                context.Entry(permissionAspNetRoute).SetUpdateFootprint(footprint);
-                context.Update(permissionAspNetRoute);
+                context.Update(permissionAspNetRoute)
+                    .SetUpdateFootprint(footprint);
             }
 
             return permissionAspNetRoute;
@@ -361,10 +359,9 @@ namespace Sorschia.Processes.Handlers
                     .AddLookupField("Id", requestDeletedPermissionAspNetRouteId)
                     .Build();
 
-            context.Entry(permissionAspNetRoute)
+            context.Update(permissionAspNetRoute)
                 .SoftDelete()
                 .SetDeleteFootprint(footprint);
-            context.Update(permissionAspNetRoute);
             resultDeletedPermissionAspNetRouteIds.Add(permissionAspNetRoute.Id);
         }
         #endregion
