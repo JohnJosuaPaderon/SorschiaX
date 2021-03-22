@@ -60,20 +60,7 @@ namespace Sorschia.Processes.Handlers
             await InsertUserApplicationsAsync(context, request.ApplicationIds, user.Id, footprint, result.UserApplications, cancellationToken);
             await InsertUserRolesAsync(context, request.RoleIds, user.Id, footprint, result.UserRoles, cancellationToken);
             await InsertUserPermissionsAsync(context, request.PermissionIds, user.Id, footprint, result.UserPermissions, cancellationToken);
-
-            result.Id = user.Id;
-            result.FirstName = user.FirstName;
-            result.MiddleName = user.MiddleName;
-            result.LastName = user.LastName;
-            result.NameSuffix = user.NameSuffix;
-            result.FullName = user.Username;
-            result.Username = user.Username;
-            result.EmailAddress = user.EmailAddress;
-            result.MobileNumber = user.MobileNumber;
-            result.IsActive = user.IsActive;
-            result.IsPasswordChangeRequired = user.IsPasswordChangeRequired;
-            result.IsEmailAddressVerified = user.IsEmailAddressVerified;
-            result.IsMobileNumberVerified = user.IsMobileNumberVerified;
+            result.FromSource(user);
         }
         #endregion
 
@@ -150,7 +137,8 @@ namespace Sorschia.Processes.Handlers
             var userRole = new UserRole
             {
                 UserId = userId,
-                RoleId = role.Id
+                RoleId = role.Id,
+                Role = role
             };
 
             context.Entry(userRole).SetInsertFootprint(footprint);
@@ -191,7 +179,8 @@ namespace Sorschia.Processes.Handlers
             var userPermission = new UserPermission
             {
                 UserId = userId,
-                PermissionId = permission.Id
+                PermissionId = permission.Id,
+                Permission = permission
             };
 
             context.Entry(userPermission).SetInsertFootprint(footprint);
