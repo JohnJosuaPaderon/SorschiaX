@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace>Sorschia</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="Processes\Handlers\" />
+  </ItemGroup>
+
+</Project>
