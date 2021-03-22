@@ -126,7 +126,7 @@ namespace Sorschia.Processes
                 return new UserRoleObj
                 {
                     Id = source.Id,
-                    Role = source.Role!
+                    Role = source.Role
                 };
             }
         }
@@ -143,7 +143,7 @@ namespace Sorschia.Processes
                 return new UserPermissionObj
                 {
                     Id = source.Id,
-                    Permission = source.Permission!
+                    Permission = source.Permission
                 };
             }
         }
