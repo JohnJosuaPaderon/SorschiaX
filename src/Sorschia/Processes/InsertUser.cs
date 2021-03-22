@@ -30,6 +30,7 @@ namespace Sorschia.Processes
                 MiddleName = MiddleName,
                 LastName = LastName,
                 NameSuffix = NameSuffix,
+                Username = Username,
                 EmailAddress = EmailAddress,
                 MobileNumber = MobileNumber,
                 IsActive = IsActive,
