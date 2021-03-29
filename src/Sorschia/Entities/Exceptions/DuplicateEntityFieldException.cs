@@ -1,31 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 
 namespace Sorschia.Entities.Exceptions
 {
     public class DuplicateEntityFieldException : EntityException
     {
-        public IDictionary<string, object> DuplicatedFields { get; }
+        public IDictionary<string, object>? Fields { get; }
 
-        public DuplicateEntityFieldException(Type? entityType, IDictionary<string, object> duplicateFields, bool isUserFriendlyMessage = false) : base(entityType, isUserFriendlyMessage)
+        public DuplicateEntityFieldException(Type? entityType, IDictionary<string, object>? fields, bool isUserFriendlyMessage = false) : base(entityType, isUserFriendlyMessage)
         {
-            DuplicatedFields = duplicateFields;
+            Fields = fields;
         }
 
-        public DuplicateEntityFieldException(Type? entityType, IDictionary<string, object> duplicateFields, string message, bool isUserFriendlyMessage = false) : base(entityType, message, isUserFriendlyMessage)
+        public DuplicateEntityFieldException(Type? entityType, IDictionary<string, object>? fields, string? message, bool isUserFriendlyMessage = false) : base(entityType, message, isUserFriendlyMessage)
         {
-            DuplicatedFields = duplicateFields;
+            Fields = fields;
         }
 
-        public DuplicateEntityFieldException(Type? entityType, IDictionary<string, object> duplicateFields, string message, Exception innerException, bool isUserFriendlyMessage = false) : base(entityType, message, innerException, isUserFriendlyMessage)
+        public DuplicateEntityFieldException(Type? entityType, IDictionary<string, object>? fields, string? message, Exception? innerException, bool isUserFriendlyMessage = false) : base(entityType, message, innerException, isUserFriendlyMessage)
         {
-            DuplicatedFields = duplicateFields;
-        }
-
-        protected DuplicateEntityFieldException(Type? entityType, IDictionary<string, object> duplicateFields, SerializationInfo info, StreamingContext context, bool isUserFriendlyMessage = false) : base(entityType, info, context, isUserFriendlyMessage)
-        {
-            DuplicatedFields = duplicateFields;
+            Fields = fields;
         }
     }
 }

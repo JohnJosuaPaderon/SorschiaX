@@ -1,5 +1,5 @@
 ﻿using Sorschia.Entities;
-using Sorschia.Entities.ExceptionBuilders;
+using Sorschia.Entities.Exceptions.Builders;
 using System.Threading;
 using System.Threading.Tasks;
 

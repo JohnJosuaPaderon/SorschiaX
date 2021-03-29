@@ -1,34 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Sorschia.Entities.Exceptions.Builders
 {
-    public sealed class DuplicateEntityFieldExceptionBuilder
+    public sealed class DuplicateEntityFieldExceptionBuilder : EntityExceptionBuilderBase<DuplicateEntityFieldExceptionBuilder, DuplicateEntityFieldException>
     {
-        public Type? EntityType { get; private set; }
-        public IDictionary<string, object> DuplicateFields { get; } = new Dictionary<string, object>();
+        public IDictionary<string, object> Fields { get; } = new Dictionary<string, object>();
 
-        public DuplicateEntityFieldExceptionBuilder WithEntityType(Type entityType)
+        public override DuplicateEntityFieldException Build()
         {
-            EntityType = entityType;
-            return this;
+            return new DuplicateEntityFieldException(EntityType, Fields, Message, InnerException, IsUserFriendlyMessage);
         }
 
-        public DuplicateEntityFieldExceptionBuilder WithEntityType<T>()
-        {
-            WithEntityType(typeof(T));
-            return this;
-        }
+        protected override DuplicateEntityFieldExceptionBuilder GetInstance() => this;
 
-        public DuplicateEntityFieldExceptionBuilder AddDuplicateField(string key, object value)
+        public DuplicateEntityFieldExceptionBuilder AddField(string key, object value)
         {
-            DuplicateFields.Add(key, value);
-            return this;
-        }
-
-        public DuplicateEntityFieldException Build()
-        {
-            return new DuplicateEntityFieldException(EntityType, DuplicateFields);
+            Fields.Add(key, value);
+            return GetInstance();
         }
     }
 }

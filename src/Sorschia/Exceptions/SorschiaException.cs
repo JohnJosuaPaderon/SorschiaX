@@ -12,17 +12,12 @@ namespace Sorschia.Exceptions
             IsUserFriendlyMessage = isUserFriendlyMessage;
         }
 
-        public SorschiaException(string message, bool isUserFriendlyMessage = false) : base(message)
+        public SorschiaException(string? message, bool isUserFriendlyMessage = false) : base(message)
         {
             IsUserFriendlyMessage = isUserFriendlyMessage;
         }
 
-        public SorschiaException(string message, Exception innerException, bool isUserFriendlyMessage = false) : base(message, innerException)
-        {
-            IsUserFriendlyMessage = isUserFriendlyMessage;
-        }
-
-        protected SorschiaException(SerializationInfo info, StreamingContext context, bool isUserFriendlyMessage = false) : base(info, context)
+        public SorschiaException(string? message, Exception? innerException, bool isUserFriendlyMessage = false) : base(message, innerException)
         {
             IsUserFriendlyMessage = isUserFriendlyMessage;
         }

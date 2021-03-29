@@ -1,34 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Sorschia.Entities.Exceptions.Builders
 {
-    public sealed class EntityNotFoundExceptionBuilder
+    public sealed class EntityNotFoundExceptionBuilder : EntityExceptionBuilderBase<EntityNotFoundExceptionBuilder, EntityNotFoundException>
     {
-        public Type? EntityType { get; private set; }
-        public IDictionary<string, object> LookupFields { get; } = new Dictionary<string, object>();
+        public IDictionary<string, object> Fields { get; } = new Dictionary<string, object>();
 
-        public EntityNotFoundExceptionBuilder WithEntityType(Type entityType)
+        public override EntityNotFoundException Build()
         {
-            EntityType = entityType;
-            return this;
+            return new EntityNotFoundException(EntityType, Fields, Message, InnerException, IsUserFriendlyMessage);
         }
 
-        public EntityNotFoundExceptionBuilder WithEntityType<T>()
-        {
-            WithEntityType(typeof(T));
-            return this;
-        }
+        protected override EntityNotFoundExceptionBuilder GetInstance() => this;
 
-        public EntityNotFoundExceptionBuilder AddLookupField(string key, object value)
+        public EntityNotFoundExceptionBuilder AddField(string key, object value)
         {
-            LookupFields.Add(key, value);
-            return this;
-        }
-
-        public EntityNotFoundException Build()
-        {
-            return new EntityNotFoundException(EntityType, LookupFields);
+            Fields.Add(key, value);
+            return GetInstance();
         }
     }
 }

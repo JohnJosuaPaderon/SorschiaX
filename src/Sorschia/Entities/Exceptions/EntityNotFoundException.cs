@@ -1,31 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.Serialization;
 
 namespace Sorschia.Entities.Exceptions
 {
     public class EntityNotFoundException : EntityException
     {
-        public IDictionary<string, object> LookupFields { get; }
+        public IDictionary<string, object>? Fields { get; }
 
-        public EntityNotFoundException(Type? entityType, IDictionary<string, object> lookupFields, bool isUserFriendlyMessage = false) : base(entityType, isUserFriendlyMessage)
+        public EntityNotFoundException(Type? entityType, IDictionary<string, object>? fields, bool isUserFriendlyMessage = false) : base(entityType, isUserFriendlyMessage)
         {
-            LookupFields = lookupFields;
+            Fields = fields;
         }
 
-        public EntityNotFoundException(Type? entityType, IDictionary<string, object> lookupFields, string message, bool isUserFriendlyMessage = false) : base(entityType, message, isUserFriendlyMessage)
+        public EntityNotFoundException(Type? entityType, IDictionary<string, object>? fields, string? message, bool isUserFriendlyMessage = false) : base(entityType, message, isUserFriendlyMessage)
         {
-            LookupFields = lookupFields;
+            Fields = fields;
         }
 
-        public EntityNotFoundException(Type? entityType, IDictionary<string, object> lookupFields, string message, Exception innerException, bool isUserFriendlyMessage = false) : base(entityType, message, innerException, isUserFriendlyMessage)
+        public EntityNotFoundException(Type? entityType, IDictionary<string, object>? fields, string? message, Exception? innerException, bool isUserFriendlyMessage = false) : base(entityType, message, innerException, isUserFriendlyMessage)
         {
-            LookupFields = lookupFields;
-        }
-
-        protected EntityNotFoundException(Type? entityType, IDictionary<string, object> lookupFields, SerializationInfo info, StreamingContext context, bool isUserFriendlyMessage = false) : base(entityType, info, context, isUserFriendlyMessage)
-        {
-            LookupFields = lookupFields;
+            Fields = fields;
         }
     }
 }

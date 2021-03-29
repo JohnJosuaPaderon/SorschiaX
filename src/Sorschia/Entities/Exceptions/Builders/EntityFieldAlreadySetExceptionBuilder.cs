@@ -1,34 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Sorschia.Entities.Exceptions.Builders
 {
-    public sealed class EntityFieldAlreadySetExceptionBuilder
+    public sealed class EntityFieldAlreadySetExceptionBuilder : EntityExceptionBuilderBase<EntityFieldAlreadySetExceptionBuilder, EntityFieldAlreadySetException>
     {
-        public Type? EntityType { get; private set; }
-        public IDictionary<string, object> EntityFields { get; } = new Dictionary<string, object>();
+        public IDictionary<string, object> Fields { get; } = new Dictionary<string, object>();
 
-        public EntityFieldAlreadySetExceptionBuilder WithEntityType(Type entityType)
+        public override EntityFieldAlreadySetException Build()
         {
-            EntityType = entityType;
-            return this;
+            return new EntityFieldAlreadySetException(EntityType, Fields, Message, InnerException, IsUserFriendlyMessage);
         }
 
-        public EntityFieldAlreadySetExceptionBuilder WithEntityType<T>()
-        {
-            WithEntityType(typeof(T));
-            return this;
-        }
+        protected override EntityFieldAlreadySetExceptionBuilder GetInstance() => this;
 
-        public EntityFieldAlreadySetExceptionBuilder AddEntityField(string key, object value)
+        public EntityFieldAlreadySetExceptionBuilder AddField(string key, object value)
         {
-            EntityFields.Add(key, value);
-            return this;
-        }
-
-        public EntityFieldAlreadySetException Build()
-        {
-            return new EntityFieldAlreadySetException(EntityType, EntityFields);
+            Fields.Add(key, value);
+            return GetInstance();
         }
     }
 }
