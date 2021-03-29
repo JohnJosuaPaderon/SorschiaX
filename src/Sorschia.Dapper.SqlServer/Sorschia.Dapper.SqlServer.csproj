@@ -16,4 +16,8 @@
     <ProjectReference Include="..\Sorschia\Sorschia.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Processes\Handlers\" />
+  </ItemGroup>
+
 </Project>

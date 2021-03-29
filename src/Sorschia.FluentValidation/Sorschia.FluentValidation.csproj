@@ -14,4 +14,8 @@
     <ProjectReference Include="..\Sorschia\Sorschia.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Processes\Validators\" />
+  </ItemGroup>
+
 </Project>
