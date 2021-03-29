@@ -1,0 +1,31 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Runtime.Serialization;
+
+namespace Sorschia.Entities
+{
+    public class EntityNotFoundException : EntityException
+    {
+        public IDictionary<string, object> LookupFields { get; }
+
+        public EntityNotFoundException(Type? entityType, IDictionary<string, object> lookupFields, bool isUserFriendlyMessage = false) : base(entityType, isUserFriendlyMessage)
+        {
+            LookupFields = lookupFields;
+        }
+
+        public EntityNotFoundException(Type? entityType, IDictionary<string, object> lookupFields, string message, bool isUserFriendlyMessage = false) : base(entityType, message, isUserFriendlyMessage)
+        {
+            LookupFields = lookupFields;
+        }
+
+        public EntityNotFoundException(Type? entityType, IDictionary<string, object> lookupFields, string message, Exception innerException, bool isUserFriendlyMessage = false) : base(entityType, message, innerException, isUserFriendlyMessage)
+        {
+            LookupFields = lookupFields;
+        }
+
+        protected EntityNotFoundException(Type? entityType, IDictionary<string, object> lookupFields, SerializationInfo info, StreamingContext context, bool isUserFriendlyMessage = false) : base(entityType, info, context, isUserFriendlyMessage)
+        {
+            LookupFields = lookupFields;
+        }
+    }
+}

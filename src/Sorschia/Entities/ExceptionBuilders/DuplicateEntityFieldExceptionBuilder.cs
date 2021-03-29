@@ -3,32 +3,32 @@ using System.Collections.Generic;
 
 namespace Sorschia.Entities.ExceptionBuilders
 {
-    public sealed class SorschiaDuplicateEntityFieldExceptionBuilder
+    public sealed class DuplicateEntityFieldExceptionBuilder
     {
         public Type? EntityType { get; private set; }
         public IDictionary<string, object> DuplicateFields { get; } = new Dictionary<string, object>();
 
-        public SorschiaDuplicateEntityFieldExceptionBuilder WithEntityType(Type entityType)
+        public DuplicateEntityFieldExceptionBuilder WithEntityType(Type entityType)
         {
             EntityType = entityType;
             return this;
         }
 
-        public SorschiaDuplicateEntityFieldExceptionBuilder WithEntityType<T>()
+        public DuplicateEntityFieldExceptionBuilder WithEntityType<T>()
         {
             WithEntityType(typeof(T));
             return this;
         }
 
-        public SorschiaDuplicateEntityFieldExceptionBuilder AddDuplicateField(string key, object value)
+        public DuplicateEntityFieldExceptionBuilder AddDuplicateField(string key, object value)
         {
             DuplicateFields.Add(key, value);
             return this;
         }
 
-        public SorschiaDuplicateEntityFieldException Build()
+        public DuplicateEntityFieldException Build()
         {
-            return new SorschiaDuplicateEntityFieldException(EntityType, DuplicateFields);
+            return new DuplicateEntityFieldException(EntityType, DuplicateFields);
         }
     }
 }

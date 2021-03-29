@@ -12,7 +12,7 @@ namespace Sorschia.Data
             var user = await instance.Users.FindAsync(new object[] { id }, cancellationToken);
 
             if (throwEntityNotFoundException && user is null)
-                throw new SorschiaEntityNotFoundExceptionBuilder()
+                throw new EntityNotFoundExceptionBuilder()
                     .WithEntityType<User>()
                     .AddLookupField("Id", id)
                     .Build();
