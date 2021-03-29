@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace Sorschia.Entities.ExceptionBuilders
+namespace Sorschia.Entities.Exceptions.Builders
 {
     public sealed class EntityFieldAlreadySetExceptionBuilder
     {

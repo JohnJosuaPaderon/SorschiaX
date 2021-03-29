@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Runtime.Serialization;
 
-namespace Sorschia.Entities
+namespace Sorschia.Entities.Exceptions
 {
     public class EntityFieldAlreadySetException : EntityException
     {

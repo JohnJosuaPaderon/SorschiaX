@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Runtime.Serialization;
 
-namespace Sorschia.Entities
+namespace Sorschia.Entities.Exceptions
 {
     public class EntityException : SorschiaException
     {
