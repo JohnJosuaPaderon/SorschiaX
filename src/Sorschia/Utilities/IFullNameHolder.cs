@@ -1,6 +1,6 @@
 ﻿namespace Sorschia.Utilities
 {
-    public interface IFullName
+    public interface IFullNameHolder
     {
         string FirstName { get; set; }
         string? MiddleName { get; set; }

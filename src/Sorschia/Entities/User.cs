@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Sorschia.Entities
 {
-    public class User : UserBase, IFullName
+    public class User : UserBase, IFullNameHolder
     {
         public ICollection<UserApplication> UserApplications { get; set; } = new List<UserApplication>();
         public ICollection<UserRole> UserRoles { get; set; } = new List<UserRole>();
