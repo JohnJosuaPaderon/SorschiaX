@@ -2,12 +2,8 @@
 
 namespace Sorschia.Entities
 {
-    public class Application
+    public class Application : ApplicationBase
     {
-        public short Id { get; set; }
-        public string Name { get; set; } = default!;
-        public string? Description { get; set; }
-
         public ICollection<Role> Roles { get; set; } = new List<Role>();
         public ICollection<Permission> Permissions { get; set; } = new List<Permission>();
 

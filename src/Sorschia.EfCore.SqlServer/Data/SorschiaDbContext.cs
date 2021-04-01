@@ -20,16 +20,7 @@ namespace Sorschia.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder
-                .ApplyConfiguration(new Application_ConfigObj())
-                .ApplyConfiguration(new Role_ConfigObj())
-                .ApplyConfiguration(new Permission_ConfigObj())
-                .ApplyConfiguration(new PermissionAspNetRoute_ConfigObj())
-                .ApplyConfiguration(new User_ConfigObj())
-                .ApplyConfiguration(new UserApplication_ConfigObj())
-                .ApplyConfiguration(new UserRole_ConfigObj())
-                .ApplyConfiguration(new UserPermission_ConfigObj());
-
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(SorschiaDbContext).Assembly);
             base.OnModelCreating(modelBuilder);
         }
     }

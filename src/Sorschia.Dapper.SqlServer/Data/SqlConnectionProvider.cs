@@ -1,5 +1,4 @@
-﻿using Microsoft.Extensions.Configuration;
-using System.Data.SqlClient;
+﻿using System.Data.SqlClient;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -7,23 +6,18 @@ namespace Sorschia.Data
 {
     internal sealed class SqlConnectionProvider
     {
-        private readonly IConfiguration _configuration;
+        private readonly string _connectionString;
 
-        public SqlConnectionProvider(IConfiguration configuration)
+        public SqlConnectionProvider(string connectionString)
         {
-            _configuration = configuration;
+            _connectionString = connectionString;
         }
 
-        public async Task<SqlConnection> OpenAsync(string configKey, CancellationToken  cancellationToken = default)
+        public async Task<SqlConnection> OpenAsync(CancellationToken  cancellationToken = default)
         {
-            var connection = new SqlConnection(_configuration.GetConnectionString(configKey));
+            var connection = new SqlConnection(_connectionString);
             await connection.OpenAsync(cancellationToken);
             return connection;
-        }
-
-        public async Task<SqlConnection> OpenAsync(CancellationToken cancellationToken = default)
-        {
-            return await OpenAsync("Default", cancellationToken);
         }
     }
 }
