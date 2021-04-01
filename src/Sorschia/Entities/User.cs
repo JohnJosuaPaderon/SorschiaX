@@ -16,7 +16,5 @@ namespace Sorschia.Entities
         public const int FullNameMaxLength = 350;
         public const int UsernameMaxLength = 300;
         public const int PasswordMaxLength = 300;
-        public const int EmailAddressMaxLength = 300;
-        public const int MobileNumberMaxLength = 20;
     }
 }

@@ -37,12 +37,8 @@ BEGIN
         [User].[NameSuffix] AS [NameSuffix],
         [User].[FullName] AS [FullName],
         [User].[Username] AS [Username],
-        [User].[EmailAddress] AS [EmailAddress],
-        [User].[MobileNumber] AS [MobileNumber],
         [User].[IsActive] AS [IsActive],
-        [User].[IsPasswordChangeRequired] AS [IsPasswordChangeRequired],
-        [User].[IsEmailAddressVerified] AS [IsEmailAddressVerified],
-        [User].[IsMobileNumberVerified] AS [IsMobileNumberVerified]
+        [User].[IsPasswordChangeRequired] AS [IsPasswordChangeRequired]
     FROM [dbo].[User]
     WHERE [Id] = @Id AND [IsDeleted] = 0;
 

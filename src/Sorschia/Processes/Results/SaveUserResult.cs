@@ -9,6 +9,24 @@ namespace Sorschia.Processes.Results
         public IEnumerable<UserRoleObj>? UserRoles { get; set; }
         public IEnumerable<UserPermissionObj>? UserPermissions { get; set; }
 
+        public static implicit operator SaveUserResult?(User? source)
+        {
+            if (source is null) return null;
+
+            return new SaveUserResult
+            {
+                Id = source.Id,
+                FirstName = source.FirstName,
+                MiddleName = source.MiddleName,
+                LastName = source.LastName,
+                NameSuffix = source.NameSuffix,
+                FullName = source.FullName,
+                Username = source.Username,
+                IsActive = source.IsActive,
+                IsPasswordChangeRequired = source.IsPasswordChangeRequired
+            };
+        }
+
         public class ApplicationObj : ApplicationBase
         {
         }

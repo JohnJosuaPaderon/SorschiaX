@@ -45,16 +45,6 @@ namespace Sorschia.Data.EntityTypeConfigurations
                 .HasMaxLength(User.UsernameMaxLength);
 
             builder
-                .Property(_ => _.EmailAddress)
-                .HasColumnName("EmailAddress")
-                .HasMaxLength(User.EmailAddressMaxLength);
-
-            builder
-                .Property(_ => _.MobileNumber)
-                .HasColumnName("MobileNumber")
-                .HasMaxLength(User.MobileNumberMaxLength);
-
-            builder
                 .Property(_ => _.IsActive)
                 .HasColumnName("IsActive")
                 .IsRequired()
@@ -63,18 +53,6 @@ namespace Sorschia.Data.EntityTypeConfigurations
             builder
                 .Property(_ => _.IsPasswordChangeRequired)
                 .HasColumnName("IsPasswordChangeRequired")
-                .IsRequired()
-                .HasDefaultValue(false);
-
-            builder
-                .Property(_ => _.IsEmailAddressVerified)
-                .HasColumnName("IsEmailAddressVerified")
-                .IsRequired()
-                .HasDefaultValue(false);
-
-            builder
-                .Property(_ => _.IsMobileNumberVerified)
-                .HasColumnName("IsMobileNumberVerified")
                 .IsRequired()
                 .HasDefaultValue(false);
 
