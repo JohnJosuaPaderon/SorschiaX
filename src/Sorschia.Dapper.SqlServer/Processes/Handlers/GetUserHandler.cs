@@ -11,6 +11,8 @@ namespace Sorschia.Processes.Handlers
 {
     internal sealed class GetUserHandler : IRequestHandler<GetUser, GetUserResult>
     {
+        private const string StoredProcedure = "[dbo].[GetUser]";
+
         private readonly SqlConnectionProvider _connectionProvider;
 
         private static readonly Type[] _userApplicationTypes = new[]
@@ -37,7 +39,7 @@ namespace Sorschia.Processes.Handlers
         public async Task<GetUserResult> Handle(GetUser request, CancellationToken cancellationToken)
         {
             using var connection = await _connectionProvider.OpenAsync(cancellationToken);
-            using var reader = await connection.QueryMultipleAsync("dbo.GetUser", request.AsParams(), commandType: CommandType.StoredProcedure);
+            using var reader = await connection.QueryMultipleAsync(StoredProcedure, request.AsParams(), commandType: CommandType.StoredProcedure);
 
             var result = await reader.ReadSingleOrDefaultAsync<GetUserResult>();
             
