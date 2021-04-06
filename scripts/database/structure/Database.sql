@@ -1,2 +1,5 @@
 CREATE DATABASE [Sorschia];
 GO
+
+CREATE SCHEMA [Identity];
+GO

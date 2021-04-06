@@ -1,17 +1,14 @@
-USE [Sorschia];
-GO
-
-CREATE TABLE [dbo].[User]
+CREATE TABLE [Identity].[User]
 (
     [Id] INT IDENTITY,
     [FirstName] NVARCHAR(100) NOT NULL,
     [MiddleName] NVARCHAR(100),
     [LastName] NVARCHAR(100) NOT NULL,
     [NameSuffix] NVARCHAR(5),
-    [FullName] NVARCHAR(350) NOT NULL,
-    [Username] NVARCHAR(300) NOT NULL,
-    [SecurePassword] NVARCHAR(300) NOT NULL,
-    [IsActive] BIT NOT NULL,
+    [FullName] NVARCHAR(400) NOT NULL,
+    [Username] NVARCHAR(50) NOT NULL,
+    [SecurePassword] NVARCHAR(500) NOT NULL,
+    [Status] TINYINT NOT NULL,
     [IsPasswordChangeRequired] BIT NOT NULL,
     [IsDeleted] BIT NOT NULL,
     [InsertedById] INT,
@@ -23,8 +20,5 @@ CREATE TABLE [dbo].[User]
     CONSTRAINT [PK_User] PRIMARY KEY([Id])
 );
 
-ALTER TABLE [dbo].[User] ADD
-    CONSTRAINT [DF_User_IsActive] DEFAULT 0 FOR [IsActive],
-    CONSTRAINT [DF_User_IsPasswordChangeRequired] DEFAULT 0 FOR [IsPasswordChangeRequired],
-    CONSTRAINT [DF_User_IsDeleted] DEFAULT 0 FOR [IsDeleted];
+ALTER TABLE [Identity].[User] ADD CONSTRAINT [DF_User_IsDeleted] DEFAULT 0 FOR [IsDeleted];
 GO

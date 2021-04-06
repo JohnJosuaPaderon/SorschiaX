@@ -1,7 +1,5 @@
 /*
 ** DROP DEPENDANTS **
-
-DROP PROCEDURE [dbo].[GetUser];
 GO
 
 */

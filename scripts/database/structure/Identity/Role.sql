@@ -1,9 +1,7 @@
-USE [Sorschia];
-GO
-
-CREATE TABLE [dbo].[Application]
+CREATE TABLE [Identity].[Role]
 (
-    [Id] SMALLINT IDENTITY,
+    [Id] INT IDENTITY,
+    [LookupCode] NVARCHAR(20) NOT NULL,
     [Name] NVARCHAR(100) NOT NULL,
     [Description] NVARCHAR(500),
     [IsDeleted] BIT NOT NULL,
@@ -13,9 +11,8 @@ CREATE TABLE [dbo].[Application]
     [UpdatedOn] DATETIMEOFFSET,
     [DeletedById] INT,
     [DeletedOn] DATETIMEOFFSET,
-    CONSTRAINT [PK_Application] PRIMARY KEY([Id])
+    CONSTRAINT [PK_Role] PRIMARY KEY([Id])
 );
 
-ALTER TABLE [dbo].[Application] ADD
-    CONSTRAINT [DF_Application_IsDeleted] DEFAULT 0 FOR [IsDeleted];
+ALTER TABLE [Identity].[Role] ADD CONSTRAINT [DF_Role_IsDeleted] DEFAULT 0 FOR [IsDeleted];
 GO
