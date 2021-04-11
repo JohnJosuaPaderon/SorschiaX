@@ -43,22 +43,10 @@ namespace Sorschia.Identity.Processes.Handlers
 
             foreach (var roleId in roleIds)
             {
-                await InsertUserRoleAsync(context, user, roleId, userRoles, cancellationToken);
+                userRoles.Add(await _mediator.Send(new DbInsertUserRole(context).Set(user, roleId), cancellationToken));
             }
 
             result.UserRoles = userRoles;
-        }
-
-        private async Task InsertUserRoleAsync(IdentityContext context, User user, int roleId, IList<InsertUserResult.UserRoleObj> userRoles, CancellationToken cancellationToken)
-        {
-            var role = await context.FindRoleAsync(roleId, cancellationToken);
-            var userRole = await _mediator.Send(new DbInsertUserRole(context)
-            {
-                UserId = user.Id,
-                RoleId = roleId
-            }, cancellationToken);
-
-            userRoles.Add(new InsertUserResult.UserRoleObj().Set(userRole.Id, role));
         }
 
         private async Task InsertUserPermissionsAsync(IdentityContext context, User user, IEnumerable<int> permissionIds, InsertUserResult result, CancellationToken cancellationToken)
@@ -70,20 +58,8 @@ namespace Sorschia.Identity.Processes.Handlers
 
             foreach (var permissionId in permissionIds)
             {
-                await InsertUserPermissionAsync(context, user, permissionId, userPermissions, cancellationToken);
+                userPermissions.Add(await _mediator.Send(new DbInsertUserPermission(context).Set(user, permissionId), cancellationToken));
             }
-        }
-
-        private async Task InsertUserPermissionAsync(IdentityContext context, User user, int permissionId, List<InsertUserResult.UserPermissionObj> userPermissions, CancellationToken cancellationToken)
-        {
-            var permission = await context.FindPermissionAsync(permissionId, cancellationToken);
-            var userPermission = await _mediator.Send(new DbInsertUserPermission(context)
-            {
-                UserId = user.Id,
-                PermissionId = permissionId
-            }, cancellationToken);
-
-            userPermissions.Add(new InsertUserResult.UserPermissionObj().Set(userPermission.Id, permission));
         }
     }
 }
