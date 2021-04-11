@@ -12,9 +12,7 @@ namespace Sorschia.Identity.Processes
             return new UserPermission
             {
                 UserId = instance.UserId,
-                PermissionId = instance.PermissionId,
-                User = instance.User,
-                Permission = instance.Permission
+                PermissionId = instance.PermissionId
             };
         }
     }
