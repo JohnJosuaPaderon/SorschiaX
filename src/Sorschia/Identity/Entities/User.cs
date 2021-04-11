@@ -1,8 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Sorschia.Entities;
+using System.Collections.Generic;
 
 namespace Sorschia.Identity.Entities
 {
-    public class User : UserBase
+    public class User : UserBase, IFullNameHolder
     {
         public IEnumerable<UserRole> UserRoles { get; set; }
         public IEnumerable<UserPermission> UserPermissions { get; set; }

@@ -8,8 +8,22 @@ namespace Sorschia.Identity.Processes.Results
         public IEnumerable<UserRoleObj> UserRoles { get; set; }
         public IEnumerable<UserPermissionObj> UserPermissions { get; set; }
 
-        public class RoleObj : RoleBase
+        public class RoleObj
         {
+            public int Id { get; set; }
+            public string Name { get; set; }
+
+            public static implicit operator RoleObj(RoleBase source)
+            {
+                if (source is null)
+                    return null;
+
+                return new RoleObj
+                {
+                    Id = source.Id,
+                    Name = source.Name
+                };
+            }
         }
 
         public class UserRoleObj
@@ -18,14 +32,28 @@ namespace Sorschia.Identity.Processes.Results
             public RoleObj Role { get; set; }
         }
 
-        public class PermissionObj : PermissionBase
+        public class PermissionObj
         {
+            public int Id { get; set; }
+            public string Name { get; set; }
+
+            public static implicit operator PermissionObj(PermissionBase source)
+            {
+                if (source is null)
+                    return null;
+
+                return new PermissionObj
+                {
+                    Id = source.Id,
+                    Name = source.Name
+                };
+            }
         }
 
         public class UserPermissionObj
         {
             public long Id { get; set; }
-            public PermissionObj Permissions { get; set; }
+            public PermissionObj Permission { get; set; }
         }
     }
 }

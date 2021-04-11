@@ -1,9 +1,11 @@
-﻿using Sorschia.Identity.Entities;
+﻿using MediatR;
+using Sorschia.Identity.Entities;
+using Sorschia.Identity.Processes.Results;
 using System.Collections.Generic;
 
 namespace Sorschia.Identity.Processes
 {
-    public class InsertUser
+    public class InsertUser : IRequest<InsertUserResult>
     {
         public string FirstName { get; set; }
         public string MiddleName { get; set; }

@@ -5,8 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Entities\Exceptions\Builders\" />
-    <Folder Include="Exceptions\Builders\" />
+    <PackageReference Include="MediatR" Version="9.0.0" />
   </ItemGroup>
 
 </Project>
