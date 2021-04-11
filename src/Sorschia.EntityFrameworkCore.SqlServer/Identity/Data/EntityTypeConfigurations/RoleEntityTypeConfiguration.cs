@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Sorschia.Extensions;
 using Sorschia.Identity.Entities;
 
 namespace Sorschia.Identity.Data.EntityTypeConfigurations
@@ -8,7 +9,8 @@ namespace Sorschia.Identity.Data.EntityTypeConfigurations
     {
         public void Configure(EntityTypeBuilder<Role> builder)
         {
-            builder.ToTable("Role");
+            builder.ToTable("Role")
+                .HasSoftDeleteQueryFilter();
         }
     }
 }
