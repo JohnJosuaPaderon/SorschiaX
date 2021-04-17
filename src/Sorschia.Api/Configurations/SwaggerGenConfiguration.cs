@@ -8,7 +8,8 @@ namespace Sorschia.Api.Configurations
     {
         public static void Configure(SwaggerGenOptions options)
         {
-            options.SwaggerDoc("v1", new OpenApiInfo { Title = "Sorschia.Api", Version = "v1" });
+            options.SwaggerDoc("v1", new OpenApiInfo { Title = "Sorschia API", Version = "v1" });
+            options.CustomSchemaIds(type => type.FullName);
             //options.SwaggerDoc("v2", new OpenApiInfo { Title = "Sorschia.Api", Version = "v2" });
         }
     }

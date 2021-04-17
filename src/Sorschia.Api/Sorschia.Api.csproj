@@ -15,9 +15,4 @@
     <ProjectReference Include="..\Sorschia\Sorschia.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Identity\Controllers\" />
-    <Folder Include="Mvc\" />
-  </ItemGroup>
-
 </Project>

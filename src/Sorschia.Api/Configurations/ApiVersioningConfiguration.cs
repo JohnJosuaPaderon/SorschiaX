@@ -10,6 +10,7 @@ namespace Sorschia.Api.Configurations
             options.DefaultApiVersion = new ApiVersion(1, 0);
             options.AssumeDefaultVersionWhenUnspecified = true;
             options.ApiVersionSelector = new CurrentImplementationApiVersionSelector(options);
+            options.ReportApiVersions = true;
         }
     }
 }

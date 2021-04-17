@@ -2,9 +2,14 @@
 {
     internal static class ControllerRoutes
     {
-        public const string ControllerRouteBase = "api/";
-        public const string VersionedControllerRouteBase = ControllerRouteBase + "v{version:apiVersion}/";
-        public const string IdentityControllerRoute = ControllerRouteBase + "identity/[controller]";
-        public const string IdentityVersionedControllerRoute = VersionedControllerRouteBase + "identity/[controller]";
+        private const string Base = "api";
+
+        public static class Identity
+        {
+            private const string IdentityBase = Base + "/identity";
+            public const string User = IdentityBase + "/user";
+            public const string Role = IdentityBase + "/role";
+            public const string Permission = IdentityBase + "/permission";
+        }
     }
 }

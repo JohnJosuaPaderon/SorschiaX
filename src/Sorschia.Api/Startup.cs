@@ -21,7 +21,6 @@ namespace Sorschia.Api
             services.AddControllers();
             services.AddSwaggerGen(SwaggerGenConfiguration.Configure);
             services.AddApiVersioning(ApiVersioningConfiguration.Configure);
-            //services.AddVersionedApiExplorer(options => options.SubstituteApiVersionInUrl = false);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -32,7 +31,7 @@ namespace Sorschia.Api
                 app.UseSwagger();
                 app.UseSwaggerUI(c =>
                 {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sorschia.Api v1");
+                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "Sorschia API v.1.0");
                 });
             }
             app.UseHttpsRedirection();
