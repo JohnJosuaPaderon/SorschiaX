@@ -30,6 +30,7 @@ namespace Sorschia.Identity.Processes.Handlers
                 throw new DuplicateEntityFieldExceptionBuilder()
                     .WithEntityType<User>()
                     .WithField(nameof(User.Username), request.Username)
+                    .WithMessage($"User with Username '{request.Username}' already exists")
                     .WithUserFriendlyMessage("Username is already used")
                     .Build();
 
