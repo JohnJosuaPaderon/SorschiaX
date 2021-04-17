@@ -2,7 +2,7 @@
 
 namespace Sorschia.Entities.Exceptions.Builders
 {
-    public abstract class DuplicateEntityFieldsExceptionBuilderBase<TSelf, TException> : EntityExceptionBuilderBase<TSelf, TException> where TException : DuplicateEntityFieldsException
+    public abstract class DuplicateEntityExceptionBuilderBase<TSelf, TException> : EntityExceptionBuilderBase<TSelf, TException> where TException : DuplicateEntityException
     {
         public IDictionary<string, object> Fields { get; } = new Dictionary<string, object>();
 

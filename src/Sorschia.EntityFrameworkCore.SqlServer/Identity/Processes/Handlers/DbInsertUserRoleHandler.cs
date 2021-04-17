@@ -18,7 +18,7 @@ namespace Sorschia.Identity.Processes.Handlers
             var role = request.Role ?? await context.FindRoleAsync(request.RoleId, cancellationToken);
 
             if (await context.UserRoles.AnyAsync(_ => _.UserId == request.UserId && _.RoleId == request.RoleId, cancellationToken))
-                throw new DuplicateEntityFieldsExceptionBuilder()
+                throw new DuplicateEntityExceptionBuilder()
                     .WithEntityType<UserRole>()
                     .WithMessage($"UserRole with User '{user?.FullName} [{request.UserId}]' and Role '{role?.Name} [{request.RoleId}]'")
                     .WithUserFriendlyMessage("User-Role already exists")

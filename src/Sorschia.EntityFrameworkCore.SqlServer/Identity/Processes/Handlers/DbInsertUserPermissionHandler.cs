@@ -18,7 +18,7 @@ namespace Sorschia.Identity.Processes.Handlers
             var permission = request.Permission ?? await context.FindPermissionAsync(request.PermissionId, cancellationToken);
 
             if (await context.UserPermissions.AnyAsync(_ => _.UserId == request.UserId && _.PermissionId == request.PermissionId, cancellationToken))
-                throw new DuplicateEntityFieldsExceptionBuilder()
+                throw new DuplicateEntityExceptionBuilder()
                     .WithEntityType<UserPermission>()
                     .WithMessage($"UserPermission with User '{user?.FullName} [{request.UserId}]' and Permission '{permission?.Name} [{request.PermissionId}]' already exists")
                     .WithUserFriendlyMessage("User-Permission already exists")

@@ -27,11 +27,11 @@ namespace Sorschia.Identity.Processes.Handlers
             var context = request.TryGetContext();
 
             if (await context.Users.AnyAsync(_ => _.Username == request.Username, cancellationToken))
-                throw new DuplicateEntityFieldExceptionBuilder()
+                throw new DuplicateEntityExceptionBuilder()
                     .WithEntityType<User>()
-                    .WithField(nameof(User.Username), request.Username)
+                    .AddField(nameof(User.Username), request.Username)
                     .WithMessage($"User with Username '{request.Username}' already exists")
-                    .WithUserFriendlyMessage("Username is already used")
+                    .WithUserFriendlyMessage("Username is already exists")
                     .Build();
 
             var user = request.AsUser();

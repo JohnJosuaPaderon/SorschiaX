@@ -15,18 +15,19 @@ namespace Sorschia.Identity.Processes.Handlers
             var context = request.TryGetContext();
 
             if (!string.IsNullOrEmpty(request.LookupCode) && await context.Roles.AnyAsync(_ => _.LookupCode == request.LookupCode, cancellationToken))
-                throw new DuplicateEntityFieldExceptionBuilder()
+                throw new DuplicateEntityExceptionBuilder()
                     .WithEntityType<Role>()
                     .WithMessage($"Role with LookupCode '{request.LookupCode}' already exists")
                     .WithUserFriendlyMessage("Role with same look-up code already exists")
+                    .AddField(nameof(Role.LookupCode), request.LookupCode)
                     .Build();
 
             if (await context.Roles.AnyAsync(_ => _.Name == request.Name, cancellationToken))
-                throw new DuplicateEntityFieldExceptionBuilder()
+                throw new DuplicateEntityExceptionBuilder()
                     .WithEntityType<Role>()
                     .WithMessage($"Role with Name '{request.Name}' already exists")
                     .WithUserFriendlyMessage("Role already exists")
-                    .WithField(nameof(Role.Name), request.Name)
+                    .AddField(nameof(Role.Name), request.Name)
                     .Build();
 
             var role = request.AsRole();

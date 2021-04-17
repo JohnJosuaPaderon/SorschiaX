@@ -17,14 +17,15 @@ namespace Sorschia.Identity.Processes.Handlers
             var role = request.Role ?? await context.FindRoleAsync(request.RoleId ?? 0, cancellationToken);
 
             if (!string.IsNullOrEmpty(request.LookupCode) && await context.Permissions.AnyAsync(_ => _.LookupCode == request.LookupCode, cancellationToken))
-                throw new DuplicateEntityFieldExceptionBuilder()
+                throw new DuplicateEntityExceptionBuilder()
                     .WithEntityType<Permission>()
                     .WithMessage($"Permission with LookupCode '{request.LookupCode}' already exists")
                     .WithUserFriendlyMessage("Permission with same look-up code already exists")
+                    .AddField(nameof(Permission.LookupCode), request.LookupCode)
                     .Build();
 
             if (await context.Permissions.AnyAsync(_ => _.RoleId == request.RoleId && _.Name == request.Name, cancellationToken))
-                throw new DuplicateEntityFieldsExceptionBuilder()
+                throw new DuplicateEntityExceptionBuilder()
                     .WithEntityType<Permission>()
                     .WithMessage($"Permission with Name '{request.Name}' and Role '{role?.Name} [{request.RoleId}]' already exists")
                     .WithUserFriendlyMessage("Permission already exists")
