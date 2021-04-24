@@ -1,7 +1,7 @@
-﻿using Sorschia.Entities.Exceptions.Builders;
-using Sorschia.Identity.Entities;
+﻿using Sorschia.Identity.Entities;
 using System.Threading;
 using System.Threading.Tasks;
+using SystemBase.Entities.Exceptions.Builders;
 
 namespace Sorschia.Identity.Data
 {
@@ -18,8 +18,8 @@ namespace Sorschia.Identity.Data
                 throw new EntityNotFoundExceptionBuilder()
                     .WithEntityType<User>()
                     .AddField(nameof(User.Id), id)
-                    .WithMessage($"User with Id '{id}' doesn't exists")
-                    .WithUserFriendlyMessage("User doesn't exists")
+                    .WithMessage("User doesn't exists")
+                    .WithDebugMessage($"User with Id '{id}' doesn't exists")
                     .Build();
 
             return user;
@@ -36,8 +36,8 @@ namespace Sorschia.Identity.Data
                 throw new EntityNotFoundExceptionBuilder()
                     .WithEntityType<Role>()
                     .AddField(nameof(Role.Id), id) 
-                    .WithMessage($"Role with Id '{id}' doesn't exists")
-                    .WithUserFriendlyMessage("Role doesn't exists")
+                    .WithMessage("Role doesn't exists")
+                    .WithDebugMessage($"Role with Id '{id}' doesn't exists")
                     .Build();
 
             return role;
@@ -54,8 +54,8 @@ namespace Sorschia.Identity.Data
                 throw new EntityNotFoundExceptionBuilder()
                     .WithEntityType<Permission>()
                     .AddField(nameof(Permission.Id), id)
-                    .WithMessage($"Permission with Id '{id}' doesn't exists")
-                    .WithUserFriendlyMessage("Permission doesn't exists")
+                    .WithMessage("Permission doesn't exists")
+                    .WithDebugMessage($"Permission with Id '{id}' doesn't exists")
                     .Build();
 
             return permission;

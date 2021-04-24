@@ -1,5 +1,5 @@
-﻿using Sorschia.Entities;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using SystemBase.Entities;
 
 namespace Sorschia.TechSupport.Entities
 {

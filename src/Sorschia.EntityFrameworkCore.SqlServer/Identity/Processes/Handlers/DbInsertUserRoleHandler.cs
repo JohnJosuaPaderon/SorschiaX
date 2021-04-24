@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Sorschia.Entities.Exceptions.Builders;
-using Sorschia.Extensions;
 using Sorschia.Identity.Data;
 using Sorschia.Identity.Entities;
 using System.Threading;
 using System.Threading.Tasks;
+using SystemBase.Entities.Exceptions.Builders;
+using SystemBase.Extensions;
 
 namespace Sorschia.Identity.Processes.Handlers
 {
@@ -20,8 +20,8 @@ namespace Sorschia.Identity.Processes.Handlers
             if (await context.UserRoles.AnyAsync(_ => _.UserId == request.UserId && _.RoleId == request.RoleId, cancellationToken))
                 throw new DuplicateEntityExceptionBuilder()
                     .WithEntityType<UserRole>()
-                    .WithMessage($"UserRole with User '{user?.FullName} [{request.UserId}]' and Role '{role?.Name} [{request.RoleId}]'")
-                    .WithUserFriendlyMessage("User-Role already exists")
+                    .WithMessage("User-Role already exists")
+                    .WithDebugMessage($"UserRole with User '{user?.FullName} [{request.UserId}]' and Role '{role?.Name} [{request.RoleId}]'")
                     .Build();
 
             var userRole = request.AsUserRole(user, role);

@@ -1,8 +1,8 @@
-﻿using Sorschia.Data;
+﻿using SystemBase.Data;
 
 namespace Sorschia.Processes
 {
-    internal abstract class DbRequestBase<TContext> where TContext : SorschiaDbContext
+    internal abstract class DbRequestBase<TContext> where TContext : SystemBaseDbContext
     {
         protected TContext Context { get; }
 

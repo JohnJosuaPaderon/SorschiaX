@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Sorschia.Entities.Exceptions.Builders;
-using Sorschia.Extensions;
 using Sorschia.Identity.Data;
 using Sorschia.Identity.Entities;
 using System.Threading;
 using System.Threading.Tasks;
+using SystemBase.Entities.Exceptions.Builders;
+using SystemBase.Extensions;
 
 namespace Sorschia.Identity.Processes.Handlers
 {
@@ -20,8 +20,8 @@ namespace Sorschia.Identity.Processes.Handlers
             if (await context.UserPermissions.AnyAsync(_ => _.UserId == request.UserId && _.PermissionId == request.PermissionId, cancellationToken))
                 throw new DuplicateEntityExceptionBuilder()
                     .WithEntityType<UserPermission>()
-                    .WithMessage($"UserPermission with User '{user?.FullName} [{request.UserId}]' and Permission '{permission?.Name} [{request.PermissionId}]' already exists")
-                    .WithUserFriendlyMessage("User-Permission already exists")
+                    .WithMessage("User-Permission already exists")
+                    .WithDebugMessage($"UserPermission with User '{user?.FullName} [{request.UserId}]' and Permission '{permission?.Name} [{request.PermissionId}]' already exists")
                     .AddField(nameof(UserPermission.UserId), request.UserId)
                     .AddField(nameof(UserPermission.PermissionId), request.PermissionId)
                     .Build();

@@ -1,13 +1,13 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Sorschia.Entities;
-using Sorschia.Entities.Exceptions.Builders;
-using Sorschia.Extensions;
 using Sorschia.Identity.Entities;
 using Sorschia.Identity.Extensions;
 using Sorschia.Identity.Utilities;
 using System.Threading;
 using System.Threading.Tasks;
+using SystemBase.Entities;
+using SystemBase.Entities.Exceptions.Builders;
+using SystemBase.Extensions;
 
 namespace Sorschia.Identity.Processes.Handlers
 {
@@ -30,8 +30,8 @@ namespace Sorschia.Identity.Processes.Handlers
                 throw new DuplicateEntityExceptionBuilder()
                     .WithEntityType<User>()
                     .AddField(nameof(User.Username), request.Username)
-                    .WithMessage($"User with Username '{request.Username}' already exists")
-                    .WithUserFriendlyMessage("Username is already exists")
+                    .WithMessage("Username is already exists")
+                    .WithDebugMessage($"User with Username '{request.Username}' already exists")
                     .Build();
 
             var user = request.AsUser();

@@ -1,12 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Sorschia.Auditing;
-using Sorschia.Data;
 using Sorschia.Teams.Entities;
 using System.Diagnostics.CodeAnalysis;
+using SystemBase.Data;
 
 namespace Sorschia.Teams.Data
 {
-    internal sealed class TeamsContext : SorschiaDbContext
+    internal sealed class TeamsContext : SystemBaseDbContext
     {
         public DbSet<Team> Teams { get; set; }
         public DbSet<Member> Members { get; set; }
@@ -16,7 +15,7 @@ namespace Sorschia.Teams.Data
         public DbSet<TeamAssignment> TeamAssignments { get; set; }
         public DbSet<MemberAssignment> MemberAssignments { get; set; }
 
-        public TeamsContext([NotNull] DbContextOptions options, ICurrentFootprintProvider currentFootprintProvider) : base(options, currentFootprintProvider)
+        public TeamsContext([NotNull] DbContextOptions options) : base(options)
         {
         }
 

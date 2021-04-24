@@ -1,10 +1,10 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Sorschia.Entities.Exceptions.Builders;
-using Sorschia.Extensions;
 using Sorschia.Identity.Entities;
 using System.Threading;
 using System.Threading.Tasks;
+using SystemBase.Entities.Exceptions.Builders;
+using SystemBase.Extensions;
 
 namespace Sorschia.Identity.Processes.Handlers
 {
@@ -17,16 +17,16 @@ namespace Sorschia.Identity.Processes.Handlers
             if (!string.IsNullOrEmpty(request.LookupCode) && await context.Roles.AnyAsync(_ => _.LookupCode == request.LookupCode, cancellationToken))
                 throw new DuplicateEntityExceptionBuilder()
                     .WithEntityType<Role>()
-                    .WithMessage($"Role with LookupCode '{request.LookupCode}' already exists")
-                    .WithUserFriendlyMessage("Role with same look-up code already exists")
+                    .WithMessage("Role with same look-up code already exists")
+                    .WithDebugMessage($"Role with LookupCode '{request.LookupCode}' already exists")
                     .AddField(nameof(Role.LookupCode), request.LookupCode)
                     .Build();
 
             if (await context.Roles.AnyAsync(_ => _.Name == request.Name, cancellationToken))
                 throw new DuplicateEntityExceptionBuilder()
                     .WithEntityType<Role>()
-                    .WithMessage($"Role with Name '{request.Name}' already exists")
-                    .WithUserFriendlyMessage("Role already exists")
+                    .WithMessage("Role already exists")
+                    .WithDebugMessage($"Role with Name '{request.Name}' already exists")
                     .AddField(nameof(Role.Name), request.Name)
                     .Build();
 

@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using Sorschia.Extensions;
 using Sorschia.Identity.Entities;
+using SystemBase.Extensions;
 
 namespace Sorschia.Identity.Data.EntityTypeConfigurations
 {

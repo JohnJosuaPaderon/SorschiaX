@@ -1,12 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Sorschia.Auditing;
-using Sorschia.Data;
 using Sorschia.Identity.Entities;
 using System.Diagnostics.CodeAnalysis;
+using SystemBase.Data;
 
 namespace Sorschia.Identity.Data
 {
-    internal sealed class IdentityContext : SorschiaDbContext
+    internal sealed class IdentityContext : SystemBaseDbContext
     {
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
@@ -14,7 +13,7 @@ namespace Sorschia.Identity.Data
         public DbSet<UserRole> UserRoles { get; set; }
         public DbSet<UserPermission> UserPermissions { get; set; }
 
-        public IdentityContext([NotNull] DbContextOptions options, ICurrentFootprintProvider currentFootprintProvider) : base(options, currentFootprintProvider)
+        public IdentityContext([NotNull] DbContextOptions options) : base(options)
         {
         }
 

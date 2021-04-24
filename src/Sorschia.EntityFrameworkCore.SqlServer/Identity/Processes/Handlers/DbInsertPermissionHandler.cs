@@ -1,11 +1,11 @@
 ﻿using MediatR;
 using Microsoft.EntityFrameworkCore;
-using Sorschia.Entities.Exceptions.Builders;
-using Sorschia.Extensions;
 using Sorschia.Identity.Data;
 using Sorschia.Identity.Entities;
 using System.Threading;
 using System.Threading.Tasks;
+using SystemBase.Entities.Exceptions.Builders;
+using SystemBase.Extensions;
 
 namespace Sorschia.Identity.Processes.Handlers
 {
@@ -19,16 +19,16 @@ namespace Sorschia.Identity.Processes.Handlers
             if (!string.IsNullOrEmpty(request.LookupCode) && await context.Permissions.AnyAsync(_ => _.LookupCode == request.LookupCode, cancellationToken))
                 throw new DuplicateEntityExceptionBuilder()
                     .WithEntityType<Permission>()
-                    .WithMessage($"Permission with LookupCode '{request.LookupCode}' already exists")
-                    .WithUserFriendlyMessage("Permission with same look-up code already exists")
+                    .WithMessage("Permission with same look-up code already exists")
+                    .WithDebugMessage($"Permission with LookupCode '{request.LookupCode}' already exists")
                     .AddField(nameof(Permission.LookupCode), request.LookupCode)
                     .Build();
 
             if (await context.Permissions.AnyAsync(_ => _.RoleId == request.RoleId && _.Name == request.Name, cancellationToken))
                 throw new DuplicateEntityExceptionBuilder()
                     .WithEntityType<Permission>()
-                    .WithMessage($"Permission with Name '{request.Name}' and Role '{role?.Name} [{request.RoleId}]' already exists")
-                    .WithUserFriendlyMessage("Permission already exists")
+                    .WithMessage("Permission already exists")
+                    .WithDebugMessage($"Permission with Name '{request.Name}' and Role '{role?.Name} [{request.RoleId}]' already exists")
                     .AddField(nameof(Permission.RoleId), request.RoleId)
                     .AddField(nameof(Permission.Name), request.Name)
                     .Build();

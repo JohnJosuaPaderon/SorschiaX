@@ -1,7 +1,7 @@
-﻿using Sorschia.Entities.Exceptions.Builders;
-using Sorschia.Teams.Entities;
+﻿using Sorschia.Teams.Entities;
 using System.Threading;
 using System.Threading.Tasks;
+using SystemBase.Entities.Exceptions.Builders;
 
 namespace Sorschia.Teams.Data
 {
@@ -18,8 +18,8 @@ namespace Sorschia.Teams.Data
                 throw new EntityNotFoundExceptionBuilder()
                     .WithEntityType<Team>()
                     .AddField(nameof(Team.Id), id)
-                    .WithMessage($"Team with Id '{id}' doesn't exists")
-                    .WithUserFriendlyMessage("Team doesn't exists")
+                    .WithMessage("Team doesn't exists")
+                    .WithDebugMessage($"Team with Id '{id}' doesn't exists")
                     .Build();
 
             return team;
@@ -35,8 +35,8 @@ namespace Sorschia.Teams.Data
             if (member is null)
                 throw new EntityNotFoundExceptionBuilder()
                     .WithEntityType<Member>()
-                    .WithMessage($"Member with Id '{id}' doesn't exists")
-                    .WithUserFriendlyMessage("Member doesn't exists")
+                    .WithDebugMessage($"Member with Id '{id}' doesn't exists")
+                    .WithMessage("Member doesn't exists")
                     .AddField(nameof(Member.Id), id)
                     .Build();
 
@@ -53,8 +53,8 @@ namespace Sorschia.Teams.Data
             if (assignment is null)
                 throw new EntityNotFoundExceptionBuilder()
                     .WithEntityType<Assignment>()
-                    .WithMessage($"Assignment with Id '{id}' doesn't exists")
-                    .WithUserFriendlyMessage("Assignement doesn't exists")
+                    .WithDebugMessage($"Assignment with Id '{id}' doesn't exists")
+                    .WithMessage("Assignement doesn't exists")
                     .AddField(nameof(Assignment.Id), id)
                     .Build();
 
