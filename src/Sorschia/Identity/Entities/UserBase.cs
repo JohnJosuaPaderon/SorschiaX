@@ -11,5 +11,6 @@
         public string Username { get; set; }
         public UserStatus Status { get; set; }
         public bool IsPasswordChangeRequired { get; set; }
+        public long? PersonId { get; set; }
     }
 }

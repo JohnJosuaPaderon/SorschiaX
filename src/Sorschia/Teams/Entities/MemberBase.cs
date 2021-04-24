@@ -8,6 +8,6 @@
         public string LastName { get; set; }
         public string NameSuffix { get; set; }
         public string FullName { get; set; }
-        public int? UserId { get; set; }
+        public long? PersonId { get; set; }
     }
 }
