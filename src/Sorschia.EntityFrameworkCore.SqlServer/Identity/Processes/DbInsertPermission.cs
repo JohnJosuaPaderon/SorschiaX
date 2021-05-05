@@ -6,9 +6,9 @@ namespace Sorschia.Identity.Processes
 {
     internal sealed class DbInsertPermission : DbRequestBase, IRequest<Permission>
     {
-        public string LookupCode { get; set; }
-        public int? RoleId { get; set; }
         public Role Role { get; set; }
+        public int? RoleId { get; set; }
+        public string LookupCode { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
 
