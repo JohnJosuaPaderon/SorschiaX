@@ -18,7 +18,7 @@ namespace Sorschia.Identity.Processes.Results
                 if (source is null)
                     return null;
 
-                return new RoleObj
+                return new()
                 {
                     Id = source.Id,
                     Name = source.Name
@@ -36,7 +36,7 @@ namespace Sorschia.Identity.Processes.Results
                 if (source is null)
                     return null;
 
-                return new UserRoleObj
+                return new()
                 {
                     Id = source.Id,
                     Role = source.Role
@@ -54,7 +54,7 @@ namespace Sorschia.Identity.Processes.Results
                 if (source is null)
                     return null;
 
-                return new PermissionObj
+                return new()
                 {
                     Id = source.Id,
                     Name = source.Name
@@ -72,7 +72,7 @@ namespace Sorschia.Identity.Processes.Results
                 if (source is null)
                     return null;
 
-                return new UserPermissionObj
+                return new()
                 {
                     Id = source.Id,
                     Permission = source.Permission

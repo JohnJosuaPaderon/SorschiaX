@@ -16,7 +16,7 @@ namespace Sorschia.Identity.Processes.Results
                 if (source is null)
                     return null;
 
-                return new RoleObj
+                return new()
                 {
                     Id = source.Id,
                     Name = source.Name

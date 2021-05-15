@@ -22,9 +22,9 @@ namespace Sorschia.Identity.Processes.Handlers
         {
             using var context = _contextFactory.CreateDbContext();
             using var transaction = await context.Database.BeginTransactionAsync(cancellationToken);
-            var result = new InsertRoleResult();
+            InsertRoleResult result;
             var role = await _mediator.Send(request.AsDbInsertRole(context), cancellationToken);
-            result.Set(role);
+            result = role;
             await context.SaveChangesAsync(cancellationToken);
             await transaction.CommitAsync(cancellationToken);
             return result;
