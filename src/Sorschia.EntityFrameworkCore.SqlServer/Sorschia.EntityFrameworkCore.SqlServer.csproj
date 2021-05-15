@@ -12,10 +12,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Sorschia\Sorschia.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Folder Include="Teams\Data\EntityTypeConfigurations\" />
   </ItemGroup>
 
