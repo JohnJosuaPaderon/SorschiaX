@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Sorschia.Core.Entities;
+using Sorschia.Data;
 using Sorschia.Exceptions.Builders;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Sorschia.Core.Data
 {
-    internal sealed class CoreContext : DbContext
+    internal sealed class CoreContext : SorschiaContext
     {
         public DbSet<Domain> Domains { get; set; }
 
