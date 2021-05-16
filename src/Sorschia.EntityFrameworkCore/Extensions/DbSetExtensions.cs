@@ -17,5 +17,17 @@ namespace Sorschia.Extensions
             return instance.Add(entity)
                 .SetInsertFootprint();
         }
+
+        public static EntityEntry<TEntity> UpdateWithFootprint<TEntity>(this DbSet<TEntity> instance, TEntity entity, IFootprint footprint) where TEntity : class
+        {
+            return instance.Update(entity)
+                .SetUpdateFootprint(footprint);
+        }
+
+        public static EntityEntry<TEntity> UpdateWithFootprint<TEntity>(this DbSet<TEntity> instance, TEntity entity) where TEntity : class
+        {
+            return instance.Update(entity)
+                .SetUpdateFootprint();
+        }
     }
 }
