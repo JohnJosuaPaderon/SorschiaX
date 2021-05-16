@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Sorschia.Audit;
+using System.Diagnostics.CodeAnalysis;
 
 namespace Sorschia.Data
 {
@@ -21,6 +22,10 @@ namespace Sorschia.Data
 
                 return _currentFootprint;
             }
+        }
+
+        public SorschiaContext([NotNull] DbContextOptions options) : base(options)
+        {
         }
     }
 }
