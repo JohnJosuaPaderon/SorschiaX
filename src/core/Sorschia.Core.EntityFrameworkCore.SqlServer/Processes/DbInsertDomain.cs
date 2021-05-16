@@ -15,4 +15,15 @@ namespace Sorschia.Core.Processes
             }
         }
     }
+
+    internal static class DbInsertDomainExtensions
+    {
+        public static Domain ToDomain(this DbInsertDomain.Request instance)
+        {
+            return new()
+            {
+                Name = instance.Name
+            };
+        }
+    }
 }

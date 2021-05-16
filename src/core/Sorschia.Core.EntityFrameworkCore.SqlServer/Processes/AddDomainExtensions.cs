@@ -5,7 +5,7 @@ namespace Sorschia.Core.Processes
 {
     internal static class AddDomainExtensions
     {
-        public static DbInsertDomain.Request AsDbInsertDomainRequest(this AddDomain.Request instance, CoreContext dbContext)
+        public static DbInsertDomain.Request ToDbInsertDomainRequest(this AddDomain.Request instance, CoreContext dbContext)
         {
             if (dbContext is null)
                 return null;
