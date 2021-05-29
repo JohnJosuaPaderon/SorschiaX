@@ -10,6 +10,5 @@
 	<ItemGroup>
 	  <ProjectReference Include="..\..\Sorschia.EntityFrameworkCore\Sorschia.EntityFrameworkCore.csproj" />
 	  <ProjectReference Include="..\..\Sorschia\Sorschia.csproj" />
-	  <ProjectReference Include="..\Sorschia.Core\Sorschia.Core.csproj" />
 	</ItemGroup>
 </Project>
