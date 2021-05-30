@@ -6,13 +6,9 @@ namespace Sorschia.Extensions
 {
     public static class EntityTypeBuilderExtensions
     {
-        public static EntityTypeBuilder<TEntity> HasSoftDelete<TEntity>(this EntityTypeBuilder<TEntity> instance, bool hasFootprint = true) where TEntity : class
+        public static EntityTypeBuilder<TEntity> HasSoftDelete<TEntity>(this EntityTypeBuilder<TEntity> instance) where TEntity : class
         {
             instance.Property<bool>(ShadowProperties.IsDeleted);
-
-            if (hasFootprint)
-                instance.HasDeleteFootprint();
-
             return instance;
         }
 
