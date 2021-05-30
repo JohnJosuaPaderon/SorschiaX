@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.Identity.EntityFra
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.EntityFrameworkCore", "src\Sorschia.EntityFrameworkCore\Sorschia.EntityFrameworkCore.csproj", "{4C471A65-6FFF-499B-9EA7-EAD6250EA6CB}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorschia.Identity.EntityFrameworkCore.Postgres", "src\Sorschia.Identity.EntityFrameworkCore.Postgres\Sorschia.Identity.EntityFrameworkCore.Postgres.csproj", "{A973403D-DAFB-41EA-9C2F-E28F98EE3B81}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,10 @@ Global
 		{4C471A65-6FFF-499B-9EA7-EAD6250EA6CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4C471A65-6FFF-499B-9EA7-EAD6250EA6CB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4C471A65-6FFF-499B-9EA7-EAD6250EA6CB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A973403D-DAFB-41EA-9C2F-E28F98EE3B81}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A973403D-DAFB-41EA-9C2F-E28F98EE3B81}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A973403D-DAFB-41EA-9C2F-E28F98EE3B81}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A973403D-DAFB-41EA-9C2F-E28F98EE3B81}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -44,6 +50,7 @@ Global
 		{F52A578D-BC19-4667-9278-34DB172B45D4} = {C9B19449-2171-49AD-BD54-09EBAA1FD4D0}
 		{7470D17C-90DC-4D93-97E2-9937C4E22385} = {C9B19449-2171-49AD-BD54-09EBAA1FD4D0}
 		{4C471A65-6FFF-499B-9EA7-EAD6250EA6CB} = {C9B19449-2171-49AD-BD54-09EBAA1FD4D0}
+		{A973403D-DAFB-41EA-9C2F-E28F98EE3B81} = {C9B19449-2171-49AD-BD54-09EBAA1FD4D0}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {38FD30CD-A97E-4AF3-A21A-7AED792E2BB4}
