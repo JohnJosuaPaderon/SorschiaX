@@ -7,9 +7,9 @@ namespace Sorschia.Extensions
 {
     public static class EntityEntryExtensions
     {
-        public static EntityEntry<TEntity> SetDeleted<TEntity>(this EntityEntry<TEntity> instance) where TEntity : class
+        public static EntityEntry<TEntity> SetSoftDelete<TEntity>(this EntityEntry<TEntity> instance, bool isDeleted = true) where TEntity : class
         {
-            instance.Property<bool>(ShadowProperties.IsDeleted).CurrentValue = true;
+            instance.Property<bool>(ShadowProperties.IsDeleted).CurrentValue = isDeleted;
             return instance;
         }
 

@@ -40,7 +40,7 @@ namespace Sorschia.Extensions
         public static EntityEntry<TEntity> SoftDelete<TEntity>(this DbSet<TEntity> instance, TEntity entity) where TEntity : class
         {
             return instance.Update(entity)
-                .SetDeleted();
+                .SetSoftDelete();
         }
 
         public static EntityEntry<TEntity> SoftDelete<TEntity>(this DbSet<TEntity> instance, TEntity entity, Footprint footprint) where TEntity : class
