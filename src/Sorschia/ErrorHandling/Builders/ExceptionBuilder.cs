@@ -27,5 +27,7 @@ namespace Sorschia.ErrorHandling.Builders
             InnerException = exception;
             return Self;
         }
+
+        public virtual TSelf WithMessage() => WithMessage("An internal error occured");
     }
 }
