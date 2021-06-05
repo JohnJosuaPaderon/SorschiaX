@@ -23,3 +23,4 @@ namespace Sorschia.Identity.Data.Configurations
         }
     }
 }
+                                                                                                                                                                                                                                                        
