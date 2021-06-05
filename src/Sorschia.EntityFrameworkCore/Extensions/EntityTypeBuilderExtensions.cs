@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata.Builders;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Sorschia.Data;
 using System;
 
@@ -6,9 +7,13 @@ namespace Sorschia.Extensions
 {
     public static class EntityTypeBuilderExtensions
     {
-        public static EntityTypeBuilder<TEntity> HasSoftDelete<TEntity>(this EntityTypeBuilder<TEntity> instance) where TEntity : class
+        public static EntityTypeBuilder<TEntity> HasSoftDelete<TEntity>(this EntityTypeBuilder<TEntity> instance, bool isQueryFiltered = true) where TEntity : class
         {
             instance.Property<bool>(ShadowProperties.IsDeleted);
+
+            if (isQueryFiltered)
+                instance.HasQueryFilter(_ => EF.Property<bool>(_, ShadowProperties.IsDeleted) == false);
+
             return instance;
         }
 
