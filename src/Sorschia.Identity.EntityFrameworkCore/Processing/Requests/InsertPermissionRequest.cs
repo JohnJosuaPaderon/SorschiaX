@@ -6,7 +6,7 @@ namespace Sorschia.Identity.Processing.Requests
 {
     internal class InsertPermissionRequest : IRequest<Permission>, IResourceConsumer
     {
-        public ResourceConsumerIdentifier Id { get; }
+        ResourceConsumerIdentifier IResourceConsumer.Id { get; }
         public string Name { get; set; }
         public string LookupCode { get; set; }
         public string Description { get; set; }
