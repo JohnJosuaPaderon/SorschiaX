@@ -28,21 +28,22 @@ namespace Sorschia.Identity.Processing.Handlers
             var context = resourceContext.GetIdentityContext();
             var currentFootprint = resourceContext.GetCurrentFootprint();
 
-            if (await context.Permissions.Where(_ => _.Name == request.Name).AnyAsync(cancellationToken))
-                throw new DuplicateEntityExceptionBuilder()
-                    .WithEntityType<Permission>()
-                    .WithMessage("Permission already exists")
-                    .WithDebugMessage($"Permission with Name = {request.Name} already exists")
-                    .Build();
-
-            if (request.LookupCode is not null && await context.Permissions.Where(_ => _.LookupCode == request.LookupCode).AnyAsync(cancellationToken))
-                throw new DuplicateEntityExceptionBuilder()
-                    .WithEntityType<Permission>()
-                    .WithMessage("Permission already exists")
-                    .WithDebugMessage($"Permission with LookupCode = {request.LookupCode} already exists")
-                    .Build();
-
             var permission = request.AsPermission();
+
+            if (await context.Permissions.Where(_ => _.Name == permission.Name).AnyAsync(cancellationToken))
+                throw new DuplicateEntityExceptionBuilder()
+                    .WithEntityType<Permission>()
+                    .WithMessage("Permission already exists")
+                    .WithDebugMessage($"Permission with Name = {permission.Name} already exists")
+                    .Build();
+
+            if (request.LookupCode is not null && await context.Permissions.Where(_ => _.LookupCode == permission.LookupCode).AnyAsync(cancellationToken))
+                throw new DuplicateEntityExceptionBuilder()
+                    .WithEntityType<Permission>()
+                    .WithMessage("Permission already exists")
+                    .WithDebugMessage($"Permission with LookupCode = {permission.LookupCode} already exists")
+                    .Build();
+
             context.Permissions.Add(permission, currentFootprint);
             await context.SaveChangesAsync(cancellationToken);
             return permission;
