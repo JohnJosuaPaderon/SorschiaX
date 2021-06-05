@@ -27,7 +27,6 @@ namespace Sorschia.Identity.Processing.Handlers
             var resourceContext = _resourceManager.GetContext(request);
             var context = resourceContext.GetIdentityContext();
             var currentFootprint = resourceContext.GetCurrentFootprint();
-
             var permission = request.AsPermission();
 
             if (await context.Permissions.Where(_ => _.Name == permission.Name).AnyAsync(cancellationToken))
