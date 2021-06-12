@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Sorschia.Extensions;
+using Sorschia.Identity.Data.Configurations;
 using Sorschia.Identity.Entities;
 using System.Diagnostics.CodeAnalysis;
 using System.Threading;
@@ -9,6 +10,8 @@ namespace Sorschia.Identity.Data
 {
     internal sealed class IdentityContext : DbContext
     {
+        private readonly IConfigurationAssemblyProvider _configurationAssemblyProvider;
+
         public DbSet<User> Users { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Permission> Permissions { get; set; }
@@ -16,12 +19,19 @@ namespace Sorschia.Identity.Data
         public DbSet<UserPermission> UserPermissions { get; set; }
         public DbSet<RolePermission> RolePermissions { get; set; }
 
-        public IdentityContext()
+        public IdentityContext(IConfigurationAssemblyProvider configurationAssemblyProvider)
         {
+            _configurationAssemblyProvider = configurationAssemblyProvider;
         }
 
-        public IdentityContext([NotNull] DbContextOptions options) : base(options)
+        public IdentityContext([NotNull] DbContextOptions options, IConfigurationAssemblyProvider configurationAssemblyProvider) : base(options)
         {
+            _configurationAssemblyProvider = configurationAssemblyProvider;
+        }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.ApplyConfigurationsFromAssembly(_configurationAssemblyProvider.Assembly);
         }
 
         public async Task<User> FindUserAsync(int id, CancellationToken cancellationToken = default)
