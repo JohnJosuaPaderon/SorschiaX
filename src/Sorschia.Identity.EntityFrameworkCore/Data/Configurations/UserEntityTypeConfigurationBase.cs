@@ -8,6 +8,8 @@ namespace Sorschia.Identity.Data.Configurations
     {
         public virtual void Configure(EntityTypeBuilder<User> builder)
         {
+            builder.Property<string>(ShadowProperties.User.SecurePassword);
+
             builder
                 .HasSoftDelete()
                 .HasInsertFootprint()
